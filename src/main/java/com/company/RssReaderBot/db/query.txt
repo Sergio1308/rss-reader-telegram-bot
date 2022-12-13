@@ -1,0 +1,47 @@
+CREATE TABLE `rssdb`.`users` (
+  `iduser` INT NOT NULL,
+  `username` VARCHAR(45) NULL,
+  `firstname` VARCHAR(45) NULL,
+  `languagecode` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`iduser`),
+  UNIQUE INDEX `idtelegram_UNIQUE` (`iduser` ASC) VISIBLE,
+  UNIQUE INDEX `chatid_UNIQUE` (`chatid` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);
+
+  CREATE TABLE `rssdb`.`userspersonal` (
+    `iduserspersonal` INT NOT NULL AUTO_INCREMENT,
+    `userid` INT NOT NULL,
+    `rssurl` VARCHAR(255) NULL,
+    `titleitem` VARCHAR(64) NULL,
+    PRIMARY KEY (`iduserspersonal`),
+    UNIQUE INDEX `userid_UNIQUE` (`userid` ASC) VISIBLE,
+    UNIQUE INDEX `iduserspersonal_UNIQUE` (`iduserspersonal` ASC) VISIBLE,
+    CONSTRAINT `userid`
+      FOREIGN KEY (`userid`)
+      REFERENCES `rssdb`.`users` (`userid`)
+      ON DELETE CASCADE
+      ON UPDATE NO ACTION);
+
+CREATE TABLE `rssdb`.`userspersonal_items` (
+  `iduserspersonal` INT NOT NULL,
+  `item_title` VARCHAR(128) NOT NULL,
+  `item_description` VARCHAR(45) NULL,
+  `item_url` VARCHAR(255) NULL,
+  `item_date` DATE NULL,
+  PRIMARY KEY (`iduserspersonal`),
+  UNIQUE INDEX `iduserspersonal_UNIQUE` (`iduserspersonal` ASC) VISIBLE,
+  UNIQUE INDEX `item_title_UNIQUE` (`item_title` ASC) VISIBLE,
+  CONSTRAINT `iduserspersonal`
+    FOREIGN KEY (`iduserspersonal`)
+    REFERENCES `rssdb`.`userspersonal` (`iduserspersonal`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+
+
+INSERT_USER = """INSERT INTO users VALUES (%s);"""
+INSERT_FAVORITE = """INSERT INTO favorites (user_username, video_name, video_url, video_img_url)
+                     VALUES (%s, %s, %s, %s) ON CONFLICT DO NOTHING;"""
+
+SELECT_USERS = """SELECT * FROM users;"""
+SELECT_FAVORITES = """SELECT * FROM favorites WHERE user_username=%s;"""
+DELETE_FAVORITE = """DELETE FROM favorites WHERE video_name=%s AND user_username=%s;"""
