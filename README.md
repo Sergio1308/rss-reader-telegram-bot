@@ -4,4 +4,7 @@ This bot allows you to read the site's news feed (in RSS/XML format), parse and 
 
 Technologies: Java PL, Telegram Bot API, Spring Framework, MySQL + JDBC, Maven, Git.
 
+Bot demo:
+![Bot demo](https://gfycat.com/boilingflusterediaerismetalmark.gif)
+
 (More information about bot will be added)
