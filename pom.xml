@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.7.7</version>
+		<relativePath/>
 	</parent>
 
 	<groupId>com.company</groupId>
 	<artifactId>rssreaderbot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>RssReaderBot</name>
 	<description>RSS reader/aggregator telegram bot</description>
 
@@ -23,39 +23,35 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.telegram</groupId>
-			<artifactId>telegrambots</artifactId>
-			<version>${telegram.version}</version>
+			<groupId>com.github.kshashov</groupId>
+			<artifactId>spring-boot-starter-telegram</artifactId>
+			<version>0.28</version>
 		</dependency>
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.31</version>
 		</dependency>
-
-		<!--<dependency>
-			<groupId>com.github.xabgesagtx</groupId>
-			<artifactId>telegram-spring-boot-starter</artifactId>
-			<version>0.26</version>
-		</dependency>-->
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
