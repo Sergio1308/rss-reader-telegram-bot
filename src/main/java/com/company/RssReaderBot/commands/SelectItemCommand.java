@@ -5,13 +5,16 @@ import com.company.RssReaderBot.entities.ItemsList;
 import com.company.RssReaderBot.handlers.CallbackVars;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.SelectedItemInlineKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.EditMessageText;
+import com.pengrad.telegrambot.response.BaseResponse;
 
 /**
  * This class is responsible for selecting a specific item
  * (by pressing on the button) from items-list.
  */
-public class SelectItemCommand implements Command<Long> {
+public class SelectItemCommand implements Command<Long, Integer> {
 
     private static String callData;
 
@@ -30,7 +33,7 @@ public class SelectItemCommand implements Command<Long> {
     }
 
     @Override
-    public void execute(Long chatId, Long messageId) {
+    public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId) {
         if (callData == null) throw new NullPointerException();
         // here callDate contains the title of the episode selected by the user by clicking on the button
         if (!callData.equals(CallbackVars.SELECTED_BY_TITLE_CALLBACK)) { // equals only when user pressed inline button
@@ -41,6 +44,6 @@ public class SelectItemCommand implements Command<Long> {
         InlineKeyboardCreator inlineKeyboardCreator = new SelectedItemInlineKeyboard();
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
         String answer = "Selected item with title:\n" + currentlySelectedItem.getTitle();
-        messageSender.sendEditMessageText(chatId, messageId, answer, markupInline);
+        return new EditMessageText(chatId, messageId, answer).replyMarkup(markupInline);
     }
 }

@@ -1,39 +1,22 @@
 package com.company.RssReaderBot.core;
 
-import com.company.RssReaderBot.handlers.UpdateHandler;
-import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Update;
+import com.github.kshashov.telegram.api.TelegramMvcController;
+import com.github.kshashov.telegram.api.bind.annotation.BotController;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
 
-@Component
-public class RssReaderBot extends TelegramLongPollingBot {
+@BotController
+public class RssReaderBot implements TelegramMvcController {
 
-//	@Value("${bot.username}")
-	public static final String username = "";
-//	@Value("${bot.token}")
-	public static final String token = "";
-
-	public final UpdateHandler updateHandler = new UpdateHandler();
+	@Value("${bot.token}")
+	private String botToken;
 
 	@Override
-	public void onUpdateReceived(Update update) {
-		if (updateHandler.hasHandler(update)) {
-			updateHandler.handle(update);
-		}
-	}
-
-	@Override
-	public String getBotUsername() {
-		return username;
-	}
-
-	@Override
-	public String getBotToken() {
-		return token;
-	}
+	public String getToken() { return botToken; }
 
 	@PostConstruct
-	public void start() {}
+	public void start() {
+		System.out.println("token: " + getToken());
+	} // todo: debug, remove
 }

@@ -25,7 +25,6 @@ import java.util.List;
 public class RssParser {
 
     private static String rssUrl;
-    @Value("${parser.title}")
 
     private NodeList nodeList;
     // https://validator.w3.org/feed/docs/rss2.html required
@@ -62,10 +61,7 @@ public class RssParser {
         }
     }
 
-    public String getUserRssURL() {
-
-        return "";
-    }
+    public String getUserRssURL() { return null; } // todo
 
     public NodeList getNodeList() {
         return nodeList;
@@ -89,7 +85,6 @@ public class RssParser {
                 String currDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
                 ItemDate date = new ItemDate();
                 date.formatRSSDate(currDate);
-
                 Item currItem = new Item(
                         element.getElementsByTagName(TITLE).item(0).getTextContent(),
                         element.getElementsByTagName(DESCRIPTION).item(0).getTextContent(),
@@ -136,14 +131,14 @@ public class RssParser {
     }
 
     public List<Item> getElementListByDate(NodeList nodeList, Date date) {
+        // todo
         List<Item> elementList = new ArrayList<>();
-
         for (int temp = 0; temp < nodeList.getLength(); temp++) {
             Node node = nodeList.item(temp);
             Element element = (Element) node;
             String strDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
-            /*LocalDateTime elemDate = new EpisodeDate(strDate).getDate();
-
+            /*
+            LocalDateTime elemDate = new EpisodeDate(strDate).getDate();
             System.out.println("element date: " + elemDate);
             System.out.println();
             System.out.println("selected date: " + date);*/
@@ -177,17 +172,6 @@ public class RssParser {
                 System.out.println(element.getElementsByTagName(ENCLOSURE).item(0).
                         getAttributes().getNamedItem(URL).getTextContent());
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        RssParser parser = new RssParser();
-        parser.parseRss();
-        List<Item> itemList = parser.getAllElementsList(parser.getNodeList());
-        System.out.println(itemList.size());
-        for (Item item : itemList) {
-            System.out.println(item.getTitle());
-            System.out.println(item.getAudio().getUrl() + "\n----------------------------------");
         }
     }
 }

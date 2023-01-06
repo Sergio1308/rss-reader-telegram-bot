@@ -1,8 +1,8 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
 import com.company.RssReaderBot.handlers.CallbackVars;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
 import java.util.List;
 
@@ -10,18 +10,19 @@ public class MenuItemsLoaderInlineKeyboard implements InlineKeyboardCreator {
 
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
-        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-        List<InlineKeyboardButton> rowInline = createInlineKeyboardButtonRowInline(
-                createInlineKeyboardButton("Load all items", CallbackVars.LOAD_ALL_ITEMS),
-                createInlineKeyboardButton("Load items by title", CallbackVars.LOAD_BY_TITLE),
-                createInlineKeyboardButton("Load items by date", CallbackVars.LOAD_BY_DATE)
+        return new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("Load all items")
+                                .callbackData(CallbackVars.LOAD_ALL_ITEMS),
+                        new InlineKeyboardButton("Load items by title")
+                                .callbackData(CallbackVars.LOAD_BY_TITLE),
+                        new InlineKeyboardButton("Load items by date")
+                                .callbackData(CallbackVars.LOAD_BY_DATE)
+                },
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("Personal menu / Settings")
+                                .callbackData(CallbackVars.PERSONAL_MENU)
+                }
         );
-        List<InlineKeyboardButton> rowInline2 = createInlineKeyboardButtonRowInline(
-                createInlineKeyboardButton("Personal menu / Settings", CallbackVars.PERSONAL_MENU));
-
-        List<List<InlineKeyboardButton>> rowList = createInlineKeyboardButtonRowList(rowInline);
-        rowList.add(rowInline2);
-        markupInline.setKeyboard(rowList);
-        return markupInline;
     }
 }

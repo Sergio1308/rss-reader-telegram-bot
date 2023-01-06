@@ -1,11 +1,7 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.services.TelegramSendMessage;
+import com.pengrad.telegrambot.request.BaseRequest;
 
-public interface Command<T> {
-
-    TelegramSendMessage messageSender = new TelegramSendMessage();
-
-    void execute(T t1, T t2);
-
+public interface Command<T, V> {
+    BaseRequest execute(T t1, V t2);
 }

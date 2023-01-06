@@ -1,16 +1,21 @@
 package com.company.RssReaderBot.handlers;
 
 import com.company.RssReaderBot.commands.*;
+import com.company.RssReaderBot.core.RssReaderBot;
 import com.company.RssReaderBot.parser.ParseElements;
-import com.company.RssReaderBot.services.TelegramSendMessage;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
+import com.github.kshashov.telegram.api.MessageType;
+import com.github.kshashov.telegram.api.bind.annotation.BotController;
+import com.github.kshashov.telegram.api.bind.annotation.BotRequest;
+import com.github.kshashov.telegram.api.bind.annotation.request.MessageRequest;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.User;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.SendMessage;
 
 import java.util.Date;
 
-public class MessageHandler implements Handler {
-
-    TelegramSendMessage messageSender = new TelegramSendMessage();
+@BotController
+public class MessageHandler extends RssReaderBot implements Handler {
 
     // commands instance fields
     private final StartCommand startCommand = new StartCommand();
@@ -18,39 +23,38 @@ public class MessageHandler implements Handler {
     private final RssUrlValidationCommand rssUrlValidationCommand = new RssUrlValidationCommand();
     // commandHandlersMap
 
-    @Override
-    public void handle(Update update) {
-        String message = update.getMessage().getText();
-        long chatId = update.getMessage().getChatId();
+    @BotRequest(value = "/start", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
+    public BaseRequest sendStartMessage(Update update) {
+        return startCommand.execute(update);
+    }
+
+    @MessageRequest
+    public BaseRequest handle(Update update) {
+        String message = update.message().text();
+        long chatId = update.message().chat().id();
 
         handleMessageLog(update);
 
         if (message.equals("/start")) {
-            startCommand.execute(update);
-//            loadMainMenuCommand.execute(chatId);
+            return startCommand.execute(update);
         } else if (StartCommand.hasEntered()) {
-            rssUrlValidationCommand.execute(update, chatId);
+            return rssUrlValidationCommand.execute(update, chatId);
         } else if (EnteringItemTitleCommand.hasEntered()) {
             // todo parse in loadItemsByTitleCommand
             ParseElements parseElements = new ParseElements();
             parseElements.parseElementsByTitle(message);
-            loadItemsByTitleCommand.process(update, chatId);
+            return loadItemsByTitleCommand.process(update, chatId);
         } else {
             String answer = "Invalid command. Use inline menu above\uD83D\uDC46";
-            messageSender.sendText(chatId, answer);
+            return new SendMessage(chatId, answer);
         }
     }
 
-    @Override
-    public boolean hasHandler(Update update) {
-        return update.hasMessage() && update.getMessage().hasText();
-    }
-
     private void handleMessageLog(Update update) {
-        Date msgTime = new Date((long)update.getMessage().getDate() * 1000);
-        User user = update.getMessage().getFrom();
+        Date msgTime = new Date((long)update.message().date() * 1000);
+        User user = update.message().from();
         System.out.println(
-                user + "\nHandle message " + "'" + update.getMessage().getText() + "'" + "\nDate: " + msgTime
+                user + "\nHandle message " + "'" + update.message().text() + "'" + "\nDate: " + msgTime
         );
     }
 }

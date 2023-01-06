@@ -1,10 +1,8 @@
 package com.company.RssReaderBot.handlers;
 
-import org.telegram.telegrambots.meta.api.objects.Update;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.BaseRequest;
 
 public interface Handler {
-
-    void handle(Update update);
-
-    boolean hasHandler(Update update);
+    BaseRequest handle(Update update);
 }

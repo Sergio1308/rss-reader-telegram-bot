@@ -1,8 +1,8 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
 import com.company.RssReaderBot.handlers.CallbackVars;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
 import java.util.List;
 
@@ -13,12 +13,8 @@ public class StartMenuInlineKeyboard implements InlineKeyboardCreator {
 
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
-        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-        List<InlineKeyboardButton> rowInline = createInlineKeyboardButtonRowInline(
-                createInlineKeyboardButton("What is RSS? [FAQ]", CallbackVars.RSS_FAQ)
+        return new InlineKeyboardMarkup(
+                new InlineKeyboardButton("What is RSS? [FAQ]").callbackData(CallbackVars.RSS_FAQ)
         );
-        List<List<InlineKeyboardButton>> rowList = createInlineKeyboardButtonRowList(rowInline);
-        markupInline.setKeyboard(rowList);
-        return markupInline;
     }
 }

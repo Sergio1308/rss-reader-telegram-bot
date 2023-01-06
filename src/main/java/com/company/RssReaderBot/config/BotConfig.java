@@ -10,19 +10,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-//@Configuration
-//@PropertySource("classpath:application.properties")
 @Component
-public class SpringConfig implements TelegramBotGlobalPropertiesConfiguration {
-    @Value("${bot.name}")
-    String botName;
+public class BotConfig implements TelegramBotGlobalPropertiesConfiguration {
 
     @Getter
     @Value("${bot.token}")
     String botToken;
 
     @Getter
-    private TelegramBot telegramBot;
+    public static TelegramBot telegramBot;
 
     @Override
     public void configure(TelegramBotGlobalProperties.Builder builder) {
@@ -33,6 +29,6 @@ public class SpringConfig implements TelegramBotGlobalPropertiesConfiguration {
                 .configureBot(botToken, botBuilder -> {
                     botBuilder.configure(builder1 -> builder1.okHttpClient(okHttp));
                 })
-                .processBot(botToken, bot -> this.telegramBot = bot);
+                .processBot(botToken, bot -> BotConfig.telegramBot = bot);
     }
 }

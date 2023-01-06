@@ -2,16 +2,19 @@ package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.OtherDetailsInlineKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.EditMessageText;
+import com.pengrad.telegrambot.response.BaseResponse;
 
-public class GetItemOtherDetailsCommand implements Command<Long> {
+public class GetItemOtherDetailsCommand implements Command<Long, Integer> {
 
     @Override
-    public void execute(Long chatId, Long messageId) {
+    public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId) {
         InlineKeyboardCreator inlineKeyboardCreator = new OtherDetailsInlineKeyboard();
         String answer = SelectItemCommand.getCurrentlySelectedEpisode().getTitle() + "\nPublication date: " +
                 SelectItemCommand.getCurrentlySelectedEpisode().getDate().getItemDate();
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
-        messageSender.sendEditMessageText(chatId, messageId, answer, markupInline);
+        return new EditMessageText(chatId, messageId, answer).replyMarkup(markupInline);
     }
 }
