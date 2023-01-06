@@ -1,8 +1,8 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
 import com.company.RssReaderBot.handlers.CallbackVars;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
 import java.util.List;
 
@@ -13,24 +13,16 @@ public class RssFaqInlineKeyboard implements InlineKeyboardCreator {
 
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
-        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-
-        InlineKeyboardButton wikiLinkButton = createInlineKeyboardButton(
-                "More about RSS (link to Wiki)", "");
-        wikiLinkButton.setUrl(rssWikiLink);
-        InlineKeyboardButton rssExampleLinkButton = createInlineKeyboardButton(
-                "RSS link example", "");
-        rssExampleLinkButton.setUrl(rssExampleLink);
-
-        List<InlineKeyboardButton> rowInline1 = createInlineKeyboardButtonRowInline(wikiLinkButton);
-        List<InlineKeyboardButton> rowInline2 = createInlineKeyboardButtonRowInline(rssExampleLinkButton);
-        List<InlineKeyboardButton> rowInline3 = createInlineKeyboardButtonRowInline(
-                createInlineKeyboardButton("Back", CallbackVars.START_MENU));
-
-        List<List<InlineKeyboardButton>> rowList = createInlineKeyboardButtonRowList(rowInline1);
-        rowList.add(rowInline2);
-        rowList.add(rowInline3);
-        markupInline.setKeyboard(rowList);
-        return markupInline;
+        return new InlineKeyboardMarkup(
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("More about RSS (link to Wiki)").url(rssWikiLink)
+                },
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("RSS link example").url(rssExampleLink)
+                },
+                new InlineKeyboardButton[]{
+                        new InlineKeyboardButton("Back").callbackData(CallbackVars.START_MENU)
+                }
+        );
     }
 }

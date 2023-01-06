@@ -60,3 +60,8 @@ hs_err_pid*
 /src/main/java/com/company/RssReaderBot/config/SpringConfig.java
 /src/main/java/com/company/RssReaderBot/db/config/Config.java
 /src/main/resources/application.properties
+
+# maven
+.mvn/
+mvnw
+mvnw.cmd
