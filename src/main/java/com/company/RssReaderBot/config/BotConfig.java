@@ -15,10 +15,10 @@ public class BotConfig implements TelegramBotGlobalPropertiesConfiguration {
 
     @Getter
     @Value("${bot.token}")
-    String botToken;
+    private String botToken;
 
     @Getter
-    public static TelegramBot telegramBot;
+    private TelegramBot telegramBot;
 
     @Override
     public void configure(TelegramBotGlobalProperties.Builder builder) {
@@ -29,6 +29,6 @@ public class BotConfig implements TelegramBotGlobalPropertiesConfiguration {
                 .configureBot(botToken, botBuilder -> {
                     botBuilder.configure(builder1 -> builder1.okHttpClient(okHttp));
                 })
-                .processBot(botToken, bot -> BotConfig.telegramBot = bot);
+                .processBot(botToken, bot -> telegramBot = bot);
     }
 }

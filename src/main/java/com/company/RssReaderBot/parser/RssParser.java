@@ -174,4 +174,15 @@ public class RssParser {
             }
         }
     }
+
+    public static void main(String[] args) {
+        RssParser parser = new RssParser();
+        parser.parseRss();
+        List<Item> itemList = parser.getAllElementsList(parser.getNodeList());
+        System.out.println(itemList.size());
+        for (Item item : itemList) {
+            System.out.println(item.getTitle());
+            System.out.println(item.getAudio().getUrl() + "\n----------------------------------");
+        }
+    }
 }
