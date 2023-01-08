@@ -2,6 +2,7 @@ package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.db.DatabaseHandler;
 import com.company.RssReaderBot.db.DatabaseVars;
+import com.company.RssReaderBot.db.config.Config;
 import com.company.RssReaderBot.db.models.UsersDB;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.StartMenuInlineKeyboard;
@@ -14,18 +15,24 @@ import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.SendResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.function.Consumer;
 
+@Component
 public class StartCommand implements Command<Long, Integer> {
+
+    @Autowired
+    private DatabaseHandler databaseHandler;
+
+    private static boolean hasEntered;
 
     private String getAnswer() {
         return "\t<Greetings text>\n<info>\nLet's start. Send me RSS URL below\uD83D\uDC47";
     }
-
-    private static boolean hasEntered;
 
     public static boolean hasEntered() {
         return hasEntered;
@@ -55,10 +62,10 @@ public class StartCommand implements Command<Long, Integer> {
     }
 
     private void loginUser(User user) {
-        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         long userId = user.id();
         UsersDB usersDB = new UsersDB(userId, user.languageCode());
         System.out.println("Trying to login user " + userId + " lang=" + user.languageCode());
+        System.out.println(databaseHandler);
         ResultSet resultSet = databaseHandler.getUser(usersDB);
         try {
             if (resultSet.next()) {
@@ -83,7 +90,6 @@ public class StartCommand implements Command<Long, Integer> {
     }
 
     private void addNewUser(UsersDB usersDB) {
-        DatabaseHandler databaseHandler = DatabaseHandler.getInstance();
         databaseHandler.addUser(usersDB);
         System.out.println("successfully added to db: " + usersDB);
     }

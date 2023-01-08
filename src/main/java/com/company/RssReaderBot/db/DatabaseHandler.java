@@ -2,45 +2,31 @@ package com.company.RssReaderBot.db;
 
 import com.company.RssReaderBot.db.config.Config;
 import com.company.RssReaderBot.db.models.UsersDB;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler extends Config {
+@Component
+public class DatabaseHandler {
 
-    private static volatile DatabaseHandler instance;
+    @Getter
+    @Autowired
+    private Config config;
 
     Connection connection;
 
-    private DatabaseHandler() { }
-
-    // singleton
-    public static DatabaseHandler getInstance() {
-        DatabaseHandler result = instance;
-        if (result != null) {
-            return result;
-        }
-        synchronized (DatabaseHandler.class) {
-            if (instance == null) {
-                instance = new DatabaseHandler();
-            }
-            return instance;
-        }
-    }
-
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-        // todo property
-        String connectionString =
-                "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?" +
-                "useUnicode=true&useSSL=true&useJDBCCompliantTimezoneShift=true&" +
-                "useLegacyDatetimeCode=false&serverTimezone=UTC";
-        connection = DriverManager.getConnection(connectionString, dbUser, dbPass);
-
+        String connectionString = config.getDbUrl() + "//" + config.getDbHost() + ":" + config.getDbPort()
+                + "/" + config.getDbName() + "?" + config.getDbProperty();
+        connection = DriverManager.getConnection(connectionString, config.getDbUser(), config.getDbPass());
+        System.out.println(connection);
         return connection;
     }
 
-    // write
     public void addUser(UsersDB usersDB) {
         // transaction
         String query1 =
@@ -148,7 +134,6 @@ public class DatabaseHandler extends Config {
         }
     }
 
-    // read
     public ResultSet getUser(UsersDB usersDB) {
         ResultSet resultSet = null;
         String query = "SELECT * FROM " + DatabaseVars.USERS_TABLE + " WHERE " +
@@ -206,11 +191,5 @@ public class DatabaseHandler extends Config {
             e.printStackTrace();
         }
         return resultSet;
-    }
-
-    public static void main(String[] args) {
-        DatabaseHandler handler = new DatabaseHandler();
-        List<UsersDB> usersDBS =  handler.getUsers();
-        System.out.println(usersDBS);
     }
 }

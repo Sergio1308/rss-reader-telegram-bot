@@ -2,19 +2,26 @@ package com.company.RssReaderBot.handlers;
 
 import com.company.RssReaderBot.commands.*;
 import com.company.RssReaderBot.commands.personal_menu.ShowPersonalMenuCommand;
+import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.core.RssReaderBot;
 import com.company.RssReaderBot.entities.ItemsPagination;
 import com.company.RssReaderBot.parser.ParseElements;
+import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.request.CallbackQueryRequest;
 import com.pengrad.telegrambot.model.CallbackQuery;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @BotController
-public class CallbackHandler extends RssReaderBot implements Handler {
+public class CallbackHandler implements TelegramMvcController, Handler {
 
-    // commands classes fields. Todo:
+    @Autowired
+    private BotConfig botConfig;
+
+    // commands classes fields
+    // todo
     private final StartCommand startCommand = new StartCommand();
     private final LoadMainMenuCommand loadMainMenuCommand = new LoadMainMenuCommand();
     private final ShowRssFaqCommand showRssFaqCommand = new ShowRssFaqCommand();
@@ -31,7 +38,6 @@ public class CallbackHandler extends RssReaderBot implements Handler {
     @CallbackQueryRequest
     public BaseRequest handle(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
-//        if (callbackQuery == null) return;
         System.out.println("Handle callback - " + callbackQuery.data());
         return handleCallback(callbackQuery, update);
     }
@@ -78,5 +84,10 @@ public class CallbackHandler extends RssReaderBot implements Handler {
             return turnToFirstOrLastPageCommand.execute(chatId, messageId, callData);
         }
         return null;
+    }
+
+    @Override
+    public String getToken() {
+        return botConfig.getBotToken();
     }
 }

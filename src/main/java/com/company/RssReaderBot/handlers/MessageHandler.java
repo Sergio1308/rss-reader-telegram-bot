@@ -1,9 +1,11 @@
 package com.company.RssReaderBot.handlers;
 
 import com.company.RssReaderBot.commands.*;
+import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.core.RssReaderBot;
 import com.company.RssReaderBot.parser.ParseElements;
 import com.github.kshashov.telegram.api.MessageType;
+import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.BotRequest;
 import com.github.kshashov.telegram.api.bind.annotation.request.MessageRequest;
@@ -11,16 +13,25 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.User;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
 @BotController
-public class MessageHandler extends RssReaderBot implements Handler {
+public class MessageHandler implements TelegramMvcController, Handler {
 
     // commands instance fields
-    private final StartCommand startCommand = new StartCommand();
+    @Autowired
+    private BotConfig botConfig;
+
+    @Autowired
+    private StartCommand startCommand;
+
     private final LoadItemsByTitleCommand loadItemsByTitleCommand = new LoadItemsByTitleCommand();
-    private final RssUrlValidationCommand rssUrlValidationCommand = new RssUrlValidationCommand();
+
+    @Autowired
+    private RssUrlValidationCommand rssUrlValidationCommand;
+
     // commandHandlersMap
 
     @BotRequest(value = "/start", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
@@ -56,5 +67,10 @@ public class MessageHandler extends RssReaderBot implements Handler {
         System.out.println(
                 user + "\nHandle message " + "'" + update.message().text() + "'" + "\nDate: " + msgTime
         );
+    }
+
+    @Override
+    public String getToken() {
+        return botConfig.getBotToken();
     }
 }
