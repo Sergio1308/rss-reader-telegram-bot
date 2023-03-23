@@ -13,28 +13,38 @@
 	<artifactId>rssreaderbot</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<name>RssReaderBot</name>
-	<description>RSS reader/aggregator telegram bot</description>
+	<description>RSS Reader Telegram Bot</description>
 
 	<properties>
 		<java.version>11</java.version>
 		<telegram.version>6.1.0</telegram.version>
-		<junit.version>4.13.2</junit.version>
+		<spring-boot-telegram.version>0.28</spring-boot-telegram.version>
+		<mysql.version>8.0.31</mysql.version>
+		<hibernate.version>6.2.0.CR1</hibernate.version>
+		<junit.version>5.9.2</junit.version>
+		<lombok.version>1.18.24</lombok.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.github.kshashov</groupId>
 			<artifactId>spring-boot-starter-telegram</artifactId>
-			<version>0.28</version>
+			<version>${spring-boot-telegram.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.31</version>
+			<version>${mysql.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -50,7 +60,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.24</version>
+			<version>${lombok.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

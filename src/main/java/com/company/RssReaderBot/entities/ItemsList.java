@@ -1,5 +1,8 @@
 package com.company.RssReaderBot.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,25 +12,10 @@ import java.util.List;
  */
 public class ItemsList {
 
+    @Getter @Setter
     private static List<Item> itemsList;
-
+    @Getter @Setter
     private static HashMap<String, Item> itemsMap;
-
-    public static List<Item> getItemsList() {
-        return itemsList;
-    }
-
-    public static void setItemsList(List<Item> itemsList) {
-        ItemsList.itemsList = itemsList;
-    }
-
-    public static HashMap<String, Item> getItemsMap() {
-        return itemsMap;
-    }
-
-    public static void setItemsMap(HashMap<String, Item> itemsMap) {
-        ItemsList.itemsMap = itemsMap;
-    }
 
     public static void putInMap(String title, Item item) {
         itemsMap.put(title, item);

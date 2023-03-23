@@ -2,21 +2,30 @@ package com.company.RssReaderBot.entities;
 
 import com.company.RssReaderBot.handlers.CallbackVars;
 import com.company.RssReaderBot.services.Partition;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsPagination {
 
+    @Getter
     private int currentIndexPagination;
+    @Getter
     private int startButtonsIndex;
+    @Getter
     private int buttonsInRowSize;
 
+    @Getter
     private Partition<Item> chunkedItemList;
+    @Getter
     private Partition<List<Item>> pagesPartition;
 
+    @Getter
     private static List<String> callbackDataPaginationButtons;
 
+    @Getter @Setter
     private static int currentPage;
 
     private static final int DISPLAY_BUTTONS_COLUMN = 6; // config
@@ -65,37 +74,5 @@ public class ItemsPagination {
         } else if (pressedCallbackButton.equals(CallbackVars.PREVIOUS_PAGE) && currentIndexPagination > 0) {
             --currentIndexPagination;
         }
-    }
-
-    public static List<String> getCallbackDataPaginationButtons() {
-        return callbackDataPaginationButtons;
-    }
-
-    public Partition<Item> getChunkedItemList() {
-        return chunkedItemList;
-    }
-
-    public Partition<List<Item>> getPagesPartition() {
-        return pagesPartition;
-    }
-
-    public int getCurrentIndexPagination() {
-        return currentIndexPagination;
-    }
-
-    public static int getCurrentPage() {
-        return currentPage;
-    }
-
-    public static void setCurrentPage(int currentPage) {
-        ItemsPagination.currentPage = currentPage;
-    }
-
-    public int getStartButtonsIndex() {
-        return startButtonsIndex;
-    }
-
-    public int getButtonsInRowSize() {
-        return buttonsInRowSize;
     }
 }
