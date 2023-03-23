@@ -1,9 +1,8 @@
 package com.company.RssReaderBot.parser;
 
 import com.company.RssReaderBot.entities.Item;
-import com.company.RssReaderBot.entities.ItemUrl;
-import com.company.RssReaderBot.entities.ItemDate;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Getter;
+import lombok.Setter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,9 +13,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Class to work with node items, parsed from RSS,
@@ -24,10 +23,7 @@ import java.util.List;
  */
 public class RssParser {
 
-    private static String rssUrl;
-
-    private NodeList nodeList;
-    // https://validator.w3.org/feed/docs/rss2.html required
+    private static final String CHANNEL = "channel";
     private static final String ITEM = "item";
     private static final String TITLE = "title";
     private static final String ENCLOSURE = "enclosure";
@@ -35,154 +31,105 @@ public class RssParser {
     private static final String LINK = "link";
     private static final String DESCRIPTION = "description";
     private static final String PUB_DATE = "pubDate";
+    private static final String GUID = "guid";
+    private static final String EMPTY_ELEMENT = "empty";
 
-    public RssParser() { nodeList = null; }
+    @Getter @Setter
+    private static String rssUrl;
+    @Getter
+    private static String channelTitle;
 
-    public static String getRssUrl() {
-        return rssUrl;
-    }
+    @Getter
+    private NodeList nodeList;
 
-    public static void setRssUrl(String url) {
-        rssUrl = url;
-    }
+    private DocumentBuilder builder;
 
-    public void parseRss() {
-
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    public RssParser() {
         try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(rssUrl);
             doc.getDocumentElement().normalize();
-
             nodeList = doc.getElementsByTagName(ITEM);
-
+            Element channel = (Element) doc.getElementsByTagName(CHANNEL).item(0);
+            channelTitle = getOptionalSubElementValue(channel, TITLE);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String getUserRssURL() { return null; } // todo
-
-    public NodeList getNodeList() {
-        return nodeList;
+    public void parseRss() {
+        try {
+            Document doc = builder.parse(rssUrl);
+            doc.getDocumentElement().normalize();
+            nodeList = doc.getElementsByTagName(ITEM);
+            Element channel = (Element) doc.getElementsByTagName(CHANNEL).item(0);
+            channelTitle = getOptionalSubElementValue(channel, TITLE);
+        } catch (SAXException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Item> getAllElementsList(NodeList nodeList) {
-        List<Item> elementList = new ArrayList<>();
-        for (int temp = 0; temp < nodeList.getLength(); temp++) {
-            Node node = nodeList.item(temp);
+        List<Item> itemsList = new ArrayList<>();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
             Element element = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                ItemUrl itemUrl;
-                // todo without try catch
-                try {
-                    itemUrl = new ItemUrl(element.getElementsByTagName(ENCLOSURE).item(0).
-                            getAttributes().getNamedItem(URL).getTextContent());
-                } catch (NullPointerException e) {
-                    itemUrl = new ItemUrl(element.getElementsByTagName(LINK).item(0).
-                            getTextContent());
-                }
-                String currDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
-                ItemDate date = new ItemDate();
-                date.formatRSSDate(currDate);
-                Item currItem = new Item(
-                        element.getElementsByTagName(TITLE).item(0).getTextContent(),
-                        element.getElementsByTagName(DESCRIPTION).item(0).getTextContent(),
-                        itemUrl,
-                        date
-                );
-                elementList.add(currItem);
+                Item currentItem = createItem(element);
+                itemsList.add(currentItem);
             }
         }
-        return elementList;
+        return itemsList;
     }
 
     public List<Item> getElementListByTitle(NodeList nodeList, String title) {
-        List<Item> itemList = new ArrayList<>();
+        List<Item> itemsList = new ArrayList<>();
         title = title.toLowerCase();
-        for (int temp = 0; temp < nodeList.getLength(); temp++) {
-            Node node = nodeList.item(temp);
-            Element element = (Element) node;
-            String currentNodeTitle = element.getElementsByTagName(TITLE).item(0).getTextContent().toLowerCase();
-            if (node.getNodeType() == Node.ELEMENT_NODE && currentNodeTitle.contains(title)) {
-                ItemUrl itemUrl;
-                // todo without try catch
-                try {
-                    itemUrl = new ItemUrl(element.getElementsByTagName(ENCLOSURE).item(0).
-                            getAttributes().getNamedItem(URL).getTextContent());
-                } catch (NullPointerException e) {
-                    itemUrl = new ItemUrl(element.getElementsByTagName(LINK).item(0).
-                            getTextContent());
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String currentNodeTitle = element.getElementsByTagName(TITLE).item(0).getTextContent().toLowerCase();
+                if (currentNodeTitle.contains(title)) {
+                    Item currentItem = createItem(element);
+                    itemsList.add(currentItem);
                 }
-                String currDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
-                ItemDate date = new ItemDate();
-                date.formatRSSDate(currDate);
-
-                Item currItem = new Item(
-                        element.getElementsByTagName(TITLE).item(0).getTextContent(),
-                        element.getElementsByTagName(DESCRIPTION).item(0).getTextContent(),
-                        itemUrl,
-                        date
-                );
-                itemList.add(currItem);
             }
         }
-        return itemList;
+        return itemsList;
     }
 
-    public List<Item> getElementListByDate(NodeList nodeList, Date date) {
-        // todo
+    public List<Item> getElementListByDate(NodeList nodeList, String dateString) {
         List<Item> elementList = new ArrayList<>();
-        for (int temp = 0; temp < nodeList.getLength(); temp++) {
-            Node node = nodeList.item(temp);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
             Element element = (Element) node;
-            String strDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
-            /*
-            LocalDateTime elemDate = new EpisodeDate(strDate).getDate();
-            System.out.println("element date: " + elemDate);
-            System.out.println();
-            System.out.println("selected date: " + date);*/
-            /*if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Audio audio = new Audio(element.getElementsByTagName(ENCLOSURE).item(0).
-                        getAttributes().getNamedItem(URL).getTextContent());
-                String currDate = element.getElementsByTagName(PUB_DATE).item(0).getTextContent();
-                EpisodeDate episodeDate = new EpisodeDate(date);
-                Episode currEpisode = new Episode(
-                        element.getElementsByTagName(TITLE).item(0).getTextContent(),
-                        element.getElementsByTagName(DESCRIPTION).item(0).getTextContent(),
-                        audio,
-                        episodeDate
-                );
-                elementList.add(currEpisode);
-            }*/
+            String currentItemDate = getOptionalSubElementValue(element, PUB_DATE);
+            if (currentItemDate.contains(dateString)) {
+                Item currentItem = createItem(element);
+                System.out.println(currentItem.getTitle());
+                elementList.add(currentItem);
+            }
         }
         return elementList;
     }
 
-    // debug
-    public void printNodeList(NodeList nodeList) {
-        System.out.println("Node length: " + nodeList.getLength());
-        for (int temp = 0; temp < nodeList.getLength(); temp++) {
-            Node node = nodeList.item(temp);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
+    private Item createItem(Element element) {
+        String itemTitle = getOptionalSubElementValue(element, TITLE);
+        String itemDescription = getOptionalSubElementValue(element, DESCRIPTION);
+        String pubDate = getOptionalSubElementValue(element, PUB_DATE);
+        String guid = getOptionalSubElementValue(element, GUID);
 
-                System.out.println(element.getElementsByTagName(TITLE).item(0).getTextContent());
-                System.out.println(element.getElementsByTagName(DESCRIPTION).item(0).getTextContent());
-                System.out.println(element.getElementsByTagName(ENCLOSURE).item(0).
-                        getAttributes().getNamedItem(URL).getTextContent());
-            }
-        }
+        String mediaUrl = Optional.ofNullable(element.getElementsByTagName(LINK).item(0))
+                .map(Node::getTextContent)
+                .orElseGet(() -> element.getElementsByTagName(ENCLOSURE).item(0)
+                        .getAttributes().getNamedItem(URL).getTextContent());
+
+        return new Item(itemTitle, itemDescription, pubDate, mediaUrl, guid);
     }
 
-    public static void main(String[] args) {
-        RssParser parser = new RssParser();
-        parser.parseRss();
-        List<Item> itemList = parser.getAllElementsList(parser.getNodeList());
-        System.out.println(itemList.size());
-        for (Item item : itemList) {
-            System.out.println(item.getTitle());
-            System.out.println(item.getAudio().getUrl() + "\n----------------------------------");
-        }
+    private String getOptionalSubElementValue(Element element, String tag) {
+        return Optional.ofNullable(element.getElementsByTagName(tag).item(0))
+                .map(Node::getTextContent).orElse(EMPTY_ELEMENT);
     }
 }
