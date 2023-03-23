@@ -1,70 +1,37 @@
 package com.company.RssReaderBot.entities;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Item {
-    @Value("${episode.header}")
-    private String userHeader;
+
+    @Getter
+    private final String title;
+    @Getter @Setter
     private String description;
-    private String title;
+    @Getter @Setter
+    private String pubDate;
+    @Getter @Setter
+    private String mediaUrl;
+    @Getter @Setter
+    private String guid;
 
-    private ItemUrl itemUrl;
-
-    private ItemDate date;
-
-    public Item(String title, String description, ItemUrl itemUrl, ItemDate date) {
+    public Item(String title, String description, String pubDate, String mediaUrl, String guid) {
         this.title = title;
         this.description = description;
-        this.itemUrl = itemUrl;
-        this.date = date;
-    }
-
-    public ItemDate getDate() {
-        return date;
-    }
-
-    public void setDate(ItemDate date) {
-        this.date = date;
-    }
-
-    public String getUserHeader() {
-        return userHeader;
-    }
-
-    public void setUserHeader(String userHeader) {
-        this.userHeader = userHeader;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTitle() { return title; }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public ItemUrl getAudio() {
-        return itemUrl;
-    }
-
-    public void setAudio(ItemUrl itemUrl) {
-        this.itemUrl = itemUrl;
+        this.pubDate = pubDate;
+        this.mediaUrl = mediaUrl;
+        this.guid = guid;
     }
 
     @Override
     public String toString() {
-        return "Episode{" +
-                "userHeader='" + userHeader + '\'' +
+        return "Item{" +
+                "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", title='" + title + '\'' +
-                ", audio=" + itemUrl +
-                ", date=" + date +
+                ", pubDate='" + pubDate + '\'' +
+                ", mediaUrl='" + mediaUrl + '\'' +
+                ", guid='" + guid + '\'' +
                 '}';
     }
 }
