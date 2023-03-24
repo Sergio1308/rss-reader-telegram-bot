@@ -6,21 +6,21 @@ import java.util.Date;
 
 public class ParseElements {
 
-    public static final RssParser parser = new RssParser();
+    public static RssParser parser;
 
     public ParseElements() {
-        parser.parseRss();
+        parser = new RssParser();
     }
 
     public void parseElementsByTitle(String title) {
-        ItemsList.setItemsList(parser.getElementListByTitle(parser.getNodeList(), title));
+        ItemsList.setItemsList(parser.getElementListByTitle(title));
     }
 
     public void parseAllElements() {
-        ItemsList.setItemsList(parser.getAllElementsList(parser.getNodeList()));
+        ItemsList.setItemsList(parser.getAllElementsList());
     }
 
-    public void parseElementByDate(Date date) {
-        ItemsList.setItemsList(parser.getElementListByDate(parser.getNodeList(), date));
+    public void parseElementsByDate(String dateString) {
+        ItemsList.setItemsList(parser.getElementListByDate(dateString));
     }
 }

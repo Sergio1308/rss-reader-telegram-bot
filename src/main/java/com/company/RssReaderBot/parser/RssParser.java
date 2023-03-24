@@ -42,11 +42,9 @@ public class RssParser {
     @Getter
     private NodeList nodeList;
 
-    private DocumentBuilder builder;
-
     public RssParser() {
         try {
-            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = builder.parse(rssUrl);
             doc.getDocumentElement().normalize();
             nodeList = doc.getElementsByTagName(ITEM);
@@ -57,19 +55,7 @@ public class RssParser {
         }
     }
 
-    public void parseRss() {
-        try {
-            Document doc = builder.parse(rssUrl);
-            doc.getDocumentElement().normalize();
-            nodeList = doc.getElementsByTagName(ITEM);
-            Element channel = (Element) doc.getElementsByTagName(CHANNEL).item(0);
-            channelTitle = getOptionalSubElementValue(channel, TITLE);
-        } catch (SAXException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<Item> getAllElementsList(NodeList nodeList) {
+    public List<Item> getAllElementsList() {
         List<Item> itemsList = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -82,7 +68,7 @@ public class RssParser {
         return itemsList;
     }
 
-    public List<Item> getElementListByTitle(NodeList nodeList, String title) {
+    public List<Item> getElementListByTitle(String title) {
         List<Item> itemsList = new ArrayList<>();
         title = title.toLowerCase();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -99,7 +85,7 @@ public class RssParser {
         return itemsList;
     }
 
-    public List<Item> getElementListByDate(NodeList nodeList, String dateString) {
+    public List<Item> getElementListByDate(String dateString) {
         List<Item> elementList = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
