@@ -17,40 +17,22 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<telegram.version>6.1.0</telegram.version>
-		<spring-boot-telegram.version>0.28</spring-boot-telegram.version>
-		<mysql.version>8.0.31</mysql.version>
-		<hibernate.version>6.2.0.CR1</hibernate.version>
-		<junit.version>5.9.2</junit.version>
-		<lombok.version>1.18.24</lombok.version>
+		<spring-boot-telegram.version>0.29</spring-boot-telegram.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.github.kshashov</groupId>
 			<artifactId>spring-boot-starter-telegram</artifactId>
 			<version>${spring-boot-telegram.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -60,7 +42,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
