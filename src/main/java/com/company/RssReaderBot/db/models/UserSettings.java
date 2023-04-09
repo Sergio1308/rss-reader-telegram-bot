@@ -17,44 +17,46 @@ public class UserSettings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private int id;
+    private Integer id;
 
-    @JoinColumn(name = "userid", nullable = false)
-    @Getter
-    private Long userid;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid", referencedColumnName = "userid")
+    @Getter @Setter
+    private UserDB user;
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean displayTitle;
+    private boolean displayTitle = true;
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean displayDescription;
+    private boolean displayDescription = true;
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean displayMedia;
+    private boolean displayMedia = true;
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean displayDate;
+    private boolean displayDate = true;
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean displayLink;
+    private boolean displayLink = true;
 
-    public UserSettings(Long userid) {
-        this.userid = userid;
+    public UserSettings(UserDB user) {
+        this.user = user;
     }
 
     public UserSettings() {
+        super();
     }
 
     @Override
     public String toString() {
         return "UserSettings{" +
                 "id=" + id +
-                ", userid=" + userid +
+                ", user=" + user +
                 ", displayTitle=" + displayTitle +
                 ", displayDescription=" + displayDescription +
                 ", displayMedia=" + displayMedia +

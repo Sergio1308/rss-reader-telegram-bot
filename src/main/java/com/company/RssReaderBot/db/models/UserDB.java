@@ -2,8 +2,10 @@ package com.company.RssReaderBot.db.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(
@@ -30,12 +32,16 @@ public class UserDB {
     private String languageCode;
 
     @Column(
-            columnDefinition = "timestamp with time zone default (current_timestamp at time zone 'utc')"
+            columnDefinition = "timestamp with time zone"
     )
+    @CreationTimestamp
     @Getter
-    private String createdAt;
+    private Timestamp createdAt;
 
-    public UserDB(long userId, String languageCode, String createdAt) {
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserSettings userSettings;
+
+    public UserDB(long userId, String languageCode, Timestamp createdAt) {
         this.userid = userId;
         this.languageCode = languageCode;
         this.createdAt = createdAt;

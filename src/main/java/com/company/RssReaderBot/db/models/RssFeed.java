@@ -9,9 +9,7 @@ import javax.persistence.*;
 @Table(
         name = "rss_feed",
         uniqueConstraints = {
-                @UniqueConstraint(name = "rss_feed_userid_unique", columnNames = "userid"),
                 @UniqueConstraint(name = "rss_feed_url_unique", columnNames = "url"),
-                @UniqueConstraint(name = "rss_feed_title_unique", columnNames = "title")
         }
 )
 public class RssFeed {
@@ -21,9 +19,10 @@ public class RssFeed {
     @Getter
     private int id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userid")
     @Getter
-    private Long userid;
+    private UserDB user;
 
     @Column(columnDefinition = "varchar(1000)")
     @Getter @Setter
@@ -42,27 +41,30 @@ public class RssFeed {
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean posting;
+    private boolean posting = true;
 
     @Column(columnDefinition = "integer default 15")
     @Getter @Setter
-    private int interval;
+    private int interval = 15;
 
     @Getter @Setter
     private String lastEnteredTitle;
 
-    public RssFeed(Long userid) {
-        this.userid = userid;
+    public RssFeed(UserDB user, String url, String title) {
+        this.user = user;
+        this.url = url;
+        this.title = title;
     }
 
     public RssFeed() {
+        super();
     }
 
     @Override
     public String toString() {
         return "RssFeed{" +
                 "id=" + id +
-                ", userid=" + userid +
+                ", user=" + user +
                 ", url='" + url + '\'' +
                 ", title='" + title + '\'' +
                 ", customTitle='" + customTitle + '\'' +

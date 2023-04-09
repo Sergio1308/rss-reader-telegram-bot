@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(
         name = "item",
         uniqueConstraints = {
-                @UniqueConstraint(name = "item_userid_unique", columnNames = "userid"),
+                @UniqueConstraint(name = "item_feed_id_unique", columnNames = "feed_id"),
                 @UniqueConstraint(name = "item_title_unique", columnNames = "title")
         }
 )
@@ -20,9 +20,10 @@ public class Item {
     @Getter
     private int id;
 
-    @JoinColumn(name = "userid", nullable = false)
+    @JoinColumn(name = "feed_id", referencedColumnName = "id")
+    @ManyToOne
     @Getter
-    private Long userid;
+    private RssFeed rssFeed;
 
     @Getter @Setter
     private String title;
@@ -41,18 +42,15 @@ public class Item {
     @Getter @Setter
     private String sourceLink;
 
-    public Item(Long userid) {
-        this.userid = userid;
-    }
-
     public Item() {
+        super();
     }
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", userid=" + userid +
+                ", feedId=" + rssFeed.getId() +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
