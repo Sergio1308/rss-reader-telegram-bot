@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nyt="http://www.nytimes.com/namespaces/rss/2.0" version="2.0">
+  <channel>
+    <title>NYT &gt; Top Stories</title>
+    <link>https://www.nytimes.com</link>
+    <atom:link href="https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" rel="self" type="application/rss+xml"></atom:link>
+    <description></description>
+    <language>en-us</language>
+    <copyright>Copyright 2023 The New York Times Company</copyright>
+    <lastBuildDate>Fri, 24 Mar 2023 18:13:44 +0000</lastBuildDate>
+    <pubDate>Fri, 24 Mar 2023 18:12:27 +0000</pubDate>
+    <image>
+      <title>NYT &gt; Top Stories</title>
+      <url>https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png</url>
+      <link>https://www.nytimes.com</link>
+    </image>
+    <item>
+      <title>From Rockets to Ball Bearings, Pentagon Struggles to Feed War Machine</title>
+      <link>https://www.nytimes.com/2023/03/24/us/politics/military-weapons-ukraine-war.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/politics/military-weapons-ukraine-war.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/politics/military-weapons-ukraine-war.html" rel="standout"></atom:link>
+      <description>The flow of arms to Ukraine has exposed a worrisome lack of production capacity in the United States that has its roots in the end of the Cold War.</description>
+      <dc:creator>Eric Lipton</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 13:45:58 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Missiles and Missile Defense Systems</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Arms Trade</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Defense Contracts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Government Contracts and Procurement</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Defense Department</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Lockheed Martin Corporation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Raytheon Company</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Aspin, Les</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Augustine, Norman R</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Biden, Joseph R Jr</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/22/multimedia/00dc-weapons-01-clgj/00dc-weapons-01-clgj-moth.jpg" width="151"></media:content>
+      <media:credit>Rachel Woolf for The New York Times</media:credit>
+      <media:description>An Air Force technology expo in Aurora, Colo., this month. Major contractors like Lockheed Martin are looking across the United States to bring on new suppliers for missile programs.</media:description>
+    </item>
+    <item>
+      <title>A Refuge for Russians and Ukrainians, Bali Rethinks Its Open-Door Policy</title>
+      <link>https://www.nytimes.com/2023/03/24/world/asia/russia-ukraine-bali-visa.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/world/asia/russia-ukraine-bali-visa.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/world/asia/russia-ukraine-bali-visa.html" rel="standout"></atom:link>
+      <description>After multiple accounts of tourists behaving badly, its governor wants Russia and Ukraine to lose access to Indonesia’s visa-on-arrival program.</description>
+      <dc:creator>Sui-Lee Wee and Muktita Suhartono</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 15:09:42 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Bali (Indonesia)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Visas</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Travel and Vacations</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">International Relations</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Motorcycles, Motor Bikes and Motorscooters</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Traffic Accidents and Safety</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/00indonesia-russians-01-tlhb/00indonesia-russians-01-tlhb-moth.jpg" width="151"></media:content>
+      <media:credit>Nyimas Laula for The New York Times</media:credit>
+      <media:description>Echo Beach in Bali, Indonesia. Bali residents have found themselves at odds with the practices of some of the Ukrainians and Russians who’ve fled their home countries for refuge in Bali.</media:description>
+    </item>
+    <item>
+      <title>G.O.P. Demands on Prosecutor in Trump Case Test Limits of Oversight Power</title>
+      <link>https://www.nytimes.com/2023/03/24/us/trump-alvin-bragg-republicans-house.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/trump-alvin-bragg-republicans-house.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/trump-alvin-bragg-republicans-house.html" rel="standout"></atom:link>
+      <description>The Manhattan district attorney is resisting efforts by House Republicans to compel him to provide information about the hush money inquiry, setting up a potential legal showdown.</description>
+      <dc:creator>Charlie Savage</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:57:31 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Law and Legislation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Suits and Litigation (Civil)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Federal-State Relations (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Constitution (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">House of Representatives</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bragg, Alvin</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Comer, James R</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Jordan, Jim (1964- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24dc-oversight-02-wkcl/24dc-oversight-02-wkcl-moth.jpg" width="151"></media:content>
+      <media:credit>Desiree Rios/The New York Times</media:credit>
+      <media:description>Legal battles about the oversight authority of Congress were common during the tumultuous presidency of Donald J. Trump.</media:description>
+    </item>
+    <item>
+      <title>Trump Plans Rally in Waco During Anniversary of Branch Davidian Standoff</title>
+      <link>https://www.nytimes.com/2023/03/24/us/politics/donald-trump-waco-branch-davidians.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/politics/donald-trump-waco-branch-davidians.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/politics/donald-trump-waco-branch-davidians.html" rel="standout"></atom:link>
+      <description>Thirty years ago, a fiery federal raid on a doomsday sect turned the city into a symbol of government overreach. Donald Trump will speak there on Saturday, and some supporters — and critics — say it’s no accident.</description>
+      <dc:creator>Charles Homans</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 14:24:39 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Koresh, David</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Fringe Groups and Movements</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Right-Wing Extremism and Alt-Right</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Conspiracy Theories</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Religious Cults</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Storming of the US Capitol (Jan, 2021)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Presidential Election of 2024</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Branch Davidians</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Waco (Tex)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24pol-waco-ctjl/24pol-waco-ctjl-moth.jpg" width="151"></media:content>
+      <media:credit>Christopher Lee for The New York Times</media:credit>
+      <media:description>The chapel at Mount Carmel, near Waco, Tex., the site of the former compound of the Branch Davidian sect.</media:description>
+    </item>
+    <item>
+      <title>Trump, Escalating Attacks, Raises Specter of Violence if He Is Charged</title>
+      <link>https://www.nytimes.com/2023/03/24/us/politics/trump-bragg-indictment-protests.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/politics/trump-bragg-indictment-protests.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/politics/trump-bragg-indictment-protests.html" rel="standout"></atom:link>
+      <description>In an overnight post, the former president stepped up his attacks on the Manhattan district attorney, Alvin Bragg, and warned of “potential death and destruction” if he is indicted.</description>
+      <dc:creator>Maggie Haberman and Jonah E. Bromwich</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 15:00:45 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Storming of the US Capitol (Jan, 2021)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">District Attorneys</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Demonstrations, Protests and Riots</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Truth Social (Social Network)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bragg, Alvin</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Clifford, Stephanie (1979- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sharpton, Al</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Paterson, David A</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Manhattan (NYC)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24trump-rhetoric-01-bflw/24trump-rhetoric-01-bflw-moth.jpg" width="151"></media:content>
+      <media:credit>Desiree Rios/The New York Times</media:credit>
+      <media:description>Former President Donald J. Trump, who is again campaigning for the White House, has called the investigation a politically motivated “witch hunt.” </media:description>
+    </item>
+    <item>
+      <title>In Held v. Montana, Young People Sue Montana Over Use of Fossil Fuels</title>
+      <link>https://www.nytimes.com/2023/03/24/climate/montana-youth-climate-lawsuit.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/climate/montana-youth-climate-lawsuit.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/climate/montana-youth-climate-lawsuit.html" rel="standout"></atom:link>
+      <description>Sixteen young Montanans have sued their state, arguing that its support of fossil fuels violates the state Constitution.</description>
+      <dc:creator>David Gelles</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 18:12:27 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Greenhouse Gas Emissions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Suits and Litigation (Civil)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Our Children&#39;s Trust</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Montana</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Constitutions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Youth</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gianforte, Greg (1961- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/00cli-montana-01-ltjf/00cli-montana-01-ltjf-moth.jpg" width="151"></media:content>
+      <media:credit>Matthew Hamon for The New York Times</media:credit>
+      <media:description>Badge, left, and Lander Busse, teenage plaintiffs in a lawsuit against the state of Montana saying it violated the state Constitution that guarantees “the right to a clean and healthful environment.”</media:description>
+    </item>
+    <item>
+      <title>Rahul Gandhi Disqualified From Lok Sabha After Conviction</title>
+      <link>https://www.nytimes.com/2023/03/24/world/asia/india-gandhi-modi.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/world/asia/india-gandhi-modi.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/world/asia/india-gandhi-modi.html" rel="standout"></atom:link>
+      <description>The expulsion of Rahul Gandhi is a devastating blow to the once-powerful Indian National Congress party. He and several other politicians are now in jeopardy through India’s legal system.</description>
+      <dc:creator>Suhasini Raj and Alex Travelli</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 18:11:13 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">India</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gandhi, Rahul</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Modi, Narendra</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Legislatures and Parliaments</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Elections</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Libel and Slander</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Democracy (Theory and Philosophy)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Constitutions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sisodia, Manish</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Tharoor, Shashi</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Indian National Congress</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Bharatiya Janata Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Aam Aadmi Party (India)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">British Broadcasting Corp</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Group of Twenty</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24india-gandhi-01-hpqm/24india-gandhi-01-hpqm-moth.jpg" width="151"></media:content>
+      <media:credit>Adnan Abidi/Reuters</media:credit>
+      <media:description>Rahul Gandhi, the leader of the Indian National Congress Party, arriving at the New Delhi airport after his court appearance in Surat, India, on Thursday.</media:description>
+    </item>
+    <item>
+      <title>U.S. Air Defenses ‘Not Fully Operational’ Before Strike Killed American in Syria, Officials Say</title>
+      <link>https://www.nytimes.com/2023/03/24/us/politics/syria-us-contractor-killed-iran-drone.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/politics/syria-us-contractor-killed-iran-drone.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/politics/syria-us-contractor-killed-iran-drone.html" rel="standout"></atom:link>
+      <description>American officials are investigating why the system was not fully operational and what difference that made in defending the coalition military base in northeast Syria.</description>
+      <dc:creator>Eric Schmitt</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:38:10 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Drones (Pilotless Planes)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Defense Department</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Austin, Lloyd J III</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Biden, Joseph R Jr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Syria</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Islamic State in Iraq and Syria (ISIS)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Terrorism</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24dc-us-syria-cqtk/24dc-us-syria-cqtk-moth.jpg" width="151"></media:content>
+      <media:credit>Pete Marovich for The New York Times</media:credit>
+      <media:description>Defense Secretary Lloyd J. Austin III ordered airstrikes against facilities in eastern Syria used by groups affiliated with Iran’s Islamic Revolutionary Guards Corps.</media:description>
+    </item>
+    <item>
+      <title>Famed Antiwar Protester Was Once Cog in Russia’s Propaganda Machine</title>
+      <link>https://www.nytimes.com/2023/03/24/world/europe/russian-antiwar-protester-ovsyannikova.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/world/europe/russian-antiwar-protester-ovsyannikova.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/world/europe/russian-antiwar-protester-ovsyannikova.html" rel="standout"></atom:link>
+      <description>For 20 years, Marina Ovsyannikova worked for Russian state TV. What compelled her, shortly after Ukraine was invaded, to storm a live broadcast and tell viewers they were being lied to?</description>
+      <dc:creator>Constant Méheut</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 14:00:16 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Ovsyannikova, Marina</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Propaganda</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Demonstrations, Protests and Riots</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Reporters Without Borders</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">France</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Moscow (Russia)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Freedom of the Press</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Television</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24Russia-ovsyannikova-profile-01-tkcz/24Russia-ovsyannikova-profile-01-tkcz-moth.jpg" width="151"></media:content>
+      <media:credit>Dmitry Kostyukov for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Garden State’s Basketball Talent Blooms in N.C.A.A. Tournament</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html" rel="standout"></atom:link>
+      <description>Whether it’s teams like Princeton and Fairleigh Dickinson pulling off upsets or standout performances from players, New Jersey’s imprint has been all over the Division I men’s basketball tournament.</description>
+      <dc:creator>David Waldstein</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 13:15:04 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">New Jersey</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Princeton University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Fairleigh Dickinson University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Henderson, Mitch (1975- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Anderson, Tobin (1971- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Hurley, Dan (1973- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">St Anthony High School (Jersey City, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">St Peter&#39;s University (Jersey City, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Camden (NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Camden High School (Camden, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24mcbb-new-jersey-01-pzvf/24mcbb-new-jersey-01-pzvf-moth.jpg" width="151"></media:content>
+      <media:credit>Getty Images/iStockphoto; USA Today Sports; Associated Press; Illustration by Elijah Walker/The New York Times</media:credit>
+      <media:description>Zach Martini, left, has helped 15th-seeded Princeton reach the round of 16, while other New Jersey players like Jahvon Quinerly of Alabama, middle, and Isaiah Wong of Miami have found success outside the state.</media:description>
+    </item>
+    <item>
+      <title>40 Years After Phi Slama Jama, There’s Hope in Houston for a Better Finish</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html" rel="standout"></atom:link>
+      <description>The 1982-83 Houston Cougars, a sensation nicknamed Phi Slama Jama, lost the N.C.A.A. men’s title game to North Carolina State on a dunk in the final moments.</description>
+      <dc:creator>Andrew Keh</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 04:01:09 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Houston</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Collegiate Athletic Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Drexler, Clyde</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sampson, Kelvin</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24mcbb-houston-psj-01-bqfg/24mcbb-houston-psj-01-bqfg-moth.jpg" width="151"></media:content>
+      <media:credit>Associated Press</media:credit>
+      <media:description>Houston earned a No. 1 seed in the N.C.A.A. Division I men’s basketball tournament for the first time since 1983, when the team reached the championship game.</media:description>
+    </item>
+    <item>
+      <title>Thursday March Madness: Kansas State Tops Michigan State in Overtime</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html" rel="standout"></atom:link>
+      <description>Markquis Nowell led the Wildcats with 20 rebounds and 19 assists, which set a record for an N.C.A.A. tournament game. In another exciting finish, Gonzaga beat U.C.L.A. in the final seconds.</description>
+      <dc:creator>Adam Zagoria and Scott Miller</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 10:57:59 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Florida Atlantic University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Gonzaga University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Kansas State University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Michigan State University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Arkansas</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of California, Los Angeles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Tennessee</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Connecticut</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23cbb-thursday-nowell-jvpl/23cbb-thursday-nowell-jvpl-moth.jpg" width="151"></media:content>
+      <media:credit>Brad Penner/USA Today Sports, via Reuters</media:credit>
+      <media:description>Markquis Nowell scored 20 points and recorded 19 rebounds against Michigan State.</media:description>
+    </item>
+    <item>
+      <title>China Denies Pressuring Companies Like TikTok to Spy on Users</title>
+      <link>https://www.nytimes.com/2023/03/24/world/asia/china-tiktok-spying-denial.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/world/asia/china-tiktok-spying-denial.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/world/asia/china-tiktok-spying-denial.html" rel="standout"></atom:link>
+      <description>China’s foreign ministry rebuffed claims made by U.S. lawmakers at a hearing on Thursday that TikTok could be a tool of surveillance for the Chinese government.</description>
+      <dc:creator>Chang Che</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 13:07:48 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Surveillance of Citizens by Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Computers and the Internet</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Beijing Bytedance Technology Co Ltd</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">TikTok (ByteDance)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24China-tiktok-hqpl/24China-tiktok-hqpl-moth.jpg" width="151"></media:content>
+      <media:credit>Haiyun Jiang/The New York Times</media:credit>
+      <media:description>Shou Chew, the chief executive of TikTok, testifying before the House Energy and Commerce Committee in Washington on Thursday.</media:description>
+    </item>
+    <item>
+      <title>TikTok’s C.E.O. Struggles to Make his Case in Washington</title>
+      <link>https://www.nytimes.com/2023/03/24/business/dealbook/tiktok-congress-shou-chew.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/business/dealbook/tiktok-congress-shou-chew.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/business/dealbook/tiktok-congress-shou-chew.html" rel="standout"></atom:link>
+      <description>Lawmakers interrogated Shou Chew over the video app’s ties to the Chinese government in a hearing that suggests the company’s problems are far from over.</description>
+      <dc:creator>Andrew Ross Sorkin, Ravi Mattu, Bernhard Warner, Sarah Kessler, Michael J. de la Merced, Lauren Hirsch and Ephrat Livni</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 12:41:30 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-storyline-no</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">TikTok (ByteDance)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Yellen, Janet L</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">China</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Kwon, Do</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Dorsey, Jack</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Block Inc</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Terraform Labs PTE Ltd</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Banking and Financial Institutions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Hindenburg Research</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Anderson, Nathan (1984- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/db24-TikTok-fcbp/db24-TikTok-fcbp-moth.jpg" width="151"></media:content>
+      <media:credit>Tasos Katopodis/Getty Images</media:credit>
+      <media:description>All eyes on Shou Chew.</media:description>
+    </item>
+    <item>
+      <title>Florida Bill Would Shield DeSantis’s Travel Records</title>
+      <link>https://www.nytimes.com/2023/03/24/us/politics/desantis-travel-records-florida-republicans.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/us/politics/desantis-travel-records-florida-republicans.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/us/politics/desantis-travel-records-florida-republicans.html" rel="standout"></atom:link>
+      <description>A bill advanced by state legislators would exempt the governor, as well as other officials, their families and staff members, from having records of their trips released to the public.</description>
+      <dc:creator>Nick Corasaniti</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 18:04:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">DeSantis, Ron</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Florida</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">State Legislatures</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Campaign Finance</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Airlines and Airplanes</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23pol-desantis-travel-vjcm/23pol-desantis-travel-vjcm-moth.jpg" width="151"></media:content>
+      <media:credit>Scott McIntyre for The New York Times</media:credit>
+      <media:description>As he lays the groundwork to run for president, Gov. Ron DeSantis of Florida has faced mounting questions about his use of state resources as well as his reliance on donors’ planes. </media:description>
+    </item>
+    <item>
+      <title>What’s Fueling Mushroom Mania in Décor?</title>
+      <link>https://www.nytimes.com/2023/03/24/realestate/mushroom-home-decor.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/realestate/mushroom-home-decor.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/realestate/mushroom-home-decor.html" rel="standout"></atom:link>
+      <description>As mushrooms become more prominent in nearly all spheres of modern life — including wellness, pop culture and cuisine — they’re also becoming sought-after motifs in interior design.</description>
+      <dc:creator>Anna Kodé</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 15:49:24 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Fungi</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Furniture</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Lamps and Lampshades</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Interior Design and Furnishings</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Service</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Luxury Goods and Services</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Architecture</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Mushrooms</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Design</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Psilocybin Mushrooms</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24mushroomcore-gbkc/24mushroomcore-gbkc-moth.jpg" width="151"></media:content>
+      <media:credit>Halkin Mason for The New York Times</media:credit>
+      <media:description>Jayna Roy designed a mushroom-themed nursery for her daughter. </media:description>
+    </item>
+    <item>
+      <title>Don’t Be Fooled. Ron DeSantis Is a Bush-Cheney Republican.</title>
+      <link>https://www.nytimes.com/2023/03/24/opinion/ron-desantis-bush-cheney-trump.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/opinion/ron-desantis-bush-cheney-trump.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/opinion/ron-desantis-bush-cheney-trump.html" rel="standout"></atom:link>
+      <description>It is simply wrong to attribute the pathologies of today’s Republican Party to the influence of Donald Trump alone.</description>
+      <dc:creator>Jamelle Bouie</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 09:00:34 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Midterm Elections (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Homosexuality and Bisexuality</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Advertising and Marketing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Same-Sex Marriage, Civil Unions and Domestic Partnerships</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Presidential Election of 2024</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Presidential Election of 2004</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Political Advertising</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Conservatism (US Politics)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Washington Post</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bush, George W</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">DeSantis, Ron</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Kranish, Michael</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24bouie_1-mvjg/24bouie_1-mvjg-moth-v2.jpg" width="151"></media:content>
+      <media:credit>Scott McIntyre for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Yuval Harari on Threats to Humanity Posed by A.I.</title>
+      <link>https://www.nytimes.com/2023/03/24/opinion/yuval-harari-ai-chatgpt.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/opinion/yuval-harari-ai-chatgpt.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/opinion/yuval-harari-ai-chatgpt.html" rel="standout"></atom:link>
+      <description>In games like chess, no human can hope to beat a computer. What happens when the same thing occurs in art, politics and even religion?</description>
+      <dc:creator>Yuval Harari, Tristan Harris and Aza Raskin</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:24:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">ChatGPT</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">OpenAI Labs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Harari, Yuval Noah</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Artificial Intelligence</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Computers and the Internet</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-sub-only</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/autossell/24harari-2/24harari-2-moth.jpg" width="151"></media:content>
+      <media:credit>Illustration by Zisiga Mukulu/The New York Times; photograph by Jonathan Knowles/Getty Images</media:credit>
+    </item>
+    <item>
+      <title>The Man Who Leaked the Pentagon Papers Is Scared</title>
+      <link>https://www.nytimes.com/2023/03/24/opinion/international-world/ellsberg-nuclear-war-ukraine.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/opinion/international-world/ellsberg-nuclear-war-ukraine.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/opinion/international-world/ellsberg-nuclear-war-ukraine.html" rel="standout"></atom:link>
+      <description>The whistle-blower Daniel Ellsberg has never run out of secrets.</description>
+      <dc:creator>Alex Kingsbury</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 12:44:55 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Ellsberg, Daniel</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Manning, Chelsea</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Nuclear Weapons</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pentagon Papers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Classified Information and State Secrets</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24ellsberg_1-gfkh/24ellsberg_1-gfkh-moth.jpg" width="151"></media:content>
+      <media:credit>Andres Gonzalez for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>This Column Is Dedicated to Silicon Valley Venture Capitalists</title>
+      <link>https://www.nytimes.com/2023/03/24/opinion/silicon-valley-loudmouth-vcs.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/opinion/silicon-valley-loudmouth-vcs.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/opinion/silicon-valley-loudmouth-vcs.html" rel="standout"></atom:link>
+      <description>The tech industry is far from perfect, but it remains essential to America’s future.</description>
+      <dc:creator>Farhad Manjoo</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:08:26 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Computers and the Internet</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Venture Capital</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Start-ups</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Innovation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Banking and Financial Institutions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Silicon Valley Bank</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sacks, David O</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Thiel, Peter A</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">OpenAI Labs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Nabeel Hyatt</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Altman, Samuel H</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/26/multimedia/24Manjoo-clwj/24Manjoo-clwj-moth.jpg" width="151"></media:content>
+      <media:credit>Noah Berger/Agence France-Presse — Getty Images</media:credit>
+    </item>
+    <item>
+      <title>Should the Government Pay for Your Bad Climate Decisions?</title>
+      <link>https://www.nytimes.com/2023/03/24/podcasts/the-daily/should-the-government-pay-for-your-bad-climate-decisions.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/podcasts/the-daily/should-the-government-pay-for-your-bad-climate-decisions.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/podcasts/the-daily/should-the-government-pay-for-your-bad-climate-decisions.html" rel="standout"></atom:link>
+      <description>As climate change becomes a health risk, the U.S. government has warned it will reassess spending priorities.</description>
+      <dc:creator>Michael Barbaro, Carlos Prieto, Michael Simon Johnson, Rob Szypko, Anita Badejo, Patricia Willens, Dan Powell, Marion Lozano and Chris Wood</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 15:55:50 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">audio-neutral-informative</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Economy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Biden, Joseph R Jr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24daily-biden-climate-change-image/24DAILY-biden-climate-report-btjc-moth.jpg" width="151"></media:content>
+      <media:credit>Doug Mills/The New York Times</media:credit>
+      <media:description>President Biden speaking in Philadelphia in March as he releases his budget proposal for the 2024 fiscal year.</media:description>
+    </item>
+    <item>
+      <title>Free Speech (or Not) at Stanford</title>
+      <link>https://www.nytimes.com/2023/03/24/briefing/campus-free-speech.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/briefing/campus-free-speech.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/briefing/campus-free-speech.html" rel="standout"></atom:link>
+      <description>A federal judge spoke at Stanford Law School. Chaos ensued.</description>
+      <dc:creator>David Leonhardt</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 10:42:49 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-storyline-no</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Colleges and Universities</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Freedom of Speech and Expression</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Stanford University</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24themorning-lede-promo/24themorning-lede-moth.jpg" width="151"></media:content>
+      <media:credit>Ben Margot/Associated Press</media:credit>
+      <media:description>Stanford University.</media:description>
+    </item>
+    <item>
+      <title>Cleaner Air Helps Everyone. It Helps Black Communities a Lot.</title>
+      <link>https://www.nytimes.com/2023/03/24/climate/air-pollution-pm25-health-effects.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/climate/air-pollution-pm25-health-effects.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/climate/air-pollution-pm25-health-effects.html" rel="standout"></atom:link>
+      <description>A new study quantified the benefits of pollution reduction in terms of race and class.</description>
+      <dc:creator>Elena Shao</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 16:24:56 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Air Pollution</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">New England Journal of Medicine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Research</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Minorities</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-storyline-no</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Black People</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Environmental Protection Agency</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/00cli-airpollution-stjames-qkgh/00cli-airpollution-stjames-qkgh-moth.jpg" width="151"></media:content>
+      <media:credit>William Widmer for The New York Times</media:credit>
+      <media:description>St. James, La., one of several Mississippi River towns dotted by chemical plants and oil refineries. </media:description>
+    </item>
+    <item>
+      <title>‘Hotel Rwanda’ Hero, Paul Rusesabagina, to Be Released From Prison</title>
+      <link>https://www.nytimes.com/2023/03/24/world/africa/rwanda-paul-rusesabagina-release.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/world/africa/rwanda-paul-rusesabagina-release.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/world/africa/rwanda-paul-rusesabagina-release.html" rel="standout"></atom:link>
+      <description>Paul Rusesabagina, whose story inspired a Hollywood movie, was kidnapped by the Rwandan government and jailed. In a deal brokered by the U.S. and Qatar, he is to be set free.</description>
+      <dc:creator>Abdi Latif Dahir and Declan Walsh</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:16:20 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Rwanda</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Kigali (Rwanda)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Kagame, Paul</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Rusesabagina, Paul</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War Crimes, Genocide and Crimes Against Humanity</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24rwanda-jmcb/24rwanda-jmcb-moth.jpg" width="151"></media:content>
+      <media:credit>Cyril Ndegeya for The New York Times</media:credit>
+      <media:description>Paul Rusesabagina leaving a court hearing in Kigali, Rwanda, in 2020. His release will end two and a half years in captivity.</media:description>
+    </item>
+    <item>
+      <title>California’s Plan for Cheaper Insulin Collides With Big Pharma’s Price Cuts</title>
+      <link>https://www.nytimes.com/2023/03/24/health/insulin-prices-california.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/health/insulin-prices-california.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/health/insulin-prices-california.html" rel="standout"></atom:link>
+      <description>The state awarded a $50 million contract to produce less costly treatments, but moves by major suppliers might undercut the initiative before any new product emerges.</description>
+      <dc:creator>Benjamin Ryan</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 15:25:36 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Diabetes</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Drugs (Pharmaceuticals)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Insulin</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Prices (Fares, Fees and Rates)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Discount Selling</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Generic Brands and Products</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Inflation Reduction Act of 2022</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Law and Legislation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Government Contracts and Procurement</category>
+      <category domain="">biosimilars</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Eli Lilly and Company</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Novo Nordisk A/S</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Sanofi SA</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">CalRx</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">California</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24INSULIN-01-thzc/24INSULIN-01-thzc-moth.jpg" width="151"></media:content>
+      <media:credit>Amber Ford for The New York Times</media:credit>
+      <media:description>Some eight million Americans with diabetes, including about one million Californians, need insulin.</media:description>
+    </item>
+    <item>
+      <title>Could This Be New York City’s Least Snowy Winter in Recorded History?</title>
+      <link>https://www.nytimes.com/2023/03/24/upshot/new-york-snow-weather.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/upshot/new-york-snow-weather.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/upshot/new-york-snow-weather.html" rel="standout"></atom:link>
+      <description>Just two inches so far, and a tie for the second-mildest winter.</description>
+      <dc:creator>Francesca Paris</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 13:32:24 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Snow and Snowstorms</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Weather</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Winter (Season)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Skiing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Archives and Records</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23up-snow-ny1-pqtv/23up-snow-ny1-pqtv-moth.jpg" width="151"></media:content>
+      <media:credit>Emon Hassan for The New York Times</media:credit>
+      <media:description>A Central Park snowman on Feb. 28. It didn’t last long.</media:description>
+    </item>
+    <item>
+      <title>Pineapple and Ham Belong Together</title>
+      <link>https://www.nytimes.com/2023/03/23/dining/pineapple-ham-recipes.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/dining/pineapple-ham-recipes.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/dining/pineapple-ham-recipes.html" rel="standout"></atom:link>
+      <description>On the Easter table and, yes, on pizza, these smart, flavorful tweaks make the retro combination even better.</description>
+      <dc:creator>Eric Kim</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 21:30:32 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pineapples</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Ham</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pizza</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Easter and Holy Week</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Cooking and Cookbooks</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Hawaii</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23ham-1-cvgb/23ham-1-cvgb-moth.jpg" width="151"></media:content>
+      <media:credit>David Malosh for The New York Times. Food Stylist: Simon Andrews.</media:credit>
+      <media:description>Baking a bone-in half ham, cut side down in a lagoon of pineapple juice, means the sweet juice infuses the pork as the ham releases some of its saltiness into the liquid.</media:description>
+    </item>
+    <item>
+      <title>Today’s Wordle Review: March 23, 2023</title>
+      <link>https://www.nytimes.com/2023/03/23/crosswords/wordle-review-answer-642.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/crosswords/wordle-review-answer-642.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/crosswords/wordle-review-answer-642.html" rel="standout"></atom:link>
+      <description>Our columnist reviews the day’s puzzle. Warning: contains spoilers!</description>
+      <dc:creator>Sabaa Tahir</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 16:30:45 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Crossword Puzzles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wordle (Puzzle)</category>
+    </item>
+  </channel>
+</rss>
