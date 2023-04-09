@@ -1,10 +1,9 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
+import com.company.RssReaderBot.controllers.CallbackQueryConstants;
 import com.company.RssReaderBot.entities.ItemsList;
 import com.company.RssReaderBot.entities.ItemsPagination;
 import com.company.RssReaderBot.entities.Item;
-import com.company.RssReaderBot.handlers.CallbackVars;
-import com.company.RssReaderBot.services.CallbackDataCutter;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
@@ -20,7 +19,7 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
     public InlineKeyboardMarkup createInlineKeyboard() {
         if (ItemsList.getItemsList().isEmpty()) { // if no results were found for the query
             return new InlineKeyboardMarkup(
-                    new InlineKeyboardButton("Cancel").callbackData(CallbackVars.MAIN_MENU)
+                    new InlineKeyboardButton("Cancel").callbackData(CallbackQueryConstants.PARSING_ELEMENTS_MENU)
             );
         }
         itemsPagination.toSplit();
@@ -54,16 +53,17 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
         // check
         if (!itemsPagination.isLessThanPaginationButtons(itemsPagination.getButtonsInRowSize())) {
             InlineKeyboardButton[] inlineKeyboardButtons = new InlineKeyboardButton[]{
-                    new InlineKeyboardButton("⏮1").callbackData(CallbackVars.FIRST_PAGE),
-                    new InlineKeyboardButton("◀").callbackData(CallbackVars.PREVIOUS_PAGE),
-                    new InlineKeyboardButton("").callbackData(CallbackVars.NEXT_PAGE),
-                    new InlineKeyboardButton("▶").callbackData(CallbackVars.NEXT_PAGE),
+                    new InlineKeyboardButton("⏮1").callbackData(CallbackQueryConstants.FIRST_PAGE),
+                    new InlineKeyboardButton("◀").callbackData(CallbackQueryConstants.PREVIOUS_PAGE),
+                    new InlineKeyboardButton("").callbackData(CallbackQueryConstants.NEXT_PAGE),
+                    new InlineKeyboardButton("▶").callbackData(CallbackQueryConstants.NEXT_PAGE),
                     new InlineKeyboardButton("" + itemsPagination.getChunkedItemList().size() + "⏭")
-                            .callbackData(CallbackVars.LAST_PAGE),
+                            .callbackData(CallbackQueryConstants.LAST_PAGE),
             };
             markupInline.addRow(inlineKeyboardButtons);
         }
-        markupInline.addRow(new InlineKeyboardButton("Back to main menu").callbackData(CallbackVars.MAIN_MENU));
+        markupInline.addRow(new InlineKeyboardButton("Back to main menu").callbackData(CallbackQueryConstants.PARSING_ELEMENTS_MENU));
+        System.out.println(markupInline);
         return markupInline;
     }
 
@@ -71,11 +71,13 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
         // items list buttons
         System.out.println("Items list has just displayed. Chunked items list index:" +
                 index + " (current index pagination = " + itemsPagination.getCurrentIndexPagination() + ")");
-        for (Item item : itemsPagination.getChunkedItemList().get(index)) {
-            // using CallbackDataCutter which return cut text if title is too long
-            ItemsList.putInMap(CallbackDataCutter.cutText(item.getTitle()), item);
+        System.out.println(itemsPagination.getChunkedItemList().size());
+        for (int i = 0; i < itemsPagination.getChunkedItemList().get(index).size(); i++) {
+            Item item = itemsPagination.getChunkedItemList().get(index).get(i);
+            String callbackData = Integer.toString(i);
+            ItemsList.putInMap(callbackData, item);
             markup.addRow(new InlineKeyboardButton(item.getTitle()).callbackData(
-                    CallbackVars.SELECTED_BY_TITLE_CALLBACK + CallbackDataCutter.cutText(item.getTitle())));
+                    CallbackQueryConstants.SHOW_ITEM + callbackData));
         }
     }
 
