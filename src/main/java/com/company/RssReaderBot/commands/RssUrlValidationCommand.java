@@ -1,11 +1,15 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.config.BotConfig;
-import com.company.RssReaderBot.db.DatabaseHandler;
-import com.company.RssReaderBot.parser.RssParser;
-import com.company.RssReaderBot.parser.RssUrlValidator;
-import com.pengrad.telegrambot.model.Update;
+import com.company.RssReaderBot.controllers.CallbackQueryConstants;
+import com.company.RssReaderBot.db.models.UserDB;
+import com.company.RssReaderBot.services.parser.RssUrlValidator;
+import com.company.RssReaderBot.services.FeedService;
+import com.company.RssReaderBot.services.UserService;
+import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.request.BaseRequest;
+import com.pengrad.telegrambot.request.DeleteMessage;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,34 +18,41 @@ import org.springframework.stereotype.Component;
 @Component
 public class RssUrlValidationCommand implements Command<Long, Integer> {
 
-    private final LoadMainMenuCommand loadMainMenuCommand = new LoadMainMenuCommand();
-
     @Autowired
     private BotConfig botConfig;
 
     @Autowired
-    private DatabaseHandler databaseHandler;
+    private FeedService feedService;
 
-    public BaseRequest<SendMessage, SendResponse> execute(Update update, Long chatId) {
-        String message = update.message().text();
-        botConfig.getTelegramBot().execute(new SendMessage(chatId, "Processing your request..."));
+    @Autowired
+    private UserService userService;
+
+    public BaseRequest<SendMessage, SendResponse> execute(Message message) {
+        Long chatId = message.chat().id();
         RssUrlValidator urlValidator = new RssUrlValidator();
-        String result = urlValidator.validateRssUrl(message);
+        String result = urlValidator.validateRssUrl(message.text());
+        botConfig.getTelegramBot().execute(new DeleteMessage(chatId, message.messageId()));
         if (urlValidator.isValid()) {
-            StartCommand.setEntered(false);
-            botConfig.getTelegramBot().execute(new SendMessage(chatId, "Valid URL. Saved to your personal settings, " +
-                    "where you can change your RSS URL at any time"));
-            RssParser.setRssUrl(result);
-            databaseHandler.updateRssUrl(update.message().from().id(), RssParser.getRssUrl());
-            return loadMainMenuCommand.execute(chatId);
+            SubscribeCommand.setEntered(false);
+
+            UserDB userDB = userService.findUser(chatId);
+            feedService.addFeed(userDB, result);
+
+            return new SendMessage(chatId,
+                    "Subscribed successfully.\nYou are now following the feed: " + feedService.getFeedTitle());
         } else {
-            return new SendMessage(chatId, result + "\n▶Send me RSS URL below again\uD83D\uDC47" +
-                    "\n▶or click on the button above to learn more about RSS\uD83D\uDC46");
+            return new SendMessage(
+                    chatId,
+                    result + "\n▶Send me a valid URL again by replying to this message\uD83D\uDC47" +
+                    "\n▶or use /help for more info"
+            ).replyMarkup(new ForceReply(true)
+                    .inputFieldPlaceholder(CallbackQueryConstants.SUB_FEED_SAMPLE)
+                    .selective(true));
         }
     }
 
     @Override
-    public BaseRequest execute(Long chatId, Integer messageId) {
+    public BaseRequest<?, ?> execute(Long aLong, Integer integer) {
         return null;
     }
 }
