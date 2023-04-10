@@ -1,6 +1,6 @@
 package com.company.RssReaderBot.entities;
 
-import com.company.RssReaderBot.handlers.CallbackVars;
+import com.company.RssReaderBot.controllers.CallbackQueryConstants;
 import com.company.RssReaderBot.services.Partition;
 import lombok.Getter;
 import lombok.Setter;
@@ -65,13 +65,13 @@ public class ItemsPagination {
 
     public void changePaginationIndex(String pressedCallbackButton) {
         // todo replace statements
-        if (pagesPartition.size() == 1 || pressedCallbackButton.equals(CallbackVars.FIRST_PAGE)) {
+        if (pagesPartition.size() == 1 || pressedCallbackButton.equals(CallbackQueryConstants.FIRST_PAGE)) {
             currentIndexPagination = 0;
-        } else if (pressedCallbackButton.equals(CallbackVars.LAST_PAGE)) {
+        } else if (pressedCallbackButton.equals(CallbackQueryConstants.LAST_PAGE)) {
             currentIndexPagination = pagesPartition.size() - 1;
-        } else if (pressedCallbackButton.equals(CallbackVars.NEXT_PAGE) && pagesPartition.size() - 1 > currentIndexPagination) {
+        } else if (pressedCallbackButton.equals(CallbackQueryConstants.NEXT_PAGE) && pagesPartition.size() - 1 > currentIndexPagination) {
             ++currentIndexPagination;
-        } else if (pressedCallbackButton.equals(CallbackVars.PREVIOUS_PAGE) && currentIndexPagination > 0) {
+        } else if (pressedCallbackButton.equals(CallbackQueryConstants.PREVIOUS_PAGE) && currentIndexPagination > 0) {
             --currentIndexPagination;
         }
     }
