@@ -11,11 +11,10 @@ import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
 
-public class LoadItemsByTitleCommand implements CommandCallback<Long, Integer, String> {
+public class LoadItemsByTitleCommand implements Command<Long, Integer> {
 
     private final InlineKeyboardCreator inlineKeyboardCreator = new LoadItemsByTitleInlineKeyboard();
 
-    @Override
     public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId, String callData) {
         LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard = new LoadItemsByTitleInlineKeyboard();
         InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard(callData);
@@ -45,5 +44,10 @@ public class LoadItemsByTitleCommand implements CommandCallback<Long, Integer, S
     public String getAnswer() {
         return "Found: " + ItemsList.getItemsList().size() +
                 " items.\nCurrent page: " + ItemsPagination.getCurrentPage();
+    }
+
+    @Override
+    public BaseRequest<?, ?> execute(Long aLong, Integer integer) {
+        return null;
     }
 }

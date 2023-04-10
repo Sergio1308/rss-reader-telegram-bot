@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nyt="http://www.nytimes.com/namespaces/rss/2.0" version="2.0">
+  <channel>
+    <title>NYT &gt; Sports</title>
+    <link>https://www.nytimes.com/section/sports</link>
+    <atom:link href="https://rss.nytimes.com/services/xml/rss/nyt/Sports.xml" rel="self" type="application/rss+xml"></atom:link>
+    <description></description>
+    <language>en-us</language>
+    <copyright>Copyright 2023 The New York Times Company</copyright>
+    <lastBuildDate>Fri, 24 Mar 2023 18:30:49 +0000</lastBuildDate>
+    <pubDate>Fri, 24 Mar 2023 18:26:47 +0000</pubDate>
+    <image>
+      <title>NYT &gt; Sports</title>
+      <url>https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png</url>
+      <link>https://www.nytimes.com/section/sports</link>
+    </image>
+    <item>
+      <title>They’re Desperation Heaves for Most Players. For Caitlin Clark, They’re Money.</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/ncaabasketball/caitlin-clark-iowa-shooting.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/ncaabasketball/caitlin-clark-iowa-shooting.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/ncaabasketball/caitlin-clark-iowa-shooting.html" rel="standout"></atom:link>
+      <description>Clark, the Iowa guard whose long-range shots have made a stir online, perfected her form in her driveway. But even when she abandons that form, she can hit game-winners from nearly halfcourt.</description>
+      <dc:creator>Kris Rhim</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 11:06:29 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Women)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Iowa</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Clark, Caitlin (2002- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bluder, Lisa</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24wcbb-clark-arms-tczk/24wcbb-clark-arms-tczk-moth.jpg" width="151"></media:content>
+      <media:credit>Matthew Holst/Getty Images</media:credit>
+      <media:description>Iowa’s Caitlin Clark “can score from anywhere, and I mean anywhere,” said North Carolina State Coach Wes Moore.</media:description>
+    </item>
+    <item>
+      <title>40 Years After Phi Slama Jama, There’s Hope in Houston for a Better Finish</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/ncaabasketball/houston-phi-slama-jama.html" rel="standout"></atom:link>
+      <description>The 1982-83 Houston Cougars, a sensation nicknamed Phi Slama Jama, lost the N.C.A.A. men’s title game to North Carolina State on a dunk in the final moments.</description>
+      <dc:creator>Andrew Keh</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 04:01:09 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Houston</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Collegiate Athletic Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Drexler, Clyde</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sampson, Kelvin</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24mcbb-houston-psj-01-bqfg/24mcbb-houston-psj-01-bqfg-moth.jpg" width="151"></media:content>
+      <media:credit>Associated Press</media:credit>
+      <media:description>Houston earned a No. 1 seed in the N.C.A.A. Division I men’s basketball tournament for the first time since 1983, when the team reached the championship game.</media:description>
+    </item>
+    <item>
+      <title>The Superteam That May Be Selling Itself Short</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/soccer/womens-champions-league-wolfsburg.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/soccer/womens-champions-league-wolfsburg.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/soccer/womens-champions-league-wolfsburg.html" rel="standout"></atom:link>
+      <description>Vfl Wolfsburg casts itself as an underdog in Germany and in the Champions League. That doesn’t reflect reality.</description>
+      <dc:creator>Rory Smith</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:56:37 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Soccer</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Wolfsburg (Soccer Team)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Bayern Munich (Soccer Team)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Popp, Alexandra (1991- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Nagelsmann, Julian (1987- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24rory-promo-fbwh/24rory-promo-fbwh-moth.jpg" width="151"></media:content>
+      <media:credit>Fabian Bimmer/Reuters</media:credit>
+      <media:description>Club, country and ... company?</media:description>
+    </item>
+    <item>
+      <title>Garden State’s Basketball Talent Blooms in N.C.A.A. Tournament</title>
+      <link>https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/sports/ncaa-basketball-tournament-new-jersey-princeton.html" rel="standout"></atom:link>
+      <description>Whether it’s teams like Princeton and Fairleigh Dickinson pulling off upsets or standout performances from players, New Jersey’s imprint has been all over the Division I men’s basketball tournament.</description>
+      <dc:creator>David Waldstein</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 13:15:04 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">New Jersey</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Princeton University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Fairleigh Dickinson University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Henderson, Mitch (1975- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Anderson, Tobin (1971- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Hurley, Dan (1973- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">St Anthony High School (Jersey City, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">St Peter&#39;s University (Jersey City, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Camden (NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Camden High School (Camden, NJ)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24mcbb-new-jersey-01-pzvf/24mcbb-new-jersey-01-pzvf-moth.jpg" width="151"></media:content>
+      <media:credit>Getty Images/iStockphoto; USA Today Sports; Associated Press; Illustration by Elijah Walker/The New York Times</media:credit>
+      <media:description>Zach Martini, left, has helped 15th-seeded Princeton reach the round of 16, while other New Jersey players like Jahvon Quinerly of Alabama, middle, and Isaiah Wong of Miami have found success outside the state.</media:description>
+    </item>
+    <item>
+      <title>‘Reggie’ Review: Reggie Jackson on Himself, Racism and, Yes, Baseball</title>
+      <link>https://www.nytimes.com/2023/03/23/movies/reggie-review.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/movies/reggie-review.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/movies/reggie-review.html" rel="standout"></atom:link>
+      <description>Jackson, a.k.a. Mr. October, was called a lot of things during his storied career with the Yankees. A new documentary goes beyond the nicknames.</description>
+      <dc:creator>Glenn Kenny</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 11:00:09 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Documentary Films and Programs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Jackson, Reggie (1946- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">New York Yankees</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23reggie-review-jcqg/23reggie-review-jcqg-moth.jpg" width="151"></media:content>
+      <media:credit>Prime Video</media:credit>
+      <media:description>In 1977, Reggie Jackson hit three home runs in a single World Series game. He was a star on the field, and now he’s a star in the documentary “Reggie.”</media:description>
+    </item>
+    <item>
+      <title>The Income Gap is Becoming a Physical-Activity Divide</title>
+      <link>https://www.nytimes.com/2023/03/24/health/sports-physical-education-children.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/24/health/sports-physical-education-children.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/24/health/sports-physical-education-children.html" rel="standout"></atom:link>
+      <description>Nationwide, poor children and adolescents are participating far less in sports and fitness activities than their more affluent peers.</description>
+      <dc:creator>Matt Richtel</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 17:25:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Interscholastic Athletics</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Income Inequality</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Exercise</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Poverty</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Youth</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Children and Childhood</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Physical Education and Training</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Education (Secondary)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Aspen Institute</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Albuquerque (NM)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">McLean County (Ill)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">your-feed-health</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">your-feed-science</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/28/multimedia/00-physicaldivide-01-fbtz/00-physicaldivide-01-fbtz-moth.jpg" width="151"></media:content>
+      <media:credit>Adria Malcolm for The New York Times</media:credit>
+      <media:description>Naomi Peralta, at left, prepares for a practice run at Highland High School in Albuquerque, N.M., in February.</media:description>
+    </item>
+    <item>
+      <title>Thursday March Madness: Kansas State Tops Michigan State in Overtime</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/ncaabasketball/march-madness-thursday.html" rel="standout"></atom:link>
+      <description>Markquis Nowell led the Wildcats with 20 rebounds and 19 assists, which set a record for an N.C.A.A. tournament game. In another exciting finish, Gonzaga beat U.C.L.A. in the final seconds.</description>
+      <dc:creator>Adam Zagoria and Scott Miller</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 10:57:59 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Florida Atlantic University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Gonzaga University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Kansas State University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Michigan State University</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Arkansas</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of California, Los Angeles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Tennessee</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Connecticut</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23cbb-thursday-nowell-jvpl/23cbb-thursday-nowell-jvpl-moth.jpg" width="151"></media:content>
+      <media:credit>Brad Penner/USA Today Sports, via Reuters</media:credit>
+      <media:description>Markquis Nowell scored 20 points and recorded 19 rebounds against Michigan State.</media:description>
+    </item>
+    <item>
+      <title>4 People Accused of $13 Million in Pro Athlete Fraud Schemes</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/basketball/nba-wire-fraud.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/basketball/nba-wire-fraud.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/basketball/nba-wire-fraud.html" rel="standout"></atom:link>
+      <description>Prosecutors said the people, including a former N.B.A. agent, took money from professional basketball players and spent it on luxury goods and home renovations.</description>
+      <dc:creator>Kevin Draper</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 22:52:20 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Agents (Business)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Luxury Goods and Services</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Banking and Financial Institutions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Frauds and Swindling</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Suits and Litigation (Civil)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Insurance</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Financial Brokers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Financial Industry Regulatory Authority</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Basketball Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Parsons, Chandler (1988- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Holiday, Jrue</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Holiday, Lauren (1987- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Lee, Courtney (1985- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Cohen, Darryl M (Financial Broker)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Briscoe, Charles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Darden, Calvin Jr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gilder, Brian</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23nba-fraud-fzvk/23nba-fraud-fzvk-moth.jpg" width="151"></media:content>
+      <media:credit>Mark J. Terrill/Associated Press</media:credit>
+    </item>
+    <item>
+      <title>The South Carolina Player Taking Basketball to Girls in West Africa</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/ncaabasketball/south-carolina-laeticia-amihere.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/ncaabasketball/south-carolina-laeticia-amihere.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/ncaabasketball/south-carolina-laeticia-amihere.html" rel="standout"></atom:link>
+      <description>“I’ve never coached anybody that comes with that much determination,” Coach Dawn Staley said of Laeticia Amihere.</description>
+      <dc:creator>Jeré Longman</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 13:17:30 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Amihere, Laeticia (2001- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Women)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of South Carolina</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23wcbb-southcarolina-dribble-mlfv/23wcbb-southcarolina-dribble-mlfv-moth.jpg" width="151"></media:content>
+      <media:credit>Nell Redmond/Associated Press</media:credit>
+      <media:description>Laeticia Amihere can play any position for undefeated South Carolina.</media:description>
+    </item>
+    <item>
+      <title>Ali Krieger Is Calling It a Career. She Wants Wins on Her Way Out.</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/soccer/ali-krieger-nwsl.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/soccer/ali-krieger-nwsl.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/soccer/ali-krieger-nwsl.html" rel="standout"></atom:link>
+      <description>Krieger, 38, will retire after one final season with Gotham F.C. in the N.W.S.L. She is confident it will go better than the last one.</description>
+      <dc:creator>Victor Mather</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 21:12:37 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Soccer</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Women&#39;s Soccer League (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">United States Women&#39;s National Soccer Team</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Krieger, Ali</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Gotham FC (Soccer Team)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/24/multimedia/24krieger-nwsl-01-lbfj/24krieger-nwsl-01-lbfj-moth.jpg" width="151"></media:content>
+      <media:credit>Ronald Martinez/Getty Images</media:credit>
+    </item>
+    <item>
+      <title>AL Cy Young Candidates: Triston McKenzie and Logan Gilbert</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/baseball/triston-mckenzie-logan-gilbert.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/baseball/triston-mckenzie-logan-gilbert.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/baseball/triston-mckenzie-logan-gilbert.html" rel="standout"></atom:link>
+      <description>Among the American League’s most promising young pitchers, Cleveland’s Triston McKenzie and Seattle’s Logan Gilbert stand out as Cy Young Award candidates.</description>
+      <dc:creator>Tyler Kepner</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 09:00:16 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Seattle Mariners</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Cleveland Guardians</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">McKenzie, Triston (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gilbert, Logan (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Cy Young Award</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23kepner-al-pitchers-top-kwvm/23kepner-al-pitchers-top-kwvm-moth.jpg" width="151"></media:content>
+      <media:credit>Photos by Carmen Mandato/Getty Images and Steph Chambers/Getty Images</media:credit>
+      <media:description>Triston McKenzie of the Cleveland Guardians and Logan Gilbert of the Seattle Mariners both had excellent 2022 seasons but have yet to appear on a Cy Young Award ballot.</media:description>
+    </item>
+    <item>
+      <title>NL Cy Young Candidates: Zac Gallen and Logan Webb</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/baseball/zac-gallen-logan-webb.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/baseball/zac-gallen-logan-webb.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/baseball/zac-gallen-logan-webb.html" rel="standout"></atom:link>
+      <description>Among the National League’s most promising young pitchers, Arizona’s Zac Gallen and San Francisco’s Logan Webb stand out as Cy Young Award candidates.</description>
+      <dc:creator>Tyler Kepner</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 09:00:18 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Arizona Diamondbacks</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">San Francisco Giants</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gallen, Zac (1995- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Webb, Logan (1996- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23kepner-nl-pitchers-top-qzgj/23kepner-nl-pitchers-top-qzgj-moth.jpg" width="151"></media:content>
+      <media:credit>Photos by Chris Coduto/Getty Images and Morry Gash/Associated Press</media:credit>
+      <media:description>Arizona’s Zac Gallen and San Francisco’s Logan Webb have both demonstrated that they can succeed at the major league level.</media:description>
+    </item>
+    <item>
+      <title>Grizzlies Guard Ja Morant Moves Toward ‘Redemption’ After Gun Video</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/basketball/ja-morant-memphis-grizzlies.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/basketball/ja-morant-memphis-grizzlies.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/basketball/ja-morant-memphis-grizzlies.html" rel="standout"></atom:link>
+      <description>Back from an eight-game suspension, the Memphis Grizzlies guard said he had more work to do to improve himself. But there was also a hint of defiance in his approach.</description>
+      <dc:creator>Tania Ganguli</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 17:04:52 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Fans (Persons)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Athletics and Sports</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Houston Rockets</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Memphis Grizzlies</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Basketball Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bane, Desmond (1998- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Jenkins, Taylor (1984- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Jones, Tyus (1996- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Morant, Ja (1999- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Silver, Adam (1962- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23nba-ja-morant-top-qvzg/23nba-ja-morant-top-qvzg-moth.jpg" width="151"></media:content>
+      <media:credit>Petre Thomas/USA Today Sports, via Reuters</media:credit>
+      <media:description>Memphis Grizzlies guard Ja Morant returned to action Wednesday with 17 points off the bench against Houston.</media:description>
+    </item>
+    <item>
+      <title>Argentina’s World Cup Champions Gather for First Time Since Qatar</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/soccer/argentina-world-cup.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/soccer/argentina-world-cup.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/soccer/argentina-world-cup.html" rel="standout"></atom:link>
+      <description>Lionel Messi and his Argentina teammates have reunited for the first time. Most are finding a day job feels different after you’ve won the World Cup.</description>
+      <dc:creator>Rory Smith</dc:creator>
+      <pubDate>Fri, 24 Mar 2023 07:31:28 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Soccer</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">World Cup 2022 (Soccer)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Argentina</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-sub-only</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/04/23/multimedia/23onsoccer-hczj/23onsoccer-hczj-moth.jpg" width="151"></media:content>
+      <media:credit>Agustin Marcarian/Reuters</media:credit>
+      <media:description>Argentina celebrated its World Cup victory al over again after a 2-0 victory over Panama in Buenos Aires.</media:description>
+    </item>
+    <item>
+      <title>NFL Teams Are Bullish on Cornerbacks and Bearish on Running Backs</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/football/nfl-free-agents.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/football/nfl-free-agents.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/football/nfl-free-agents.html" rel="standout"></atom:link>
+      <description>Recent off-season deals also show that trades are hot, free-agent signings are not, and “bridge quarterback” is one of the greatest jobs ever.</description>
+      <dc:creator>Mike Tanier</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 18:03:36 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Football</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Draft and Recruitment (Sports)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Trades (Sports)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Free Agents (Sports)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Football League</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Barkley, Saquon (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Bradberry, James (1993- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Brady, Tom</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Brissett, Jacoby (1992- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Cook, Dalvin (1995- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Dalton, Andy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Diggs, Trevon (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Ekeler, Austin (1995- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Elliott, Ezekiel (1995- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gardner-Johnson, CJ</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Gilmore, Stephon (1990- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Heinicke, Taylor (1993- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Henry, Derrick</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Howard, Xavien</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Jackson, Lamar (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Keenum, Case</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Minshew, Gardner (1996- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Ramsey, Jalen (1994- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sanders, Miles (1997- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Snyder, Daniel M</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23nfl-freeagents1-qlgf/23nfl-freeagents1-qlgf-moth.jpg" width="151"></media:content>
+      <media:credit>Megan Briggs/Getty Images</media:credit>
+      <media:description>The Miami Dolphins acquired Jalen Ramsey, a six-time Pro Bowl selection, from the Los Angeles Rams for a third-round draft pick and the rights to a backup tight end. </media:description>
+    </item>
+    <item>
+      <title>The N.C.A.A. Once Avoided Las Vegas. Times, and Prospects, Have Changed.</title>
+      <link>https://www.nytimes.com/2023/03/23/sports/ncaabasketball/ncaa-tournament-las-vegas.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/23/sports/ncaabasketball/ncaa-tournament-las-vegas.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/23/sports/ncaabasketball/ncaa-tournament-las-vegas.html" rel="standout"></atom:link>
+      <description>Las Vegas will host a men’s basketball regional this week, the men’s Final Four in 2028 and numerous other college championships — all prompted by changes in how the N.C.A.A. has viewed the city.</description>
+      <dc:creator>Billy Witz</dc:creator>
+      <pubDate>Thu, 23 Mar 2023 13:15:30 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">NCAA Basketball Championships (Men)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Gambling</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Collegiate Athletic Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Las Vegas (Nev)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Vaccaro, Sonny</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Tarkanian, Jerry (1930-2015)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of Nevada, Las Vegas</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/23/multimedia/23ncaa-las-vegas-01-zkcj/23ncaa-las-vegas-01-zkcj-moth.jpg" width="151"></media:content>
+      <media:credit>Bridget Bennett for The New York Times</media:credit>
+      <media:description>Las Vegas is hosting a men’s basketball regional for the first time.</media:description>
+    </item>
+    <item>
+      <title>Tyger Campbell Is the Calm as U.C.L.A. Storms Into the Sweet 16</title>
+      <link>https://www.nytimes.com/2023/03/22/sports/ncaabasketball/tyger-campbell-ucla.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/22/sports/ncaabasketball/tyger-campbell-ucla.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/22/sports/ncaabasketball/tyger-campbell-ucla.html" rel="standout"></atom:link>
+      <description>The senior guard, whom the Hall of Famer Bill Walton called “one of my favorite all-time Bruins,” has become one of the most recognizable faces in college basketball.</description>
+      <dc:creator>Scott Miller</dc:creator>
+      <pubDate>Wed, 22 Mar 2023 20:37:55 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Campbell, Tyger (2000- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball (College)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">University of California, Los Angeles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/22/multimedia/22mcbb-ucla-campbell-1-wmcf/22mcbb-ucla-campbell-1-wmcf-moth.jpg" width="151"></media:content>
+      <media:credit>Thearon W. Henderson/Getty Images</media:credit>
+      <media:description>Tyger Campbell, a senior guard at U.C.L.A., is having the best offensive season of his career while providing a steadying force for the Bruins.</media:description>
+    </item>
+    <item>
+      <title>NBA ‘Bad Boy’ Wants Players to Do as He Says, Not as His Teams Did</title>
+      <link>https://www.nytimes.com/2023/03/22/sports/basketball/joe-dumars-pistons-nba-suspensions.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/22/sports/basketball/joe-dumars-pistons-nba-suspensions.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/22/sports/basketball/joe-dumars-pistons-nba-suspensions.html" rel="standout"></atom:link>
+      <description>Joe Dumars was on the 1980s Detroit Pistons teams known for their hard fouls. But players and coaches who step out of line today can expect fines and suspensions — from him.</description>
+      <dc:creator>Jonathan Abrams</dc:creator>
+      <pubDate>Wed, 22 Mar 2023 20:52:44 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Basketball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Officiating (Sports)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Fines (Penalties)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coaches and Managers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Dumars, Joe</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Basketball Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Detroit Pistons</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/12/multimedia/12nba-joe-dumars-01-twzv/12nba-joe-dumars-01-twzv-moth.jpg" width="151"></media:content>
+      <media:credit>Bedel Saget/The New York Times</media:credit>
+      <media:description>Joe Dumars is in his first season as the N.B.A.’s vice president, head of basketball operations in charge of discipline and rule-making.</media:description>
+    </item>
+    <item>
+      <title>Forged After a Tumultuous Era, World Golf Championships Fade in Another</title>
+      <link>https://www.nytimes.com/2023/03/22/sports/golf/world-championships-match-play.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/22/sports/golf/world-championships-match-play.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/22/sports/golf/world-championships-match-play.html" rel="standout"></atom:link>
+      <description>A match play event in Texas may be the last W.G.C. event, ending an international competition that preceded golf’s high-rolling present.</description>
+      <dc:creator>Alan Blinder</dc:creator>
+      <pubDate>Wed, 22 Mar 2023 20:15:48 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Golf</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">PGA Tour Inc</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">LIV Golf</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Professional Golfers Assn</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">British Open (Golf)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Ryder Cup (Golf)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">PGA Championship</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Women&#39;s PGA Championship (Golf)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Presidents Cup (Golf)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Sovereign Wealth Funds</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">McIlroy, Rory</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Mickelson, Phil</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Monahan, Jay W (1970- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Norman, Greg</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Scheffler, Scottie (1996- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Scott, Adam (1980- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Woods, Tiger</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/22/multimedia/22golf-world1-vcpq/22golf-world1-vcpq-moth.jpg" width="151"></media:content>
+      <media:credit>Eric Gay/Associated Press</media:credit>
+      <media:description>Rory McIlroy said that while W.G.C. events had been “lovely to be a part of,” they had come to lack “any real meaning,”</media:description>
+    </item>
+    <item>
+      <title>Japan’s Shohei Ohtani Made the World Baseball Classic ‘Real’</title>
+      <link>https://www.nytimes.com/2023/03/22/sports/baseball/shohei-ohtani-world-baseball-classic.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2023/03/22/sports/baseball/shohei-ohtani-world-baseball-classic.html</guid>
+      <atom:link href="https://www.nytimes.com/2023/03/22/sports/baseball/shohei-ohtani-world-baseball-classic.html" rel="standout"></atom:link>
+      <description>Shohei Ohtani’s ability to dominate as a hitter and as a pitcher delivered a championship for Japan while establishing the World Baseball Classic as a must-watch tournament.</description>
+      <dc:creator>Tyler Kepner</dc:creator>
+      <pubDate>Wed, 22 Mar 2023 15:32:01 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">World Baseball Classic</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Ohtani, Shohei</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trout, Mike</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Japan</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Los Angeles Angels of Anaheim</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Major League Baseball</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2023/03/22/multimedia/22kepner-wbc-final-top-vjzf/22kepner-wbc-final-top-vjzf-moth.jpg" width="151"></media:content>
+      <media:credit>Sam Navarro/USA Today Sports, via Reuters</media:credit>
+      <media:description>Shohei Ohtani did it all for Japan in this year’s World Baseball Classic, starring as a hitter and a starting pitcher, and closing out the final game as a reliever.</media:description>
+    </item>
+  </channel>
+</rss>

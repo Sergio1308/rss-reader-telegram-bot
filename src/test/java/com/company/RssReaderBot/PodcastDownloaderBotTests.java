@@ -2,9 +2,6 @@ package com.company.RssReaderBot;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 @SpringBootTest
 class PodcastDownloaderBotTests {
 
