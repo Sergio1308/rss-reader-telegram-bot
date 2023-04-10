@@ -8,7 +8,9 @@ import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.SendResponse;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoadMainMenuCommand implements Command<Long, Integer> {
 
     private String getAnswer() {
