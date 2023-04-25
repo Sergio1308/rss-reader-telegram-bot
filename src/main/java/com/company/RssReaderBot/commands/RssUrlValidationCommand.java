@@ -1,10 +1,12 @@
-package com.company.RssReaderBot.services;
+package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.commands.Command;
 import com.company.RssReaderBot.commands.SubscribeCommand;
 import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.company.RssReaderBot.db.models.UserDB;
+import com.company.RssReaderBot.services.FeedService;
+import com.company.RssReaderBot.services.UserService;
 import com.company.RssReaderBot.services.parser.RssUrlValidator;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.ForceReply;
@@ -16,16 +18,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RssUrlValidation implements Command<Message> {
+public class RssUrlValidationCommand implements Command<Message> {
 
-    @Autowired
-    private BotConfig botConfig;
+    private final BotConfig botConfig;
 
-    @Autowired
-    private FeedService feedService;
+    private final FeedService feedService;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public RssUrlValidationCommand(BotConfig botConfig, FeedService feedService, UserService userService) {
+        this.botConfig = botConfig;
+        this.feedService = feedService;
+        this.userService = userService;
+    }
 
     public BaseRequest<SendMessage, SendResponse> execute(Message message) {
         Long chatId = message.chat().id();

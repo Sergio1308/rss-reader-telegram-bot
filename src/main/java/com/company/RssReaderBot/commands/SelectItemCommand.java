@@ -1,21 +1,24 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.controllers.CallbackQueryConstants;
+import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.company.RssReaderBot.entities.Item;
 import com.company.RssReaderBot.entities.ItemsList;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.SelectedItemInlineKeyboard;
+import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.response.BaseResponse;
+import org.springframework.stereotype.Component;
 
 /**
  * This class is responsible for selecting a specific item
  * (by pressing on the button) from items-list.
  */
-public class SelectItemCommand implements Command<Long, Integer> {
+@Component
+public class SelectItemCommand implements Command<Message> {
 
     private static String callData;
 
@@ -44,18 +47,18 @@ public class SelectItemCommand implements Command<Long, Integer> {
     }
 
     @Override
-    public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId) {
+    public BaseRequest<EditMessageText, BaseResponse> execute(Message message) {
         if (callData == null) throw new NullPointerException();  // todo
         // here callDate contains the title of the episode selected by the user by clicking on the button
-        if (!callData.equals(CallbackQueryConstants.SHOW_ITEM)) { // equals only when user pressed inline button
-            String currentEpisodeTitle = callData.substring(CallbackQueryConstants.SHOW_ITEM.length());
+        if (!callData.equals(CallbackDataConstants.SHOW_ITEM)) { // equals only when user pressed inline button
+            String currentEpisodeTitle = callData.substring(CallbackDataConstants.SHOW_ITEM.length());
             // get item object instantly from HashMap (O1)
             currentlySelectedItem = ItemsList.getItemsMap().get(currentEpisodeTitle);
         }
         InlineKeyboardCreator inlineKeyboardCreator = new SelectedItemInlineKeyboard();
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
 
-        return new EditMessageText(chatId, messageId, getAnswer())
+        return new EditMessageText(message.chat().id(), message.messageId(), getAnswer())
                 .replyMarkup(markupInline)
                 .parseMode(ParseMode.HTML);
     }

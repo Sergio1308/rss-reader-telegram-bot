@@ -6,6 +6,7 @@ import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.response.SendResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +19,7 @@ public class HelpCommand implements Command<Message> {
     }
 
     @Override
-    public BaseRequest<?, ?> execute(Message message) {
+    public BaseRequest<SendMessage, SendResponse> execute(Message message) {
         InlineKeyboardCreator inlineKeyboardCreator = new HelpCommandInlineKeyboard();
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
         return new SendMessage(message.chat().id(), getAnswer()).replyMarkup(markupInline);

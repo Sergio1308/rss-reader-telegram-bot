@@ -1,6 +1,5 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.commands.personal_menu.CommandN;
 import com.company.RssReaderBot.db.models.UserDB;
 import com.company.RssReaderBot.db.models.UserSettings;
 import com.company.RssReaderBot.db.repositories.UserRepository;
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Consumer;
 
 @Component
-public class StartCommand implements CommandN<Message> {
+public class StartCommand implements Command<Message> {
 
     private final UserRepository userRepository;
     private final UserSettingsRepository userSettingsRepository;

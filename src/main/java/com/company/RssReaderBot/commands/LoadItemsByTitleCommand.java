@@ -4,14 +4,19 @@ import com.company.RssReaderBot.entities.ItemsList;
 import com.company.RssReaderBot.entities.ItemsPagination;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.LoadItemsByTitleInlineKeyboard;
+import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
+import org.springframework.stereotype.Component;
 
-public class LoadItemsByTitleCommand implements Command<Long, Integer> {
+@Component
+public class LoadItemsByTitleCommand implements Command<Message> {
+
+    private String callData;
 
     private final InlineKeyboardCreator inlineKeyboardCreator = new LoadItemsByTitleInlineKeyboard();
 
@@ -47,7 +52,7 @@ public class LoadItemsByTitleCommand implements Command<Long, Integer> {
     }
 
     @Override
-    public BaseRequest<?, ?> execute(Long aLong, Integer integer) {
+    public BaseRequest<?, ?> execute(Message message) {
         return null;
     }
 }
