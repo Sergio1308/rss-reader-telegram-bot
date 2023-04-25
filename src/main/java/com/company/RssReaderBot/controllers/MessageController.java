@@ -3,6 +3,7 @@ package com.company.RssReaderBot.controllers;
 import com.company.RssReaderBot.commands.*;
 import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.db.repositories.UserRepository;
+import com.company.RssReaderBot.commands.RssUrlValidationCommand;
 import com.company.RssReaderBot.services.parser.ParseElements;
 import com.github.kshashov.telegram.api.MessageType;
 import com.github.kshashov.telegram.api.TelegramMvcController;
@@ -22,35 +23,24 @@ import java.util.Date;
 @BotController
 public class MessageController implements TelegramMvcController, Controller {
 
-    // commands instance fields
-    @Autowired
-    private BotConfig botConfig;
+    private final BotConfig botConfig;
 
-    @Autowired
-    private SubscribeCommand subscribeCommand;
+    private final HelpCommand helpCommand;
 
-    @Autowired
-    private HelpCommand helpCommand;
-
-    @Autowired
-    private StartCommand startCommand;
+    private final StartCommand startCommand;
 
     private final LoadItemsByTitleCommand loadItemsByTitleCommand = new LoadItemsByTitleCommand();
 
-    @Autowired
-    private RssUrlValidationCommand rssUrlValidationCommand;
+    private final RssUrlValidationCommand rssUrlValidationCommand;
 
-    @Autowired
-    private ParseElements parseElements;
+    private final ParseElements parseElements;
 
-    private final UserRepository userRepository;
-    // commandHandlersMap
-    //  ||
-    //  \/
-    // ...
-
-    public MessageController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public MessageController(BotConfig botConfig, HelpCommand helpCommand, StartCommand startCommand, RssUrlValidationCommand rssUrlValidationCommand, ParseElements parseElements) {
+        this.botConfig = botConfig;
+        this.helpCommand = helpCommand;
+        this.startCommand = startCommand;
+        this.rssUrlValidationCommand = rssUrlValidationCommand;
+        this.parseElements = parseElements;
     }
 
     @BotRequest(value = "/start", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
@@ -65,11 +55,11 @@ public class MessageController implements TelegramMvcController, Controller {
 
     @BotRequest(value = "/help")
     public BaseRequest<SendMessage, SendResponse> sendHelpMessage(Update update) {
-        return helpCommand.execute(update.message().chat().id(), update.message().messageId());
+        return helpCommand.execute(update.message());
     }
 
     @MessageRequest
-    public BaseRequest handleOtherCallbacks(Update update) {
+    public BaseRequest<?, ?> handle(Update update) {
         String message = update.message().text();
         long chatId = update.message().chat().id();
 
@@ -80,7 +70,7 @@ public class MessageController implements TelegramMvcController, Controller {
             return rssUrlValidationCommand.execute(update.message());
         } else if (EnteringItemTitleCommand.hasEntered()) {
             // todo parse in loadItemsByTitleCommand
-            parseElements.parseElementsByTitle(userRepository.findById(chatId).orElseThrow(), message);
+            parseElements.parseElementsByTitle(message);
             return loadItemsByTitleCommand.process(update, chatId);
         } else {
             String answer = "Invalid command. Use inline menu above\uD83D\uDC46";
