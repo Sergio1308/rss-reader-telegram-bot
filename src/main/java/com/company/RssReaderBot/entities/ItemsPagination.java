@@ -1,9 +1,10 @@
 package com.company.RssReaderBot.entities;
 
-import com.company.RssReaderBot.controllers.CallbackQueryConstants;
+import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.company.RssReaderBot.services.Partition;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,10 @@ public class ItemsPagination {
     @Getter @Setter
     private static int currentPage;
 
-    private static final int DISPLAY_BUTTONS_COLUMN = 6; // config
-    private static final int MAX_BUTTONS_PAGINATION_ROW = 6; // config
+    @Value("${bot.ui.display.buttons.column}")
+    private int DISPLAY_BUTTONS_COLUMN;
+    @Value("${bot.ui.max.buttons.pagination.row}")
+    private int MAX_BUTTONS_PAGINATION_ROW;
 
     private static final ItemsPagination INSTANCE = new ItemsPagination();
 
@@ -63,16 +66,39 @@ public class ItemsPagination {
         if (chunkedItemList.size() < buttonsInRowSize) buttonsInRowSize = chunkedItemList.size();
     }
 
-    public void changePaginationIndex(String pressedCallbackButton) {
-        // todo replace statements
-        if (pagesPartition.size() == 1 || pressedCallbackButton.equals(CallbackQueryConstants.FIRST_PAGE)) {
+    public void changePaginationIndex(String pressedButton) {
+        if (pagesPartition.size() == 1) {
             currentIndexPagination = 0;
-        } else if (pressedCallbackButton.equals(CallbackQueryConstants.LAST_PAGE)) {
-            currentIndexPagination = pagesPartition.size() - 1;
-        } else if (pressedCallbackButton.equals(CallbackQueryConstants.NEXT_PAGE) && pagesPartition.size() - 1 > currentIndexPagination) {
-            ++currentIndexPagination;
-        } else if (pressedCallbackButton.equals(CallbackQueryConstants.PREVIOUS_PAGE) && currentIndexPagination > 0) {
-            --currentIndexPagination;
+            return;
         }
+        int lastIndex = pagesPartition.size() - 1;
+        switch (pressedButton) {
+            case CallbackDataConstants.FIRST_PAGE:
+                currentIndexPagination = 0;
+                break;
+            case CallbackDataConstants.LAST_PAGE:
+                currentIndexPagination = lastIndex;
+                break;
+            case CallbackDataConstants.NEXT_PAGE:
+                if (canMoveToNextPage()) {
+                    ++currentIndexPagination;
+                }
+                break;
+            case CallbackDataConstants.PREVIOUS_PAGE:
+                if (canMoveToPreviousPage()) {
+                    --currentIndexPagination;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private boolean canMoveToNextPage() {
+        return pagesPartition.size() - 1 > currentIndexPagination;
+    }
+
+    private boolean canMoveToPreviousPage() {
+        return currentIndexPagination > 0;
     }
 }
