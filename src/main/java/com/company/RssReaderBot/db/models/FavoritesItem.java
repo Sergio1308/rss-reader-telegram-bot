@@ -7,19 +7,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name = "favorite_item",
+        name = "favorites_item",
         uniqueConstraints = {
-                @UniqueConstraint(name = "favorite_item_userid_unique", columnNames = "userid"),
-                @UniqueConstraint(name = "favorite_item_feed_id_unique", columnNames = "feed_id"),
-                @UniqueConstraint(name = "favorite_item_item_id_unique", columnNames = "item_id")
+                @UniqueConstraint(name = "favorites_item_userid_unique", columnNames = "userid"),
+                @UniqueConstraint(name = "favorites_item_feed_id_unique", columnNames = "id"),
         }
 )
-public class FavoriteItem {
+public class FavoritesItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private int id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid", nullable = false)
@@ -27,16 +26,15 @@ public class FavoriteItem {
     private UserDB user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feed_id")
+    @JoinColumn(name = "feed_id", referencedColumnName = "id")
     @Getter @Setter
     private RssFeed feed;
 
-    @JoinColumn(name = "item_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "favoritesItem", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Getter @Setter
     private Item item;
 
-    public FavoriteItem() {
+    public FavoritesItem() {
         super();
     }
 
@@ -46,7 +44,6 @@ public class FavoriteItem {
                 "id=" + id +
                 ", user=" + user +
                 ", feed=" + feed +
-                ", item=" + item +
                 '}';
     }
 }

@@ -39,6 +39,7 @@ public class UserDB {
     private Timestamp createdAt;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Getter
     private UserSettings userSettings;
 
     public UserDB(long userId, String languageCode, Timestamp createdAt) {

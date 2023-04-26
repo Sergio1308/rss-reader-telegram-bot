@@ -1,11 +1,14 @@
 package com.company.RssReaderBot.controllers;
 
 import com.company.RssReaderBot.commands.*;
-import com.company.RssReaderBot.commands.personal_menu.ShowPersonalMenuCommand;
+import com.company.RssReaderBot.commands.SettingsMenuCommand;
 import com.company.RssReaderBot.config.BotConfig;
+import com.company.RssReaderBot.db.models.RssFeed;
 import com.company.RssReaderBot.db.models.UserDB;
 import com.company.RssReaderBot.db.repositories.UserRepository;
 import com.company.RssReaderBot.entities.ItemsPagination;
+import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
+import com.company.RssReaderBot.inlinekeyboard.RssFeedsInlineKeyboard;
 import com.company.RssReaderBot.services.parser.ParseElements;
 import com.company.RssReaderBot.services.FeedService;
 import com.company.RssReaderBot.services.UserService;
@@ -13,95 +16,115 @@ import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.request.CallbackQueryRequest;
 import com.pengrad.telegrambot.model.CallbackQuery;
+import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.AnswerCallbackQuery;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.DeleteMessage;
+import com.pengrad.telegrambot.request.EditMessageReplyMarkup;
 import com.pengrad.telegrambot.response.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @BotController
 public class CallbackQueryController implements TelegramMvcController, Controller {
 
-    @Autowired
-    private BotConfig botConfig;
+    private final BotConfig botConfig;
 
-    @Autowired
-    private SubscribeCommand subscribeCommand;
+    private final SubscribeCommand subscribeCommand;
 
-    @Autowired
-    private UnsubscribeCommand unsubscribeCommand;
+    private final UnsubscribeCommand unsubscribeCommand;
 
-    //todo
-    private final LoadMainMenuCommand loadMainMenuCommand = new LoadMainMenuCommand();
-    private final ShowPersonalMenuCommand showPersonalMenuCommand = new ShowPersonalMenuCommand();
-    private final LoadAllItemsCommand loadAllItemsCommand = new LoadAllItemsCommand();
-    private final EnteringItemTitleCommand enteringItemTitleCommand = new EnteringItemTitleCommand();
-    private final SelectItemCommand selectItemCommand = new SelectItemCommand();
-    private final TurnPageCommand turnPageCommand = new TurnPageCommand();
-    private final LoadItemsByTitleCommand loadItemsByTitleCommand = new LoadItemsByTitleCommand();
-    private final TurnToFirstOrLastPageCommand turnToFirstOrLastPageCommand = new TurnToFirstOrLastPageCommand();
+    private final GetItemsCommand getItemsCommand;
 
-    @Autowired
-    private ParseElements parseElements;
+    private final SettingsMenuCommand settingsMenuCommand;
 
-    @Autowired
-    private UserService userService;
+    private final PageTurnerCommand pageTurnerCommand;
 
-    @Autowired
-    private FeedService feedService;
+    private final LoadAllItemsCommand loadAllItemsCommand;
 
-    private final UserRepository userRepository;
+    private final EnteringItemTitleCommand enteringItemTitleCommand;
 
-    private final Map<String, Command<Long, Integer>> commandsMap = new HashMap<>();
+    private final SelectItemCommand selectItemCommand;
 
-    public CallbackQueryController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-//        commandsMap.put(CallbackQueryConstants.PARSING_ELEMENTS_MENU, new LoadMainMenuCommand());
-//        commandsMap.put(CallbackQueryConstants.START_MENU, new StartCommand());
-//        commandsMap.put(CallbackQueryConstants.CHANGE_RSS_URL, new SubscribeCommand());
-//        commandsMap.put(CallbackQueryConstants.RSS_FAQ, new ShowRssFaqCommand());
-//        commandsMap.put(CallbackQueryConstants.SETTINGS, new ShowPersonalMenuCommand());
-//        commandsMap.put(CallbackQueryConstants.LOAD_ALL_ITEMS, new LoadAllItemsCommand());
-//        commandsMap.put(CallbackQueryConstants.LOAD_BY_TITLE, new EnteringItemTitleCommand());
-//        commandsMap.put(CallbackQueryConstants.SHOW_ITEM, new SelectItemCommand());
-//        commandsMap.put(CallbackQueryConstants.RETURN_LOAD_BY_TITLE, new LoadItemsByTitleCommand());
+    private final LoadItemsByTitleCommand loadItemsByTitleCommand;
+
+    private final ParseElements parseElements;
+
+    private final UserService userService;
+
+    private final FeedService feedService;
+
+    private final Map<String, Command<Message>> commandsMap = new HashMap<>();
+
+    private Integer feedId = null;
+
+    public CallbackQueryController(BotConfig botConfig, SubscribeCommand subscribeCommand,
+                                   UnsubscribeCommand unsubscribeCommand, GetItemsCommand getItemsCommand,
+                                   SettingsMenuCommand settingsMenuCommand, PageTurnerCommand pageTurnerCommand,
+                                   FeedService feedService, LoadAllItemsCommand loadAllItemsCommand,
+                                   EnteringItemTitleCommand enteringItemTitleCommand,
+                                   SelectItemCommand selectItemCommand,
+                                   LoadItemsByTitleCommand loadItemsByTitleCommand,
+                                   ParseElements parseElements, UserService userService) {
+//        commandsMap.put(CallbackDataConstants.PARSING_ELEMENTS_MENU, new GetItemsCommand());
+//        commandsMap.put(CallbackDataConstants.START_MENU, new StartCommand());
+//        commandsMap.put(CallbackDataConstants.CHANGE_RSS_URL, new SubscribeCommand());
+//        commandsMap.put(CallbackDataConstants.RSS_FAQ, new ShowRssFaqCommand());
+//        commandsMap.put(CallbackDataConstants.SETTINGS, new SettingsMenuCommand());
+//        commandsMap.put(CallbackDataConstants.LOAD_ALL_ITEMS, new LoadAllItemsCommand());
+//        commandsMap.put(CallbackDataConstants.LOAD_BY_TITLE, new EnteringItemTitleCommand());
+//        commandsMap.put(CallbackDataConstants.SHOW_ITEM, new SelectItemCommand());
+//        commandsMap.put(CallbackDataConstants.RETURN_LOAD_BY_TITLE, new LoadItemsByTitleCommand());
 ////        loadItemsByTitleCommand
-//        commandsMap.put(CallbackQueryConstants.NEXT_PAGE, new TurnPageCommand());
-//        commandsMap.put(CallbackQueryConstants.PREVIOUS_PAGE, new TurnPageCommand());
-//        commandsMap.put(CallbackQueryConstants.FIRST_PAGE, new TurnToFirstOrLastPageCommand());
-//        commandsMap.put(CallbackQueryConstants.LAST_PAGE, new TurnToFirstOrLastPageCommand());
+//        commandsMap.put(CallbackDataConstants.NEXT_PAGE, new PageTurnerCommand());
+//        commandsMap.put(CallbackDataConstants.PREVIOUS_PAGE, new PageTurnerCommand());
+//        commandsMap.put(CallbackDataConstants.FIRST_PAGE, new TurnToFirstOrLastPageCommand());
+//        commandsMap.put(CallbackDataConstants.LAST_PAGE, new TurnToFirstOrLastPageCommand());
+        this.subscribeCommand = subscribeCommand;
+        this.botConfig = botConfig;
+        this.unsubscribeCommand = unsubscribeCommand;
+        this.getItemsCommand = getItemsCommand;
+        this.settingsMenuCommand = settingsMenuCommand;
+        this.pageTurnerCommand = pageTurnerCommand;
+        this.feedService = feedService;
+        this.loadAllItemsCommand = loadAllItemsCommand;
+        this.enteringItemTitleCommand = enteringItemTitleCommand;
+        this.selectItemCommand = selectItemCommand;
+        this.loadItemsByTitleCommand = loadItemsByTitleCommand;
+        this.parseElements = parseElements;
+        this.userService = userService;
     }
 
     @CallbackQueryRequest
-    public BaseRequest<?, ?> handleOtherCallbacks(Update update) {
+    public BaseRequest<?, ?> handle(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         System.out.println("Handle callback - " + callbackQuery.data());
         return handleCallback(update);
     }
 
-    @CallbackQueryRequest(value = CallbackQueryConstants.SUB_FEED_SAMPLE)
+    @CallbackQueryRequest(value = CallbackDataConstants.SUB_FEED_SAMPLE)
     public BaseRequest<AnswerCallbackQuery, BaseResponse> handleSampleFeedCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         UserDB userDB = userService.findUser(callbackQuery.message().chat().id());
-        feedService.addFeed(userDB, CallbackQueryConstants.SUB_FEED_SAMPLE);
+        feedService.addFeed(userDB, CallbackDataConstants.SUB_FEED_SAMPLE);
 
         return new AnswerCallbackQuery(callbackQuery.id()).text(
                 "Subscribed successfully!\nYou are now following the feed: "
-                        + CallbackQueryConstants.SUB_FEED_SAMPLE)
+                        + CallbackDataConstants.SUB_FEED_SAMPLE) // todo feed title
                 .cacheTime(10);
     }
 
-    @CallbackQueryRequest(value = CallbackQueryConstants.HIDE_MESSAGE)
+    @CallbackQueryRequest(value = CallbackDataConstants.HIDE_MESSAGE)
     public BaseRequest<DeleteMessage, BaseResponse> handleHideMessageCallback(Update update) {
         long chatId = update.callbackQuery().message().chat().id();
         return new DeleteMessage(chatId, update.callbackQuery().message().messageId());
     }
 
-    @CallbackQueryRequest(value = CallbackQueryConstants.SUBSCRIBE)
+    @CallbackQueryRequest(value = CallbackDataConstants.SUBSCRIBE)
     public BaseRequest<?, ?> handleSubscribeCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         long chatId = callbackQuery.message().chat().id();
@@ -118,10 +141,10 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
                     .showAlert(true)
                     .cacheTime(20);
         botConfig.getTelegramBot().execute(new AnswerCallbackQuery(callbackQuery.id()));
-        return subscribeCommand.execute(chatId, messageId);
+        return subscribeCommand.execute(callbackQuery.message());
     }
 
-    @CallbackQueryRequest(value = CallbackQueryConstants.UNSUBSCRIBE)
+    @CallbackQueryRequest(value = CallbackDataConstants.UNSUBSCRIBE)
     public BaseRequest<?, ?> handleUnsubscribeCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         botConfig.getTelegramBot().execute(new AnswerCallbackQuery(callbackQuery.id()));
@@ -131,27 +154,46 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
     private BaseRequest<?, ?> handleCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         String callData = callbackQuery.data();
+        Message message = callbackQuery.message();
         long chatId = callbackQuery.message().chat().id();
         Integer messageId = callbackQuery.message().messageId();
+        String callbackQueryId = callbackQuery.id();
 
         // todo: polymorphism
-        if (callData.equals(CallbackQueryConstants.PARSING_ELEMENTS_MENU)) {
+        if (callData.equals(CallbackDataConstants.PARSING_ELEMENTS_MENU)) {
             ItemsPagination.getInstance().clear();
-            return loadMainMenuCommand.execute(chatId, messageId);
-        } else if (callData.startsWith(CallbackQueryConstants.FEED_BUTTON)) {
-            // show all feeds as inline buttons, after pressing button - remove chosen feed from db
-            System.out.println(callData);
-        } else if (callData.equals(CallbackQueryConstants.SETTINGS)) {
-            return showPersonalMenuCommand.execute(chatId, messageId);
-        } else if (callData.equals(CallbackQueryConstants.LOAD_ALL_ITEMS)) {
-            parseElements.parseAllElements(userRepository.findById(chatId).orElseThrow());
-            return loadAllItemsCommand.execute(chatId, messageId);
-        } else if (callData.equals(CallbackQueryConstants.LOAD_BY_TITLE)) {
-            return enteringItemTitleCommand.execute(chatId, messageId);
-        } else if (callData.startsWith(CallbackQueryConstants.SHOW_ITEM)) {
+            return getItemsCommand.execute(message);
+        } else if (callData.startsWith(CallbackDataConstants.FEED_BUTTON)) {
+            feedId = Integer.parseInt(callData.substring(CallbackDataConstants.FEED_BUTTON.length()));
+            if (message.text().startsWith("Your subscriptions")) {
+                feedService.removeFeed(feedId);
+                List<RssFeed> feedList = feedService.getAllFeeds(chatId);
+                InlineKeyboardCreator inlineKeyboardCreator = new RssFeedsInlineKeyboard(feedList);
+                botConfig.getTelegramBot().execute(new AnswerCallbackQuery(callbackQueryId).text("Unsubscribed!"));
+                return new EditMessageReplyMarkup(chatId, messageId)
+                        .replyMarkup(inlineKeyboardCreator.createInlineKeyboard());
+            }
+            return new AnswerCallbackQuery(callbackQueryId).text("Successfully selected!");
+        } else if (callData.equals(CallbackDataConstants.SETTINGS)) {
+            return settingsMenuCommand.execute(message);
+        } else if (callData.equals(CallbackDataConstants.LOAD_ALL_ITEMS)) {
+            //
+            if (feedId == null) {
+                return new AnswerCallbackQuery(callbackQueryId).text("You have not selected an RSS feed!");
+            }
+            parseElements.parseAllElements(feedId);
+            return loadAllItemsCommand.execute(message);
+        } else if (callData.equals(CallbackDataConstants.LOAD_BY_TITLE)) {
+            //
+            if (feedId == null) {
+                return new AnswerCallbackQuery(callbackQueryId).text("You have not selected an RSS feed!");
+            }
+            parseElements.getRssFeedAndSetToParser(feedId);
+            return enteringItemTitleCommand.execute(message);
+        } else if (callData.startsWith(CallbackDataConstants.SHOW_ITEM)) {
             SelectItemCommand.setCallData(callData);
-            return selectItemCommand.execute(chatId, messageId);
-        } else if (callData.equals(CallbackQueryConstants.RETURN_LOAD_BY_TITLE)) {
+            return selectItemCommand.execute(message);
+        } else if (callData.equals(CallbackDataConstants.RETURN_LOAD_BY_TITLE)) {
             // todo return to already generated items list, remember previous page
             // edit reply markup
             return loadItemsByTitleCommand.process(update, chatId);
@@ -159,11 +201,11 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
                 ItemsPagination.getCallbackDataPaginationButtons().contains(callData)) {
             // todo update only message text & items list
             return loadItemsByTitleCommand.execute(chatId, messageId, callData);
-        } else if (callData.equals(CallbackQueryConstants.NEXT_PAGE) || callData.equals(CallbackQueryConstants.PREVIOUS_PAGE)) {
-            turnPageCommand.changePaginationIndex(callData);
-            return turnPageCommand.execute(chatId, messageId);
-        } else if (callData.equals(CallbackQueryConstants.FIRST_PAGE) || callData.equals(CallbackQueryConstants.LAST_PAGE)) {
-            return turnToFirstOrLastPageCommand.execute(chatId, messageId, callData);
+        } else if (callData.equals(CallbackDataConstants.NEXT_PAGE) || callData.equals(CallbackDataConstants.PREVIOUS_PAGE)) {
+            pageTurnerCommand.changePaginationIndex(callData);
+            return pageTurnerCommand.execute(message);
+        } else if (callData.equals(CallbackDataConstants.FIRST_PAGE) || callData.equals(CallbackDataConstants.LAST_PAGE)) {
+            return pageTurnerCommand.execute(chatId, messageId, callData);
         }
         return null;
     }

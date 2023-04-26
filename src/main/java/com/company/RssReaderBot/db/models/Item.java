@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(
         name = "item",
         uniqueConstraints = {
-                @UniqueConstraint(name = "item_feed_id_unique", columnNames = "feed_id"),
+                @UniqueConstraint(name = "item_favorites_item_id_unique", columnNames = "favorites_item_id"),
                 @UniqueConstraint(name = "item_title_unique", columnNames = "title")
         }
 )
@@ -18,12 +18,12 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private int id;
+    private Integer id;
 
-    @JoinColumn(name = "feed_id", referencedColumnName = "id")
-    @ManyToOne
+    @JoinColumn(name = "favorites_item_id", referencedColumnName = "id")
+    @OneToOne
     @Getter
-    private RssFeed rssFeed;
+    private FavoritesItem favoritesItem;
 
     @Getter @Setter
     private String title;
@@ -50,7 +50,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", feedId=" + rssFeed.getId() +
+                ", favoritesItem=" + favoritesItem +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
