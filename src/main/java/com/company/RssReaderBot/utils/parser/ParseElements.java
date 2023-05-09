@@ -1,9 +1,8 @@
-package com.company.RssReaderBot.services.parser;
+package com.company.RssReaderBot.utils.parser;
 
-import com.company.RssReaderBot.db.models.RssFeed;
-import com.company.RssReaderBot.db.models.UserDB;
+import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.db.repositories.RssFeedRepository;
-import com.company.RssReaderBot.entities.ItemsList;
+import com.company.RssReaderBot.models.ItemsList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,22 +18,22 @@ public class ParseElements {
         this.parser = parser;
     }
 
-    public void getRssFeedAndSetToParser(UserDB userDB) {
-        RssFeed feed = feedRepository.findByUserUserid(userDB.getUserid()).orElseThrow();
+    public void getRssFeedAndSetToParser(Integer feedId) {
+        RssFeed feed = feedRepository.findById(feedId).orElseThrow();
         parser.parseRss(feed.getUrl());
     }
 
-    public void parseElementsByTitle(UserDB userDB, String title) {
-        getRssFeedAndSetToParser(userDB);
+    public void parseElementsByTitle(String title) {
         ItemsList.setItemsList(parser.getElementListByTitle(title));
     }
 
-    public void parseAllElements(UserDB userDB) {
-        getRssFeedAndSetToParser(userDB);
+    public void parseAllElements(Integer feedId) {
+        getRssFeedAndSetToParser(feedId);
         ItemsList.setItemsList(parser.getAllElementsList());
     }
 
-    public void parseElementsByDate(UserDB userDB, String dateString) {
+    public void parseElementsByDate(Integer feedId, String dateString) {
+        getRssFeedAndSetToParser(feedId);
         ItemsList.setItemsList(parser.getElementListByDate(dateString));
     }
 }

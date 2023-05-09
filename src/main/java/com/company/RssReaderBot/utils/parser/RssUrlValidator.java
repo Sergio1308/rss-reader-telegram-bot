@@ -1,4 +1,4 @@
-package com.company.RssReaderBot.services.parser;
+package com.company.RssReaderBot.utils.parser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
