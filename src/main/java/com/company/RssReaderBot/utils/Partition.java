@@ -1,4 +1,4 @@
-package com.company.RssReaderBot.services;
+package com.company.RssReaderBot.utils;
 
 import java.util.*;
 
