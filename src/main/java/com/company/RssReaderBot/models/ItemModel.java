@@ -1,22 +1,24 @@
-package com.company.RssReaderBot.entities;
+package com.company.RssReaderBot.models;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class Item {
+import java.util.Date;
+
+public class ItemModel {
 
     @Getter
     private final String title;
     @Getter @Setter
     private String description;
     @Getter @Setter
-    private String pubDate;
+    private Date pubDate;
     @Getter @Setter
     private String mediaUrl;
     @Getter @Setter
     private String guid;
 
-    public Item(String title, String description, String pubDate, String mediaUrl, String guid) {
+    public ItemModel(String title, String description, Date pubDate, String mediaUrl, String guid) {
         this.title = title;
         this.description = description;
         this.pubDate = pubDate;
@@ -24,9 +26,13 @@ public class Item {
         this.guid = guid;
     }
 
+    public ItemModel(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
-        return "Item{" +
+        return "ItemModel{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", pubDate='" + pubDate + '\'' +
