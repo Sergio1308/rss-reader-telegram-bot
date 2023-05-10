@@ -1,9 +1,10 @@
-package com.company.RssReaderBot.db.models;
+package com.company.RssReaderBot.db.entities;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(
@@ -50,6 +51,10 @@ public class RssFeed {
     @Getter @Setter
     private String lastEnteredTitle;
 
+    @OneToMany(mappedBy = "feed", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Getter
+    private List<FavoritesItem> favoritesItems;
+
     public RssFeed(UserDB user, String url, String title) {
         this.user = user;
         this.url = url;
@@ -57,7 +62,11 @@ public class RssFeed {
     }
 
     public RssFeed() {
-        super();
+
+    }
+
+    public void addItem(FavoritesItem favoritesItem) {
+        favoritesItems.add(favoritesItem);
     }
 
     @Override

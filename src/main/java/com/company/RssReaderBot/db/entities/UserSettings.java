@@ -1,4 +1,4 @@
-package com.company.RssReaderBot.db.models;
+package com.company.RssReaderBot.db.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -49,7 +49,7 @@ public class UserSettings {
     }
 
     public UserSettings() {
-        super();
+
     }
 
     @Override
