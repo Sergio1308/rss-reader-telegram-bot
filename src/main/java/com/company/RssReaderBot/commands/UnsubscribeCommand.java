@@ -1,15 +1,14 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.db.models.RssFeed;
+import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.RssFeedsInlineKeyboard;
-import com.company.RssReaderBot.services.FeedService;
+import com.company.RssReaderBot.db.services.RssFeedService;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,18 +16,18 @@ import java.util.List;
 @Component
 public class UnsubscribeCommand implements Command<Message> {
 
-    private final FeedService feedService;
+    private final RssFeedService rssFeedService;
 
     @Getter
     private String answer;
 
-    public UnsubscribeCommand(FeedService feedService) {
-        this.feedService = feedService;
+    public UnsubscribeCommand(RssFeedService rssFeedService) {
+        this.rssFeedService = rssFeedService;
     }
 
     @Override
     public BaseRequest<?, ?> execute(Message message) {
-        List<RssFeed> feedList = feedService.getAllFeeds(message.chat().id());
+        List<RssFeed> feedList = rssFeedService.getAllFeeds(message.chat().id());
         InlineKeyboardCreator inlineKeyboardCreator = new RssFeedsInlineKeyboard(feedList);
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
         if (feedList.isEmpty()) {

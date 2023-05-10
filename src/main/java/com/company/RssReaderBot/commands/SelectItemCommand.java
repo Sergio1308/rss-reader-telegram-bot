@@ -1,16 +1,18 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
-import com.company.RssReaderBot.entities.Item;
-import com.company.RssReaderBot.entities.ItemsList;
-import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
+import com.company.RssReaderBot.models.ItemModel;
+import com.company.RssReaderBot.models.ItemsList;
 import com.company.RssReaderBot.inlinekeyboard.SelectedItemInlineKeyboard;
+import com.company.RssReaderBot.utils.DateUtils;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.response.BaseResponse;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,43 +22,45 @@ import org.springframework.stereotype.Component;
 @Component
 public class SelectItemCommand implements Command<Message> {
 
-    private static String callData;
+    @Getter @Setter
+    private String callData;
 
-    private static Item currentlySelectedItem;
+    @Getter
+    private ItemModel currentlySelectedItemModel;
 
-    public static Item getCurrentlySelectedEpisode() {
-        return currentlySelectedItem;
-    }
+    private final SelectedItemInlineKeyboard selectedItemInlineKeyboard;
 
-    public static String getCallData() {
-        return callData;
-    }
+    private final DateUtils dateUtils;
 
-    public static void setCallData(String callData) {
-        SelectItemCommand.callData = callData;
+    private final ItemsList itemsList;
+
+    public SelectItemCommand(SelectedItemInlineKeyboard selectedItemInlineKeyboard, DateUtils dateUtils, ItemsList itemsList) {
+        this.selectedItemInlineKeyboard = selectedItemInlineKeyboard;
+        this.dateUtils = dateUtils;
+        this.itemsList = itemsList;
     }
 
     private String getAnswer() {
         final String URL_HREF_OPEN_TAG = "<a href='";
-        return "<b>" + currentlySelectedItem.getTitle() + "</b>\n\n"
-                + currentlySelectedItem.getDescription() + "\n\n"
-                + currentlySelectedItem.getPubDate() + "\n\n"
-                + URL_HREF_OPEN_TAG + currentlySelectedItem.getMediaUrl() + "'>Media</a>" + "\n\n"
-                + "Source: " + URL_HREF_OPEN_TAG + currentlySelectedItem.getGuid()
-                + "'>" + "RssParser.getChannelTitleStatic()" + "</a>";
+        String title = currentlySelectedItemModel.getTitle();
+        String date = dateUtils.formatDate(currentlySelectedItemModel.getPubDate());
+        return "<b>" + title + "</b>\n\n"
+                + currentlySelectedItemModel.getDescription() + "\n\n"
+                + date + "\n\n"
+                + URL_HREF_OPEN_TAG + currentlySelectedItemModel.getMediaUrl() + "'>Media</a>" + "\n\n"
+                + "Source: " + URL_HREF_OPEN_TAG + currentlySelectedItemModel.getGuid()
+                + "'>" + title + "</a>";
     }
 
     @Override
     public BaseRequest<EditMessageText, BaseResponse> execute(Message message) {
-        if (callData == null) throw new NullPointerException();  // todo
-        // here callDate contains the title of the episode selected by the user by clicking on the button
+        // callDate contains the title of the episode selected by the user by clicking on the button
         if (!callData.equals(CallbackDataConstants.SHOW_ITEM)) { // equals only when user pressed inline button
             String currentEpisodeTitle = callData.substring(CallbackDataConstants.SHOW_ITEM.length());
             // get item object instantly from HashMap (O1)
-            currentlySelectedItem = ItemsList.getItemsMap().get(currentEpisodeTitle);
+            currentlySelectedItemModel = itemsList.getItemsMap().get(currentEpisodeTitle);
         }
-        InlineKeyboardCreator inlineKeyboardCreator = new SelectedItemInlineKeyboard();
-        InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
+        InlineKeyboardMarkup markupInline = selectedItemInlineKeyboard.createInlineKeyboard();
 
         return new EditMessageText(message.chat().id(), message.messageId(), getAnswer())
                 .replyMarkup(markupInline)

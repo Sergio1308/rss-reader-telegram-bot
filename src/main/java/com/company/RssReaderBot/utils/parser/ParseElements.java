@@ -3,7 +3,6 @@ package com.company.RssReaderBot.utils.parser;
 import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.db.repositories.RssFeedRepository;
 import com.company.RssReaderBot.models.ItemsList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,9 +12,12 @@ public class ParseElements {
 
     private final RssFeedRepository feedRepository;
 
-    public ParseElements(RssFeedRepository feedRepository, @Autowired RssParser parser) {
+    private final ItemsList itemsList;
+
+    public ParseElements(RssFeedRepository feedRepository, RssParser parser, ItemsList itemsList) {
         this.feedRepository = feedRepository;
         this.parser = parser;
+        this.itemsList = itemsList;
     }
 
     public void getRssFeedAndSetToParser(Integer feedId) {
@@ -24,16 +26,16 @@ public class ParseElements {
     }
 
     public void parseElementsByTitle(String title) {
-        ItemsList.setItemsList(parser.getElementListByTitle(title));
+        itemsList.setItemsList(parser.getElementListByTitle(title));
     }
 
     public void parseAllElements(Integer feedId) {
         getRssFeedAndSetToParser(feedId);
-        ItemsList.setItemsList(parser.getAllElementsList());
+        itemsList.setItemsList(parser.getAllElementsList());
     }
 
     public void parseElementsByDate(Integer feedId, String dateString) {
         getRssFeedAndSetToParser(feedId);
-        ItemsList.setItemsList(parser.getElementListByDate(dateString));
+        itemsList.setItemsList(parser.getElementListByDate(dateString));
     }
 }

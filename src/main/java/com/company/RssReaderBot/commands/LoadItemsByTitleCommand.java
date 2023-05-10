@@ -1,8 +1,7 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.entities.ItemsList;
-import com.company.RssReaderBot.entities.ItemsPagination;
-import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
+import com.company.RssReaderBot.models.ItemsList;
+import com.company.RssReaderBot.models.ItemsPagination;
 import com.company.RssReaderBot.inlinekeyboard.LoadItemsByTitleInlineKeyboard;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
@@ -18,37 +17,45 @@ public class LoadItemsByTitleCommand implements Command<Message> {
 
     private String callData;
 
-    private final InlineKeyboardCreator inlineKeyboardCreator = new LoadItemsByTitleInlineKeyboard();
+    private final LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard;
+
+    private final ItemsList itemsList;
+
+    private final ItemsPagination itemsPagination;
+
+    public LoadItemsByTitleCommand(LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard, ItemsList itemsList, ItemsPagination itemsPagination) {
+        this.loadItemsByTitleInlineKeyboard = loadItemsByTitleInlineKeyboard;
+        this.itemsList = itemsList;
+        this.itemsPagination = itemsPagination;
+    }
 
     public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId, String callData) {
-        LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard = new LoadItemsByTitleInlineKeyboard();
         InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard(callData);
         return new EditMessageText(chatId, messageId, getAnswer()).replyMarkup(markupInline);
     }
 
     public BaseRequest<? extends BaseRequest<?,?>, ? extends BaseResponse> process(Update update, Long chatId) {
-        if (ItemsList.getItemsList().isEmpty()) {
-            InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
+        if (itemsList.getItemsList().isEmpty()) {
+            InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard();
             String answer = "No results were found for this query. Please, retype or press the cancel button.";
             return new SendMessage(chatId, answer).replyMarkup(markupInline);
         } else if (update.callbackQuery() != null) {
             // callbackHandler: return to the item list, remember previous page
             int messageId = update.callbackQuery().message().messageId();
-            InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
+            InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard();
             return new EditMessageText(chatId, messageId, getAnswer()).replyMarkup(markupInline);
         } else {
             // messageHandler
             EnteringItemTitleCommand.setEntered(false);
-            InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
-            LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard = new LoadItemsByTitleInlineKeyboard();// edit
-            System.out.println("chunked items list: " + loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemList().size());
+            InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard();
+            System.out.println("chunked items list: " + loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemListModel().size());
             return new SendMessage(chatId, getAnswer()).replyMarkup(markupInline);
         }
     }
 
     public String getAnswer() {
-        return "Found: " + ItemsList.getItemsList().size() +
-                " items.\nCurrent page: " + ItemsPagination.getCurrentPage();
+        return "Found: " + itemsList.getItemsList().size() +
+                " items.\nCurrent page: " + itemsPagination.getCurrentPage();
     }
 
     @Override
