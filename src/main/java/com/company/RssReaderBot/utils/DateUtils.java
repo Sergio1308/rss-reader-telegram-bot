@@ -22,6 +22,8 @@ public class DateUtils {
     private final String DATE_FORMAT_PATTERN = "EEE, dd MMM yyyy HH:mm:ss zzz";
     @Getter
     private final String TIME_ZONE = "GMT";
+    @Getter
+    private final String VALUE_IF_DATE_IS_NULL = "no data";
 
     @Getter
     DateFormat format;
@@ -35,14 +37,13 @@ public class DateUtils {
         try {
             return Optional.of(format.parse(pubDate));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Cannot parse current date: '" + pubDate + "'");
         }
-        return Optional.empty();
     }
 
     public String formatDate(Date date) {
         if (date == null) {
-            return "no data";
+            return VALUE_IF_DATE_IS_NULL;
         }
         return format.format(date);
     }

@@ -13,16 +13,23 @@ public class Partition<T> extends AbstractList<List<T>> {
     }
 
     public static <T> Partition<T> toChunk(List<T> list, int chunkSize) {
+        if (chunkSize <= 0) {
+            throw new IllegalArgumentException("ChunkSize must be greater than 0");
+        }
         return new Partition<>(list, chunkSize);
     }
 
     @Override
     public List<T> get(int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException("Index must be non-negative");
+        }
+        int listSize = list.size();
         int start = index * chunkSize;
-        int end = Math.min(start + chunkSize, list.size());
+        int end = Math.min(start + chunkSize, listSize);
         if (start > end) {
             throw new IndexOutOfBoundsException(
-                    "Index " + index + " is out of the list range <0," + (size() - 1) + ">"
+                    "Index " + index + " is out of the list range <0," + (listSize - 1) + ">"
             );
         }
         return new ArrayList<>(list.subList(start, end));
@@ -36,9 +43,5 @@ public class Partition<T> extends AbstractList<List<T>> {
     @Override
     public void clear() {
         list = new ArrayList<>();
-    }
-
-    public static int getCustomSize(int listSize, int chunkSize) {
-        return (int) Math.ceil((double) listSize / (double) chunkSize);
     }
 }
