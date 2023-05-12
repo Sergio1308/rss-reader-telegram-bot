@@ -33,14 +33,15 @@ public class RssParser {
     private static final String DESCRIPTION = "description";
     private static final String PUB_DATE = "pubDate";
     private static final String GUID = "guid";
-    private static final String EMPTY_ELEMENT = "no data";
+    private static final String MEDIA_CONTENT = "media:content";
+    private static final String MEDIA_THUMBNAIL = "media:thumbnail";
+
+    private final DateUtils dateUtils;
 
     @Getter @Setter
     private String rssUrl;
     @Getter
     private String feedTitle;
-
-    private final DateUtils dateUtils;
 
     @Getter
     private NodeList nodeList;
@@ -123,22 +124,43 @@ public class RssParser {
         return elementList;
     }
 
+    /**
+     * Method that receives the current element's data (sub-elements of the item),
+     * such as title, description, pubDate, media, link.
+     * If there is no media object (enclosure), media content and thumbnail are checked.
+     * If there is no link, guid is checked.
+     * If one of the sub-elements is not found, sets to null.
+     * @param element current RSS feed item
+     * @return ItemModel object that represents feed item
+     */
     private ItemModel createItem(Element element) {
         String itemTitle = getOptionalSubElementValue(element, TITLE);
         String itemDescription = getOptionalSubElementValue(element, DESCRIPTION);
         Date pubDate = dateUtils.parseDate(getOptionalSubElementValue(element, PUB_DATE)).orElse(null);
-        String guid = getOptionalSubElementValue(element, GUID);
 
-        String mediaUrl = Optional.ofNullable(element.getElementsByTagName(LINK).item(0))
-                .map(Node::getTextContent)
-                .orElseGet(() -> element.getElementsByTagName(ENCLOSURE).item(0)
-                        .getAttributes().getNamedItem(URL).getTextContent());
+        String mediaUrl = Optional.ofNullable(
+                element.getElementsByTagName(ENCLOSURE).item(0)
+                ).map(node -> node.getAttributes().getNamedItem(URL).getTextContent())
+                .orElseGet(() -> Optional.ofNullable(
+                        element.getElementsByTagName(MEDIA_CONTENT).item(0)
+                        ).map(node -> node.getAttributes().getNamedItem(URL).getTextContent())
+                        .orElse(getOptionalSubElementValue(element, MEDIA_THUMBNAIL)));
+        String sourceLink = Optional.ofNullable(
+                element.getElementsByTagName(LINK).item(0)
+                ).map(Node::getTextContent)
+                .orElse(getOptionalSubElementValue(element, GUID));
 
-        return new ItemModel(itemTitle, itemDescription, pubDate, mediaUrl, guid);
+        return ItemModel.builder()
+                .title(itemTitle)
+                .description(itemDescription)
+                .pubDate(pubDate)
+                .mediaUrl(mediaUrl)
+                .sourceLink(sourceLink)
+                .build();
     }
 
     private String getOptionalSubElementValue(Element element, String tag) {
         return Optional.ofNullable(element.getElementsByTagName(tag).item(0))
-                .map(Node::getTextContent).orElse(EMPTY_ELEMENT);
+                .map(Node::getTextContent).orElse(null);
     }
 }
