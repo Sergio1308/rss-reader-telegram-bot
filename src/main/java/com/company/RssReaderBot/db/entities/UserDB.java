@@ -1,4 +1,4 @@
-package com.company.RssReaderBot.db.models;
+package com.company.RssReaderBot.db.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,7 +39,7 @@ public class UserDB {
     private Timestamp createdAt;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Getter
+    @Getter @Setter
     private UserSettings userSettings;
 
     public UserDB(long userId, String languageCode, Timestamp createdAt) {

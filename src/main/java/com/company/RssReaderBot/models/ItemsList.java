@@ -1,7 +1,8 @@
-package com.company.RssReaderBot.entities;
+package com.company.RssReaderBot.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,14 +11,15 @@ import java.util.List;
  * This class represents a list of items: all items or found by title
  * itemsMap uses to get selected item object instantly and save it to variable
  */
+@Component
 public class ItemsList {
 
     @Getter @Setter
-    private static List<Item> itemsList;
+    private List<ItemModel> itemsList;
     @Getter @Setter
-    private static HashMap<String, Item> itemsMap;
+    private HashMap<String, ItemModel> itemsMap;
 
-    public static void putInMap(String title, Item item) {
-        itemsMap.put(title, item);
+    public void putInMap(String title, ItemModel itemModel) {
+        itemsMap.put(title, itemModel);
     }
 }

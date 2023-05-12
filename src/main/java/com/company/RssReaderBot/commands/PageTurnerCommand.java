@@ -1,8 +1,8 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
-import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.LoadItemsByTitleInlineKeyboard;
+import com.company.RssReaderBot.inlinekeyboard.PaginationInlineKeyboard;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.BaseRequest;
@@ -11,13 +11,24 @@ import com.pengrad.telegrambot.response.BaseResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PageTurnerCommand extends LoadItemsByTitleCommand implements Command<Message> {
+public class PageTurnerCommand implements Command<Message> {
+
+    private final LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard;
+
+    private final PaginationInlineKeyboard paginationInlineKeyboard;
+
+    public PageTurnerCommand(LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard,
+                             PaginationInlineKeyboard paginationInlineKeyboard) {
+        this.loadItemsByTitleInlineKeyboard = loadItemsByTitleInlineKeyboard;
+        this.paginationInlineKeyboard = paginationInlineKeyboard;
+    }
 
     @Override
     public BaseRequest<EditMessageText, BaseResponse> execute(Message message) {
-        InlineKeyboardCreator inlineKeyboardCreator = new LoadItemsByTitleInlineKeyboard();
-        InlineKeyboardMarkup markup = inlineKeyboardCreator.createInlineKeyboard();
-        return new EditMessageText(message.chat().id(), message.messageId(), getAnswer()).replyMarkup(markup);
+        InlineKeyboardMarkup markup = loadItemsByTitleInlineKeyboard.createInlineKeyboard();
+        return new EditMessageText(
+                message.chat().id(), message.messageId(), paginationInlineKeyboard.getAnswer()
+        ).replyMarkup(markup);
     }
 
     /**
@@ -27,25 +38,22 @@ public class PageTurnerCommand extends LoadItemsByTitleCommand implements Comman
      * @param callData callback query data
      * @return EditMessageText
      */
-    @Override
     public BaseRequest<EditMessageText, BaseResponse> execute(Long chatId, Integer messageId, String callData) {
-        LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard = new LoadItemsByTitleInlineKeyboard();
         InlineKeyboardMarkup markupInline;
-        loadItemsByTitleInlineKeyboard.itemsPagination.changePaginationIndex(callData);
-        loadItemsByTitleInlineKeyboard.itemsPagination.calculateIndex();
+        paginationInlineKeyboard.itemsPagination.changePaginationIndex(callData);
+        paginationInlineKeyboard.itemsPagination.calculateIndex();
 
         if (callData.equals(CallbackDataConstants.FIRST_PAGE)) {
-            markupInline = loadItemsByTitleInlineKeyboard.executeCreation(0);
+            markupInline = paginationInlineKeyboard.execute(0);
         } else {
-            markupInline = loadItemsByTitleInlineKeyboard.executeCreation(
-                    loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemList().size() - 1
+            markupInline = paginationInlineKeyboard.execute(
+                    loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemListModel().size() - 1
             );
         }
-        return new EditMessageText(chatId, messageId, getAnswer()).replyMarkup(markupInline);
+        return new EditMessageText(chatId, messageId, paginationInlineKeyboard.getAnswer()).replyMarkup(markupInline);
     }
 
     public void changePaginationIndex(String callData) {
-        LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard = new LoadItemsByTitleInlineKeyboard();
-        loadItemsByTitleInlineKeyboard.itemsPagination.changePaginationIndex(callData);
+        paginationInlineKeyboard.itemsPagination.changePaginationIndex(callData);
     }
 }

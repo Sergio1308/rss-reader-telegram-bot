@@ -1,9 +1,11 @@
-package com.company.RssReaderBot.db.models;
+package com.company.RssReaderBot.db.entities;
 
+import com.company.RssReaderBot.models.ItemModel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(
@@ -34,7 +36,7 @@ public class Item {
 
     @Column(columnDefinition = "timestamp")
     @Getter @Setter
-    private String date;
+    private Date date;
 
     @Getter @Setter
     private String mediaUrl;
@@ -42,13 +44,22 @@ public class Item {
     @Getter @Setter
     private String sourceLink;
 
+    public Item(FavoritesItem favoritesItem, ItemModel itemModel) {
+        this.favoritesItem = favoritesItem;
+        this.title = itemModel.getTitle();
+        this.description = itemModel.getDescription();
+        this.date = itemModel.getPubDate();
+        this.mediaUrl = itemModel.getMediaUrl();
+        this.sourceLink = itemModel.getGuid();
+    }
+
     public Item() {
-        super();
+
     }
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "ItemModel{" +
                 "id=" + id +
                 ", favoritesItem=" + favoritesItem +
                 ", title='" + title + '\'' +

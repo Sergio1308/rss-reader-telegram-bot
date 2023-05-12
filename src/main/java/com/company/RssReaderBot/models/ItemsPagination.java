@@ -1,15 +1,21 @@
-package com.company.RssReaderBot.entities;
+package com.company.RssReaderBot.models;
 
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
-import com.company.RssReaderBot.services.Partition;
+import com.company.RssReaderBot.utils.Partition;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ItemsPagination {
+
+    private static final int DISPLAY_BUTTONS_COLUMN = 6;
+    private static final int MAX_BUTTONS_PAGINATION_ROW = 6;
+
+    private final ItemsList itemsList;
 
     @Getter
     private int currentIndexPagination;
@@ -19,25 +25,18 @@ public class ItemsPagination {
     private int buttonsInRowSize;
 
     @Getter
-    private Partition<Item> chunkedItemList;
+    private Partition<ItemModel> chunkedItemListModel;
     @Getter
-    private Partition<List<Item>> pagesPartition;
+    private Partition<List<ItemModel>> pagesPartition;
 
     @Getter
-    private static List<String> callbackDataPaginationButtons;
+    private List<String> callbackDataPaginationButtons;
 
     @Getter @Setter
-    private static int currentPage;
+    private int currentPage;
 
-    @Value("${bot.ui.display.buttons.column}")
-    private int DISPLAY_BUTTONS_COLUMN;
-    @Value("${bot.ui.max.buttons.pagination.row}")
-    private int MAX_BUTTONS_PAGINATION_ROW;
-
-    private static final ItemsPagination INSTANCE = new ItemsPagination();
-
-    public static ItemsPagination getInstance() {
-        return INSTANCE;
+    public ItemsPagination(ItemsList itemsList) {
+        this.itemsList = itemsList;
     }
 
     public boolean isLessThanPaginationButtons(int currentPagesNumber) {
@@ -46,15 +45,14 @@ public class ItemsPagination {
 
     public void toSplit() {
         callbackDataPaginationButtons = new ArrayList<>();
-        chunkedItemList = Partition.toChunk(ItemsList.getItemsList(), DISPLAY_BUTTONS_COLUMN);
-        pagesPartition = Partition.toChunk(chunkedItemList, MAX_BUTTONS_PAGINATION_ROW);
-
+        chunkedItemListModel = Partition.toChunk(itemsList.getItemsList(), DISPLAY_BUTTONS_COLUMN);
+        pagesPartition = Partition.toChunk(chunkedItemListModel, MAX_BUTTONS_PAGINATION_ROW);
         calculateIndex();
     }
 
     public void clear() {
-        if (chunkedItemList != null) {
-            chunkedItemList.clear();
+        if (chunkedItemListModel != null) {
+            chunkedItemListModel.clear();
             pagesPartition.clear();
             currentIndexPagination = 0;
         }
@@ -63,7 +61,7 @@ public class ItemsPagination {
     public void calculateIndex() {
         startButtonsIndex = ((currentIndexPagination + 1) * MAX_BUTTONS_PAGINATION_ROW) - MAX_BUTTONS_PAGINATION_ROW;
         buttonsInRowSize = (currentIndexPagination + 1) * MAX_BUTTONS_PAGINATION_ROW;
-        if (chunkedItemList.size() < buttonsInRowSize) buttonsInRowSize = chunkedItemList.size();
+        if (chunkedItemListModel.size() < buttonsInRowSize) buttonsInRowSize = chunkedItemListModel.size();
     }
 
     public void changePaginationIndex(String pressedButton) {

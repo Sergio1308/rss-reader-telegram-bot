@@ -1,4 +1,4 @@
-package com.company.RssReaderBot.db.models;
+package com.company.RssReaderBot.db.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,13 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(
-        name = "favorites_item",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "favorites_item_userid_unique", columnNames = "userid"),
-                @UniqueConstraint(name = "favorites_item_feed_id_unique", columnNames = "id"),
-        }
-)
+@Table(name = "favorites_item")
 public class FavoritesItem {
 
     @Id
@@ -34,8 +28,12 @@ public class FavoritesItem {
     @Getter @Setter
     private Item item;
 
+    public FavoritesItem(UserDB user) {
+        this.user = user;
+    }
+
     public FavoritesItem() {
-        super();
+
     }
 
     @Override

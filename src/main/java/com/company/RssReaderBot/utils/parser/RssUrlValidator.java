@@ -1,4 +1,6 @@
-package com.company.RssReaderBot.services.parser;
+package com.company.RssReaderBot.utils.parser;
+
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,6 +15,7 @@ import java.util.List;
  * Public method validateRssUrl takes string URL as a method argument and
  * returns this URL if it is valid, otherwise it returns a string that contains an error to inform user.
  */
+@Component
 public class RssUrlValidator {
 
     private HttpURLConnection connection;

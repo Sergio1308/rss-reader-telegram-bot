@@ -1,15 +1,24 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
-import com.company.RssReaderBot.entities.ItemsPagination;
+import com.company.RssReaderBot.models.ItemsPagination;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import org.springframework.stereotype.Component;
 
-public class LoadAllItemsInlineKeyboard extends LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
+@Component
+public class LoadAllItemsInlineKeyboard implements InlineKeyboardCreator {
 
-    public final ItemsPagination itemsPagination = ItemsPagination.getInstance();
+    public final ItemsPagination itemsPagination;
+
+    private final PaginationInlineKeyboard paginationInlineKeyboard;
+
+    public LoadAllItemsInlineKeyboard(ItemsPagination itemsPagination, PaginationInlineKeyboard paginationInlineKeyboard) {
+        this.itemsPagination = itemsPagination;
+        this.paginationInlineKeyboard = paginationInlineKeyboard;
+    }
 
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
         itemsPagination.toSplit();
-        return executeCreation(itemsPagination.getStartButtonsIndex());
+        return paginationInlineKeyboard.execute(itemsPagination.getStartButtonsIndex());
     }
 }

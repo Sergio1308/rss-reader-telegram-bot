@@ -1,6 +1,7 @@
-package com.company.RssReaderBot.services.parser;
+package com.company.RssReaderBot.utils.parser;
 
-import com.company.RssReaderBot.entities.Item;
+import com.company.RssReaderBot.models.ItemModel;
+import com.company.RssReaderBot.utils.DateUtils;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -32,15 +33,22 @@ public class RssParser {
     private static final String DESCRIPTION = "description";
     private static final String PUB_DATE = "pubDate";
     private static final String GUID = "guid";
-    private static final String EMPTY_ELEMENT = "no data";
+    private static final String MEDIA_CONTENT = "media:content";
+    private static final String MEDIA_THUMBNAIL = "media:thumbnail";
+
+    private final DateUtils dateUtils;
 
     @Getter @Setter
     private String rssUrl;
-
+    @Getter
     private String feedTitle;
 
     @Getter
     private NodeList nodeList;
+
+    public RssParser(DateUtils dateUtils) {
+        this.dateUtils = dateUtils;
+    }
 
     public void parseRss(String url) {
         try {
@@ -51,15 +59,13 @@ public class RssParser {
         }
     }
 
-    public String getFeedTitle(String url) {
+    public void parseFeedTitle(String url) {
         try {
             Document doc = getDocument(url);
             Element channel = (Element) doc.getElementsByTagName(CHANNEL).item(0);
             feedTitle = getOptionalSubElementValue(channel, TITLE);
-            return feedTitle;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 
@@ -70,70 +76,91 @@ public class RssParser {
         return doc;
     }
 
-    public List<Item> getAllElementsList() {
-        List<Item> itemsList = new ArrayList<>();
+    public List<ItemModel> getAllElementsList() {
+        List<ItemModel> itemsList = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             Element element = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Item currentItem = createItem(element);
-                itemsList.add(currentItem);
+                ItemModel currentItemModel = createItem(element);
+                itemsList.add(currentItemModel);
             }
         }
         return itemsList;
     }
 
-    public List<Item> getElementListByTitle(String title) {
-        List<Item> itemsList = new ArrayList<>();
+    public List<ItemModel> getElementListByTitle(String title) {
+        List<ItemModel> itemsList = new ArrayList<>();
         title = title.toLowerCase();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
-                String currentNodeTitle = element.getElementsByTagName(TITLE).item(0).getTextContent().toLowerCase();
+                String currentNodeTitle = element
+                        .getElementsByTagName(TITLE)
+                        .item(0)
+                        .getTextContent()
+                        .toLowerCase();
                 if (currentNodeTitle.contains(title)) {
-                    Item currentItem = createItem(element);
-                    itemsList.add(currentItem);
+                    ItemModel currentItemModel = createItem(element);
+                    itemsList.add(currentItemModel);
                 }
             }
         }
         return itemsList;
     }
 
-    public List<Item> getElementListByDate(String dateString) {
-        List<Item> elementList = new ArrayList<>();
+    public List<ItemModel> getElementListByDate(String dateString) {
+        List<ItemModel> elementList = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             Element element = (Element) node;
             String currentItemDate = getOptionalSubElementValue(element, PUB_DATE);
             if (currentItemDate.contains(dateString)) {
-                Item currentItem = createItem(element);
-                elementList.add(currentItem);
+                ItemModel currentItemModel = createItem(element);
+                elementList.add(currentItemModel);
             }
         }
         return elementList;
     }
 
-    private Item createItem(Element element) {
+    /**
+     * Method that receives the current element's data (sub-elements of the item),
+     * such as title, description, pubDate, media, link.
+     * If there is no media object (enclosure), media content and thumbnail are checked.
+     * If there is no link, guid is checked.
+     * If one of the sub-elements is not found, sets to null.
+     * @param element current RSS feed item
+     * @return ItemModel object that represents feed item
+     */
+    private ItemModel createItem(Element element) {
         String itemTitle = getOptionalSubElementValue(element, TITLE);
         String itemDescription = getOptionalSubElementValue(element, DESCRIPTION);
-//        System.out.println(Optional.ofNullable(element.getElementsByTagName(GUID).item(0).getAttributes().getNamedItem("isPermaLink"))
-//                .map(Node::getTextContent).orElse(EMPTY_ELEMENT));
-        String pubDate = getOptionalSubElementValue(element, PUB_DATE);
-        String guid = getOptionalSubElementValue(element, GUID);
-        // check enclosure (mediaUrl), if not null - insert, then go for link/guid, if null - do not use \n?
-        // check link first, then if not - check guid ispermalink=true
+        Date pubDate = dateUtils.parseDate(getOptionalSubElementValue(element, PUB_DATE)).orElse(null);
 
-        String mediaUrl = Optional.ofNullable(element.getElementsByTagName(LINK).item(0))
-                .map(Node::getTextContent)
-                .orElseGet(() -> element.getElementsByTagName(ENCLOSURE).item(0)
-                        .getAttributes().getNamedItem(URL).getTextContent());
+        String mediaUrl = Optional.ofNullable(
+                element.getElementsByTagName(ENCLOSURE).item(0)
+                ).map(node -> node.getAttributes().getNamedItem(URL).getTextContent())
+                .orElseGet(() -> Optional.ofNullable(
+                        element.getElementsByTagName(MEDIA_CONTENT).item(0)
+                        ).map(node -> node.getAttributes().getNamedItem(URL).getTextContent())
+                        .orElse(getOptionalSubElementValue(element, MEDIA_THUMBNAIL)));
+        String sourceLink = Optional.ofNullable(
+                element.getElementsByTagName(LINK).item(0)
+                ).map(Node::getTextContent)
+                .orElse(getOptionalSubElementValue(element, GUID));
 
-        return new Item(itemTitle, itemDescription, pubDate, mediaUrl, guid);
+        return ItemModel.builder()
+                .title(itemTitle)
+                .description(itemDescription)
+                .pubDate(pubDate)
+                .mediaUrl(mediaUrl)
+                .sourceLink(sourceLink)
+                .build();
     }
 
     private String getOptionalSubElementValue(Element element, String tag) {
         return Optional.ofNullable(element.getElementsByTagName(tag).item(0))
-                .map(Node::getTextContent).orElse(EMPTY_ELEMENT);
+                .map(Node::getTextContent).orElse(null);
     }
 }

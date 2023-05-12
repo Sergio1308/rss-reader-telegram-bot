@@ -1,9 +1,9 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.db.models.RssFeed;
+import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.GetItemsInlineKeyboard;
-import com.company.RssReaderBot.services.FeedService;
+import com.company.RssReaderBot.db.services.RssFeedService;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
@@ -11,7 +11,6 @@ import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,10 +18,10 @@ import java.util.List;
 @Component
 public class GetItemsCommand implements Command<Message> {
 
-    private final FeedService feedService;
+    private final RssFeedService rssFeedService;
 
-    public GetItemsCommand(FeedService feedService) {
-        this.feedService = feedService;
+    public GetItemsCommand(RssFeedService rssFeedService) {
+        this.rssFeedService = rssFeedService;
     }
 
     private String getAnswer() {
@@ -36,7 +35,7 @@ public class GetItemsCommand implements Command<Message> {
     @Override
     public BaseRequest<?, ?> execute(Message message) {
         long chatId = message.chat().id();
-        List<RssFeed> feedList = feedService.getAllFeeds(chatId);
+        List<RssFeed> feedList = rssFeedService.getAllFeeds(chatId);
         if (feedList.isEmpty()) {
             return new SendMessage(
                     chatId,

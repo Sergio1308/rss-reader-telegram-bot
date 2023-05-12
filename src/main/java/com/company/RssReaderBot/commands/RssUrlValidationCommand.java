@@ -1,20 +1,17 @@
 package com.company.RssReaderBot.commands;
 
-import com.company.RssReaderBot.commands.Command;
-import com.company.RssReaderBot.commands.SubscribeCommand;
 import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
-import com.company.RssReaderBot.db.models.UserDB;
-import com.company.RssReaderBot.services.FeedService;
-import com.company.RssReaderBot.services.UserService;
-import com.company.RssReaderBot.services.parser.RssUrlValidator;
+import com.company.RssReaderBot.db.entities.UserDB;
+import com.company.RssReaderBot.db.services.RssFeedService;
+import com.company.RssReaderBot.db.services.UserService;
+import com.company.RssReaderBot.utils.parser.RssUrlValidator;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.DeleteMessage;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,13 +19,13 @@ public class RssUrlValidationCommand implements Command<Message> {
 
     private final BotConfig botConfig;
 
-    private final FeedService feedService;
+    private final RssFeedService rssFeedService;
 
     private final UserService userService;
 
-    public RssUrlValidationCommand(BotConfig botConfig, FeedService feedService, UserService userService) {
+    public RssUrlValidationCommand(BotConfig botConfig, RssFeedService rssFeedService, UserService userService) {
         this.botConfig = botConfig;
-        this.feedService = feedService;
+        this.rssFeedService = rssFeedService;
         this.userService = userService;
     }
 
@@ -41,10 +38,10 @@ public class RssUrlValidationCommand implements Command<Message> {
             SubscribeCommand.setEntered(false);
 
             UserDB userDB = userService.findUser(chatId);
-            feedService.addFeed(userDB, result);
+            rssFeedService.addFeed(userDB, result);
 
             return new SendMessage(chatId,
-                    "Subscribed successfully.\nYou are now following the feed: " + feedService.getFeedTitle());
+                    "Subscribed successfully.\nYou are now following the feed: " + rssFeedService.getFeedTitle());
         } else {
             return new SendMessage(
                     chatId,
