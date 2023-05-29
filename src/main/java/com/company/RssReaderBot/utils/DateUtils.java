@@ -19,21 +19,25 @@ import java.util.TimeZone;
 public class DateUtils {
 
     @Getter
-    private final String DATE_FORMAT_PATTERN = "EEE, dd MMM yyyy HH:mm:ss zzz";
+    private static final String DATE_FORMAT_PATTERN = "EEE, dd MMM yyyy HH:mm:ss zzz";
     @Getter
-    private final String TIME_ZONE = "GMT";
+    private static final String TIME_ZONE = "GMT";
     @Getter
-    private final String VALUE_IF_DATE_IS_NULL = "no data";
+    private static final String VALUE_IF_DATE_IS_NULL = "no data";
 
     @Getter
-    DateFormat format;
+    private static final DateFormat format;
 
-    public DateUtils() {
+    static {
         format = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.ENGLISH);
         format.setTimeZone(TimeZone.getTimeZone(TIME_ZONE));
     }
 
-    public Optional<Date> parseDate(String pubDate) {
+    private DateUtils() {
+
+    }
+
+    public static Optional<Date> parseDate(String pubDate) {
         try {
             return Optional.of(format.parse(pubDate));
         } catch (ParseException e) {
@@ -41,7 +45,7 @@ public class DateUtils {
         }
     }
 
-    public String formatDate(Date date) {
+    public static String formatDate(Date date) {
         if (date == null) {
             return VALUE_IF_DATE_IS_NULL;
         }

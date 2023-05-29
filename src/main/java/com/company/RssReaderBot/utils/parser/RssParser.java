@@ -36,19 +36,15 @@ public class RssParser {
     private static final String MEDIA_CONTENT = "media:content";
     private static final String MEDIA_THUMBNAIL = "media:thumbnail";
 
-    private final DateUtils dateUtils;
-
     @Getter @Setter
     private String rssUrl;
     @Getter
     private String feedTitle;
+    @Getter @Setter
+    private int feedId;
 
     @Getter
     private NodeList nodeList;
-
-    public RssParser(DateUtils dateUtils) {
-        this.dateUtils = dateUtils;
-    }
 
     public void parseRss(String url) {
         try {
@@ -136,7 +132,7 @@ public class RssParser {
     private ItemModel createItem(Element element) {
         String itemTitle = getOptionalSubElementValue(element, TITLE);
         String itemDescription = getOptionalSubElementValue(element, DESCRIPTION);
-        Date pubDate = dateUtils.parseDate(getOptionalSubElementValue(element, PUB_DATE)).orElse(null);
+        Date pubDate = DateUtils.parseDate(getOptionalSubElementValue(element, PUB_DATE)).orElse(null);
 
         String mediaUrl = Optional.ofNullable(
                 element.getElementsByTagName(ENCLOSURE).item(0)
@@ -151,6 +147,7 @@ public class RssParser {
                 .orElse(getOptionalSubElementValue(element, GUID));
 
         return ItemModel.builder()
+                .feedId(feedId)
                 .title(itemTitle)
                 .description(itemDescription)
                 .pubDate(pubDate)
