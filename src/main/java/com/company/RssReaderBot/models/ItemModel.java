@@ -9,6 +9,7 @@ import java.util.Date;
 @ToString
 public class ItemModel {
 
+    private final int feedId;
     private final String title;
     private String description;
     private Date pubDate;
