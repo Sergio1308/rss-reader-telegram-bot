@@ -1,6 +1,7 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
+import com.company.RssReaderBot.db.entities.UserDB;
 import com.company.RssReaderBot.models.ItemModel;
 import com.company.RssReaderBot.models.ItemsList;
 import com.company.RssReaderBot.inlinekeyboard.SelectedItemInlineKeyboard;
@@ -28,27 +29,28 @@ public class SelectItemCommand implements Command<Message> {
     @Getter
     private ItemModel currentlySelectedItemModel;
 
+    @Getter
     private final SelectedItemInlineKeyboard selectedItemInlineKeyboard;
-
-    private final DateUtils dateUtils;
 
     private final ItemsList itemsList;
 
-    public SelectItemCommand(SelectedItemInlineKeyboard selectedItemInlineKeyboard, DateUtils dateUtils, ItemsList itemsList) {
+    @Getter @Setter
+    private UserDB user;
+
+    public SelectItemCommand(SelectedItemInlineKeyboard selectedItemInlineKeyboard, ItemsList itemsList) {
         this.selectedItemInlineKeyboard = selectedItemInlineKeyboard;
-        this.dateUtils = dateUtils;
         this.itemsList = itemsList;
     }
 
     private String getAnswer() {
         final String URL_HREF_OPEN_TAG = "<a href='";
         String title = currentlySelectedItemModel.getTitle();
-        String date = dateUtils.formatDate(currentlySelectedItemModel.getPubDate());
+        String date = DateUtils.formatDate(currentlySelectedItemModel.getPubDate());
         return "<b>" + title + "</b>\n\n"
                 + currentlySelectedItemModel.getDescription() + "\n\n"
                 + date + "\n\n"
                 + URL_HREF_OPEN_TAG + currentlySelectedItemModel.getMediaUrl() + "'>Media</a>" + "\n\n"
-                + "Source: " + URL_HREF_OPEN_TAG + currentlySelectedItemModel.getGuid()
+                + "Source: " + URL_HREF_OPEN_TAG + currentlySelectedItemModel.getSourceLink()
                 + "'>" + title + "</a>";
     }
 
@@ -60,6 +62,8 @@ public class SelectItemCommand implements Command<Message> {
             // get item object instantly from HashMap (O1)
             currentlySelectedItemModel = itemsList.getItemsMap().get(currentEpisodeTitle);
         }
+        selectedItemInlineKeyboard.setUser(user);
+        selectedItemInlineKeyboard.setCurrentItem(currentlySelectedItemModel);
         InlineKeyboardMarkup markupInline = selectedItemInlineKeyboard.createInlineKeyboard();
 
         return new EditMessageText(message.chat().id(), message.messageId(), getAnswer())
