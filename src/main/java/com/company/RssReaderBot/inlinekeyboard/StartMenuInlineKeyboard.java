@@ -1,6 +1,6 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
-import com.company.RssReaderBot.controllers.CallbackQueryConstants;
+import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 
@@ -10,19 +10,19 @@ public class StartMenuInlineKeyboard implements InlineKeyboardCreator {
         return new InlineKeyboardMarkup(
                 new InlineKeyboardButton[]{
                         new InlineKeyboardButton("Subscribe to the feed")
-                                .callbackData(CallbackQueryConstants.SUBSCRIBE)
+                                .callbackData(CallbackDataConstants.SUBSCRIBE)
                 },
                 new InlineKeyboardButton[]{
                         new InlineKeyboardButton("Unsubscribe from the feed")
-                                .callbackData(CallbackQueryConstants.UNSUBSCRIBE)
+                                .callbackData(CallbackDataConstants.UNSUBSCRIBE)
                 },
                 new InlineKeyboardButton[]{
                         new InlineKeyboardButton("Process / research a specific feed")
-                                .callbackData(CallbackQueryConstants.PARSING_ELEMENTS_MENU)
+                                .callbackData(CallbackDataConstants.GET_ITEMS)
                 },
                 new InlineKeyboardButton[]{
                         new InlineKeyboardButton("Settings")
-                                .callbackData(CallbackQueryConstants.SETTINGS)
+                                .callbackData(CallbackDataConstants.SETTINGS_MENU)
                 }
         );
     }

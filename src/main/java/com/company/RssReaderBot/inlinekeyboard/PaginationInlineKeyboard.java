@@ -54,7 +54,7 @@ public class PaginationInlineKeyboard implements InlineKeyboardCreator {
             };
             markupInline.addRow(inlineKeyboardButtons);
         }
-        markupInline.addRow(new InlineKeyboardButton("Exit").callbackData(CallbackDataConstants.GET_ITEMS));
+        markupInline.addRow(new InlineKeyboardButton("Exit").callbackData(CallbackDataConstants.START_MENU));
         System.out.println(markupInline);
         return markupInline;
     }

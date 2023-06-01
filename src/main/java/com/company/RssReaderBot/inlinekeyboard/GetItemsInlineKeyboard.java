@@ -23,7 +23,6 @@ public class GetItemsInlineKeyboard implements InlineKeyboardCreator {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton[] feedsButtons = feedsInlineKeyboard.createFeedListButton();
 
-//        InlineKeyboardButton feedButton = new InlineKeyboardButton("Selected feed: " + feedList.get(0));
         InlineKeyboardButton[] getItemsButtons = new InlineKeyboardButton[] {
                 new InlineKeyboardButton("Get all items")
                         .callbackData(CallbackDataConstants.LOAD_ALL_ITEMS),
@@ -32,8 +31,9 @@ public class GetItemsInlineKeyboard implements InlineKeyboardCreator {
                 new InlineKeyboardButton("Get items by date")
                         .callbackData(CallbackDataConstants.LOAD_BY_DATE)
         };
-        markup.addRow(feedsButtons).addRow(new InlineKeyboardButton(" ").callbackData("null")).addRow(getItemsButtons)
-                .addRow(new InlineKeyboardButton("Back to main menu")
+        markup.addRow(feedsButtons).addRow(new InlineKeyboardButton(" ")
+                        .callbackData("null"))
+                .addRow(getItemsButtons).addRow(new InlineKeyboardButton("Back to main menu")
                         .callbackData(CallbackDataConstants.START_MENU));
         return markup;
     }
