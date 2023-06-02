@@ -2,9 +2,8 @@ package com.company.RssReaderBot.controllers;
 
 import com.company.RssReaderBot.commands.*;
 import com.company.RssReaderBot.config.BotConfig;
-import com.company.RssReaderBot.db.repositories.UserRepository;
 import com.company.RssReaderBot.commands.RssUrlValidationCommand;
-import com.company.RssReaderBot.services.parser.ParseElements;
+import com.company.RssReaderBot.utils.parser.ParseElements;
 import com.github.kshashov.telegram.api.MessageType;
 import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
@@ -16,7 +15,6 @@ import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.DeleteMessage;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -29,18 +27,21 @@ public class MessageController implements TelegramMvcController, Controller {
 
     private final StartCommand startCommand;
 
-    private final LoadItemsByTitleCommand loadItemsByTitleCommand = new LoadItemsByTitleCommand();
+    private final LoadItemsByTitleCommand loadItemsByTitleCommand;
 
     private final RssUrlValidationCommand rssUrlValidationCommand;
 
     private final ParseElements parseElements;
 
-    public MessageController(BotConfig botConfig, HelpCommand helpCommand, StartCommand startCommand, RssUrlValidationCommand rssUrlValidationCommand, ParseElements parseElements) {
+    public MessageController(BotConfig botConfig, HelpCommand helpCommand, StartCommand startCommand,
+                             RssUrlValidationCommand rssUrlValidationCommand, ParseElements parseElements,
+                             LoadItemsByTitleCommand loadItemsByTitleCommand) {
         this.botConfig = botConfig;
         this.helpCommand = helpCommand;
         this.startCommand = startCommand;
         this.rssUrlValidationCommand = rssUrlValidationCommand;
         this.parseElements = parseElements;
+        this.loadItemsByTitleCommand = loadItemsByTitleCommand;
     }
 
     @BotRequest(value = "/start", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
