@@ -1,6 +1,7 @@
 package com.company.RssReaderBot.controllers;
 
-import java.util.List;
+import com.company.RssReaderBot.db.entities.UserSettings;
+import lombok.Getter;
 
 public class CallbackDataConstants {
     // main menu
@@ -35,7 +36,50 @@ public class CallbackDataConstants {
     public static final String SETTINGS_FEED_INTERVAL = "settings_feed_interval";
     public static final String FEED_SETTINGS = "feed_settings";
 
-    public static final List<String> DISPLAY_OPTIONS = List.of(
-            "display_title", "display_description", "display_date", "display_media", "display_link"
-    );
+    public enum DisplayOptions {
+        DISPLAY_TITLE("display_title") {
+            @Override
+            public void setDisplayValue(UserSettings userSettings) {
+                boolean currentBool = userSettings.isDisplayTitle();
+                userSettings.setDisplayTitle(!currentBool);
+            }
+        },
+        DISPLAY_DESCRIPTION("display_description") {
+            @Override
+            public void setDisplayValue(UserSettings userSettings) {
+                boolean currentBool = userSettings.isDisplayDescription();
+                userSettings.setDisplayDescription(!currentBool);
+            }
+        },
+        DISPLAY_DATE("display_date") {
+            @Override
+            public void setDisplayValue(UserSettings userSettings) {
+                boolean currentBool = userSettings.isDisplayDate();
+                userSettings.setDisplayDate(!currentBool);
+            }
+        },
+        DISPLAY_MEDIA("display_media") {
+            @Override
+            public void setDisplayValue(UserSettings userSettings) {
+                boolean currentBool = userSettings.isDisplayMedia();
+                userSettings.setDisplayMedia(!currentBool);
+            }
+        },
+        DISPLAY_LINK("display_link") {
+            @Override
+            public void setDisplayValue(UserSettings userSettings) {
+                boolean currentBool = userSettings.isDisplayLink();
+                userSettings.setDisplayLink(!currentBool);
+            }
+        };
+
+        public abstract void setDisplayValue(UserSettings userSettings);
+
+        @Getter
+        private final String callback;
+
+        DisplayOptions(String callback) {
+            this.callback = callback;
+        }
+    }
 }
