@@ -1,7 +1,6 @@
 package com.company.RssReaderBot.utils;
 
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,7 +14,6 @@ import java.util.TimeZone;
  * Utility class to work with date. It contains a method that convert a date string value to Date object
  * and a method that converts java Date to TimeZone format.
  */
-@Component
 public class DateUtils {
 
     @Getter
