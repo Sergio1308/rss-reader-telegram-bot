@@ -20,8 +20,9 @@ public class ParseElements {
         this.itemsList = itemsList;
     }
 
-    public void getRssFeedAndSetToParser(Integer feedId) {
+    public void findFeedAndParseRss(Integer feedId) {
         RssFeed feed = feedRepository.findById(feedId).orElseThrow();
+        parser.setFeedId(feedId);
         parser.parseRss(feed.getUrl());
     }
 
@@ -30,12 +31,12 @@ public class ParseElements {
     }
 
     public void parseAllElements(Integer feedId) {
-        getRssFeedAndSetToParser(feedId);
+        findFeedAndParseRss(feedId);
         itemsList.setItemsList(parser.getAllElementsList());
     }
 
     public void parseElementsByDate(Integer feedId, String dateString) {
-        getRssFeedAndSetToParser(feedId);
+        findFeedAndParseRss(feedId);
         itemsList.setItemsList(parser.getElementListByDate(dateString));
     }
 }
