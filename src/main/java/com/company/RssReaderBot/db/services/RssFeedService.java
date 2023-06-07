@@ -33,6 +33,10 @@ public class RssFeedService {
         feedRepository.save(feed);
     }
 
+    public void updateFeed(RssFeed feed) {
+        feedRepository.save(feed);
+    }
+
     public boolean hasFeed(UserDB user, String url) {
         return feedRepository.existsByUserAndUrl(user, url);
     }
