@@ -19,7 +19,7 @@ public class CallbackDataConstants {
     public static final String FAVORITES = "favorites_items";
     public static final String ADD_TO_FAVORITES = "add_to_favorites";
     public static final String REMOVE_FROM_FAVORITES = "remove_from_favorites";
-    public static final String RETURN_LOAD_BY_TITLE = "load_by_title_inline";
+    public static final String ITEMS_LIST = "load_by_title_inline";
     // pagination items
     public static final String NEXT_PAGE = "next_page";
     public static final String PREVIOUS_PAGE = "previous_page";
@@ -35,6 +35,7 @@ public class CallbackDataConstants {
     public static final String SETTINGS_FEED_POSTING = "settings_feed_posting";
     public static final String SETTINGS_FEED_INTERVAL = "settings_feed_interval";
     public static final String FEED_SETTINGS = "feed_settings";
+    public static final String INTERVAL = "interval_";
 
     public enum DisplayOptions {
         DISPLAY_TITLE("display_title") {
