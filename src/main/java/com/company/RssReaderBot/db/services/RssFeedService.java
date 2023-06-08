@@ -19,6 +19,9 @@ public class RssFeedService {
 
     private final RssParser parser;
 
+    @Getter
+    private RssFeed currentlyAddedFeed;
+
     @Getter @Setter
     private String feedTitle;
 
@@ -31,6 +34,7 @@ public class RssFeedService {
         parser.parseFeedTitle(url);
         RssFeed feed = new RssFeed(userDB, url, parser.getFeedTitle());
         feedRepository.save(feed);
+        currentlyAddedFeed = feed;
     }
 
     public void updateFeed(RssFeed feed) {
