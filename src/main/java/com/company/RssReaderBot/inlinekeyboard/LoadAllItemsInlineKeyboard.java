@@ -1,5 +1,6 @@
 package com.company.RssReaderBot.inlinekeyboard;
 
+import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.company.RssReaderBot.models.ItemsPagination;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,10 @@ public class LoadAllItemsInlineKeyboard implements InlineKeyboardCreator {
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
         itemsPagination.toSplit();
-        return paginationInlineKeyboard.execute(itemsPagination.getStartButtonsIndex());
+        return paginationInlineKeyboard.createButton(
+                paginationInlineKeyboard.execute(itemsPagination.getStartButtonsIndex()),
+                "Back",
+                CallbackDataConstants.GET_ITEMS
+        );
     }
 }

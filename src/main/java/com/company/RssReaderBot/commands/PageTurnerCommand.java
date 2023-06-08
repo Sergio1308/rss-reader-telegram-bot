@@ -50,6 +50,8 @@ public class PageTurnerCommand implements Command<Message> {
                     loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemListModel().size() - 1
             );
         }
+        markupInline = paginationInlineKeyboard
+                .createButton(markupInline, "Back", CallbackDataConstants.GET_ITEMS);
         return new EditMessageText(chatId, messageId, paginationInlineKeyboard.getAnswer()).replyMarkup(markupInline);
     }
 

@@ -5,7 +5,11 @@ import com.company.RssReaderBot.models.ItemsList;
 import com.company.RssReaderBot.models.ItemsPagination;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 
 @Component
@@ -17,7 +21,12 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
 
     private final ItemsList itemsList;
 
-    public LoadItemsByTitleInlineKeyboard(ItemsPagination itemsPagination, PaginationInlineKeyboard paginationInlineKeyboard, ItemsList itemsList) {
+    @Getter @Setter
+    private String callbackData;
+
+    public LoadItemsByTitleInlineKeyboard(ItemsPagination itemsPagination,
+                                          PaginationInlineKeyboard paginationInlineKeyboard,
+                                          ItemsList itemsList) {
         this.itemsPagination = itemsPagination;
         this.paginationInlineKeyboard = paginationInlineKeyboard;
         this.itemsList = itemsList;
@@ -31,7 +40,12 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
             );
         }
         itemsPagination.toSplit();
-        return paginationInlineKeyboard.execute(itemsPagination.getStartButtonsIndex());
+        Optional<String> callbackDataButton = Optional.ofNullable(this.callbackData);
+        return paginationInlineKeyboard.createButton(
+                paginationInlineKeyboard.execute(itemsPagination.getStartButtonsIndex()),
+                "Back",
+                callbackDataButton.orElse(CallbackDataConstants.GET_ITEMS)
+        );
     }
 
     public InlineKeyboardMarkup createInlineKeyboard(String callbackData) {
@@ -42,6 +56,10 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return paginationInlineKeyboard.execute(buttonIndex);
+        return paginationInlineKeyboard.createButton(
+                paginationInlineKeyboard.execute(buttonIndex),
+                "Back",
+                CallbackDataConstants.GET_ITEMS
+        );
     }
 }

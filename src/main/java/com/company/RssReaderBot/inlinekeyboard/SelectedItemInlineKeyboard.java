@@ -29,7 +29,7 @@ public class SelectedItemInlineKeyboard implements InlineKeyboardCreator {
     public InlineKeyboardMarkup createInlineKeyboard() {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton backButton = new InlineKeyboardButton("Back")
-                .callbackData(CallbackDataConstants.RETURN_LOAD_BY_TITLE);
+                .callbackData(CallbackDataConstants.ITEMS_LIST);
         if (!favoriteItemService.hasItem(user, currentItem.getTitle())) {
             return markup.addRow(new InlineKeyboardButton("Add to favorites")
                     .callbackData(CallbackDataConstants.ADD_TO_FAVORITES)).addRow(backButton);
