@@ -12,6 +12,8 @@ import com.company.RssReaderBot.models.ItemModel;
 import com.company.RssReaderBot.models.ItemsPagination;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.company.RssReaderBot.inlinekeyboard.RssFeedsInlineKeyboard;
+import com.company.RssReaderBot.models.RssFeedCheckerRegistry;
+import com.company.RssReaderBot.utils.RssFeedChecker;
 import com.company.RssReaderBot.utils.parser.ParseElements;
 import com.company.RssReaderBot.db.services.RssFeedService;
 import com.company.RssReaderBot.db.services.UserService;
@@ -22,16 +24,11 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.CallbackQuery;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.request.AnswerCallbackQuery;
-import com.pengrad.telegrambot.request.BaseRequest;
-import com.pengrad.telegrambot.request.DeleteMessage;
-import com.pengrad.telegrambot.request.EditMessageReplyMarkup;
+import com.pengrad.telegrambot.request.*;
 import com.pengrad.telegrambot.response.BaseResponse;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @BotController
 public class CallbackQueryController implements TelegramMvcController, Controller {
@@ -66,7 +63,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
 
     private final ItemsPagination itemsPagination;
 
-    private final Map<String, Command<Message>> commandsMap = new HashMap<>();
+    private final RssFeedCheckerRegistry feedCheckerRegistry;
 
     private Integer feedId = null;
 
@@ -77,7 +74,8 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
                                    EnteringItemTitleCommand enteringItemTitleCommand,
                                    SelectItemCommand selectItemCommand, LoadItemsByTitleCommand loadItemsByTitleCommand,
                                    ParseElements parseElements, UserService userService,
-                                   FavoriteItemService favoriteItemService, ItemsPagination itemsPagination) {
+                                   FavoriteItemService favoriteItemService, ItemsPagination itemsPagination,
+                                   RssFeedCheckerRegistry feedCheckerRegistry) {
         this.subscribeCommand = subscribeCommand;
         this.botConfig = botConfig;
         this.unsubscribeCommand = unsubscribeCommand;
@@ -93,6 +91,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
         this.userService = userService;
         this.favoriteItemService = favoriteItemService;
         this.itemsPagination = itemsPagination;
+        this.feedCheckerRegistry = feedCheckerRegistry;
     }
 
     @CallbackQueryRequest
@@ -179,6 +178,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
         if (favoriteItems.isEmpty()) {
             return new AnswerCallbackQuery(callbackQuery.id()).text("You don't have any items in your favorites!");
         }
+        selectItemCommand.setStateMenu(CallbackDataConstants.SETTINGS_MENU);
         return settingsMenuCommand.displayFavoritesItems(callbackQuery.message(), favoriteItems);
     }
 
@@ -251,6 +251,12 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
         if (callData.startsWith(CallbackDataConstants.FEED_BUTTON)) {
             feedId = Integer.parseInt(callData.substring(CallbackDataConstants.FEED_BUTTON.length()));
             if (message.text().startsWith("Your subscriptions")) {
+                RssFeedChecker feedChecker = feedCheckerRegistry.getRssFeedChecker(feedId);
+                if (feedChecker != null) {
+                    feedChecker.stopChecking();
+                    feedCheckerRegistry.removeRssFeedChecker(feedId);
+                }
+
                 rssFeedService.removeFeed(feedId);
                 List<RssFeed> feedList = rssFeedService.getAllFeeds(chatId);
                 InlineKeyboardCreator inlineKeyboardCreator = new RssFeedsInlineKeyboard(feedList);
@@ -266,17 +272,34 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
             selectItemCommand.setUser(userService.findUser(chatId));
             selectItemCommand.setCallData(callData);
             return selectItemCommand.execute(message);
+        } else if (callData.startsWith(CallbackDataConstants.INTERVAL)) {
+            SettingsMenuInlineKeyboard settingsInlineKeyboard = settingsMenuCommand.getSettingsMenuInlineKeyboard();
+            RssFeed selectedFeed = settingsInlineKeyboard.getFeedList()
+                    .get(settingsInlineKeyboard.getCurrentFeedIndex());
+            int monitoringInterval = Integer.parseInt(callData.substring(CallbackDataConstants.INTERVAL.length()));
+            selectedFeed.setInterval(monitoringInterval);
+            rssFeedService.updateFeed(selectedFeed);
+            RssFeedChecker feedChecker = feedCheckerRegistry.getRssFeedChecker(selectedFeed.getId());
+            feedChecker.setInterval(monitoringInterval);
+
+            return settingsMenuCommand.displayRssFeedSettings(message, settingsInlineKeyboard.getFeedList());
         } else if (feedId == null) {
             return new AnswerCallbackQuery(callbackQueryId).text("You have not selected an RSS feed!");
         } else if (callData.equals(CallbackDataConstants.LOAD_ALL_ITEMS)) {
             parseElements.parseAllElements(feedId);
+            selectItemCommand.setStateMenu(CallbackDataConstants.GET_ITEMS);
             return loadAllItemsCommand.execute(message);
         } else if (callData.equals(CallbackDataConstants.LOAD_BY_TITLE)) {
-            parseElements.getRssFeedAndSetToParser(feedId);
+            parseElements.findFeedAndParseRss(feedId);
+            selectItemCommand.setStateMenu(CallbackDataConstants.GET_ITEMS);
             return enteringItemTitleCommand.execute(message);
-        } else if (callData.equals(CallbackDataConstants.RETURN_LOAD_BY_TITLE)) {
+        } else if (callData.equals(CallbackDataConstants.ITEMS_LIST)) {
             // todo return to already generated items list, remember previous page
             // edit reply markup
+            if (selectItemCommand.getStateMenu().equals(CallbackDataConstants.SETTINGS_MENU)) {
+                List<FavoriteItem> favoriteItems = favoriteItemService.getAllFavoriteItems(chatId);
+                return settingsMenuCommand.displayFavoritesItems(message, favoriteItems);
+            }
             return loadItemsByTitleCommand.process(update, chatId);
         } else if (itemsPagination.getCallbackDataPaginationButtons() != null &&
                 itemsPagination.getCallbackDataPaginationButtons().contains(callData)) {
