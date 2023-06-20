@@ -8,10 +8,12 @@ import com.company.RssReaderBot.db.repositories.UserSettingsRepository;
 import com.company.RssReaderBot.db.services.RssFeedService;
 import com.company.RssReaderBot.db.services.UserService;
 import com.company.RssReaderBot.models.RssFeedCheckerRegistry;
+import com.company.RssReaderBot.utils.ElementDisplayFormatter;
 import com.company.RssReaderBot.utils.RssFeedChecker;
 import com.company.RssReaderBot.utils.parser.RssUrlValidator;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.ForceReply;
+import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.DeleteMessage;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -58,6 +60,7 @@ public class RssUrlValidationCommand implements Command<Message> {
             }
             rssFeedService.addFeed(userDB, validatedRssUrl);
             RssFeed addedFeed = rssFeedService.getCurrentlyAddedFeed();
+
             RssFeedChecker feedChecker = new RssFeedChecker(
                     botConfig, message, userSettingsRepository, addedFeed
             );
@@ -65,7 +68,9 @@ public class RssUrlValidationCommand implements Command<Message> {
             feedChecker.startChecking();
 
             return new SendMessage(chatId,
-                    "Subscribed successfully!\nYou are now following the feed.");
+                    "Subscribed successfully!\nYou are now following "
+                            + ElementDisplayFormatter.createHyperlink(addedFeed.getUrl(), addedFeed.getTitle()))
+                    .parseMode(ParseMode.HTML);
         } else {
             return new SendMessage(
                     chatId,
