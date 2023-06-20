@@ -19,14 +19,13 @@ public class ElementDisplayFormatter {
     /**
      * Formats the answer text based on the selected item and user settings.
      *
-     * @param chatId chat id
-     * @param currentItem Current item model.
-     * @param userSettingsRepository The repository for accessing user settings.
-     * @return The formatted answer text.
+     * @param chatId                    chat id
+     * @param currentItem               Current item model.
+     * @param userSettingsRepository    The repository for accessing user settings.
+     * @return                          The formatted answer text.
      */
     public static String displayElement(long chatId, UserSettingsRepository userSettingsRepository,
                                         ItemModel currentItem) {
-        final String URL_HREF_OPEN_TAG = "<a href='";
         StringBuilder stringBuilder = new StringBuilder();
         UserSettings userSettings = userSettingsRepository.findByUserUserid(chatId).orElseThrow();
 
@@ -50,14 +49,25 @@ public class ElementDisplayFormatter {
                 });
         Optional.of(userSettings.isDisplayMedia())
                 .filter(Boolean::booleanValue)
-                .ifPresent(displayMedia -> stringBuilder.append(URL_HREF_OPEN_TAG)
-                        .append(currentItem.getMediaUrl())
-                        .append("'>Media</a>").append("\n\n"));
+                .ifPresent(displayMedia -> stringBuilder
+                        .append(createHyperlink(currentItem.getMediaUrl(), "Media"))
+                        .append("\n\n"));
         Optional.of(userSettings.isDisplayLink())
                 .filter(Boolean::booleanValue)
-                .ifPresent(displayLink -> stringBuilder.append("Source: " + URL_HREF_OPEN_TAG)
-                        .append(currentItem.getSourceLink())
-                        .append("'>").append(currentItem.getTitle()).append("</a>"));
+                .ifPresent(displayLink -> stringBuilder
+                        .append("Source: ")
+                        .append(createHyperlink(currentItem.getSourceLink(), currentItem.getTitle())));
         return stringBuilder.toString();
+    }
+
+    /**
+     * Creates a hyperlink HTML string with the specified URL and text.
+     *
+     * @param href  The URL of the hyperlink.
+     * @param text  The text to display for the hyperlink.
+     * @return      The HTML string representing the hyperlink.
+     */
+    public static String createHyperlink(String href, String text) {
+        return "<a href='" + href + "'>" + text + "</a>";
     }
 }
