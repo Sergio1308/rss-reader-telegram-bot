@@ -13,8 +13,7 @@ public class SubscribeCommand implements Command<Message> {
     private static boolean hasEntered;
 
     private String getAnswer() {
-        return "You have to reply to this message with the URL of an RSS-feed." +
-                "\nSend me a valid URL below\uD83D\uDC47\nIf you want an example of an RSS-feed or help, " +
+        return "Send me a valid URL below\uD83D\uDC47\nIf you want an example of an RSS-feed or help, " +
                 "use /help";
     }
 
