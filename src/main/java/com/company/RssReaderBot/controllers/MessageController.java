@@ -2,9 +2,7 @@ package com.company.RssReaderBot.controllers;
 
 import com.company.RssReaderBot.commands.*;
 import com.company.RssReaderBot.config.BotConfig;
-import com.company.RssReaderBot.commands.RssUrlValidationCommand;
 import com.company.RssReaderBot.utils.parser.ParseElements;
-import com.github.kshashov.telegram.api.MessageType;
 import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.BotRequest;
@@ -12,7 +10,6 @@ import com.github.kshashov.telegram.api.bind.annotation.request.MessageRequest;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.User;
 import com.pengrad.telegrambot.request.BaseRequest;
-import com.pengrad.telegrambot.request.DeleteMessage;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
 
@@ -44,7 +41,7 @@ public class MessageController implements TelegramMvcController, Controller {
         this.loadItemsByTitleCommand = loadItemsByTitleCommand;
     }
 
-    @BotRequest(value = "/start", type = {MessageType.CALLBACK_QUERY, MessageType.MESSAGE})
+    @BotRequest(value = "/start")
     public BaseRequest<?, ?> sendStartMessage(Update update) {
         if (update.callbackQuery() != null) {
             return startCommand.displayStartMenu(
@@ -61,17 +58,15 @@ public class MessageController implements TelegramMvcController, Controller {
 
     @MessageRequest
     public BaseRequest<?, ?> handle(Update update) {
-        String message = update.message().text();
+        String messageText = update.message().text();
         long chatId = update.message().chat().id();
 
         handleMessageLog(update);
 
         if (SubscribeCommand.hasEntered()) {
-            botConfig.getTelegramBot().execute(new DeleteMessage(chatId, update.message().replyToMessage().messageId()));
             return rssUrlValidationCommand.execute(update.message());
         } else if (EnteringItemTitleCommand.hasEntered()) {
-            // todo parse in loadItemsByTitleCommand
-            parseElements.parseElementsByTitle(message);
+            parseElements.parseElementsByTitle(messageText);
             return loadItemsByTitleCommand.process(update, chatId);
         } else {
             String answer = "Invalid command. Use inline menu above\uD83D\uDC46";
