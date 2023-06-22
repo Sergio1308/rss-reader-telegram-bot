@@ -35,8 +35,7 @@ public class ParseElements {
         itemsList.setItemsList(parser.getAllElementsList());
     }
 
-    public void parseElementsByDate(Integer feedId, String dateString) {
-        findFeedAndParseRss(feedId);
+    public void parseElementsByDate(String dateString) {
         itemsList.setItemsList(parser.getElementListByDate(dateString));
     }
 }
