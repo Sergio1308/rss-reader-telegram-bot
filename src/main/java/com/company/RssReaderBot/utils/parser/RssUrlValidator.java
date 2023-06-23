@@ -87,11 +87,9 @@ public class RssUrlValidator {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setReadTimeout(connectionReadTimeout);
                 connection.setConnectTimeout(connectionConnectTimeout);
-                responseCode = connection.getResponseCode();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                return "Internal error";
             }
-            System.out.println("Redirect to URL: " + url + " - " + responseCode); // todo debug
             return validateMimeType(connection.getContentType(), url.toString());
         } else {
             return "Unable to get response from URL <" + url +
