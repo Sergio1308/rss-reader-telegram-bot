@@ -1,5 +1,7 @@
 package com.company.RssReaderBot.commands;
 
+import com.company.RssReaderBot.controllers.MessageController;
+import com.company.RssReaderBot.controllers.core.BotState;
 import com.company.RssReaderBot.inlinekeyboard.EnteringItemTitleInlineKeyboard;
 import com.company.RssReaderBot.inlinekeyboard.InlineKeyboardCreator;
 import com.pengrad.telegrambot.model.Message;
@@ -7,27 +9,26 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.response.BaseResponse;
-import org.springframework.stereotype.Component;
+import lombok.Getter;
 
-@Component
-public class EnteringItemTitleCommand implements Command<Message> {
+public class UserInputCommand implements Command<Message> {
 
-    private static boolean hasEntered;
+    @Getter
+    private final String answer;
 
-    public static boolean hasEntered() {
-        return hasEntered;
-    }
-
-    public static void setEntered(boolean hasEntered) {
-        EnteringItemTitleCommand.hasEntered = hasEntered;
+    public UserInputCommand(String answer) {
+        this.answer = answer;
     }
 
     @Override
     public BaseRequest<EditMessageText, BaseResponse> execute(Message message) {
         InlineKeyboardCreator inlineKeyboardCreator = new EnteringItemTitleInlineKeyboard();
         InlineKeyboardMarkup markupInline = inlineKeyboardCreator.createInlineKeyboard();
-        String answer = "Enter the correct title of the item below (part or full name)\uD83D\uDC47:";
-        setEntered(true);
+        if (answer.startsWith("Enter a correct title")) {
+            MessageController.getUserStates().put(message.chat().id(), BotState.ENTER_TITLE);
+        } else if (answer.startsWith("Enter a correct date")) {
+            MessageController.getUserStates().put(message.chat().id(), BotState.ENTER_DATE);
+        }
         return new EditMessageText(message.chat().id(), message.messageId(), answer).replyMarkup(markupInline);
     }
 }
