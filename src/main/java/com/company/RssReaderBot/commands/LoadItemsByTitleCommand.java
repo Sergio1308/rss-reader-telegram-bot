@@ -1,5 +1,7 @@
 package com.company.RssReaderBot.commands;
 
+import com.company.RssReaderBot.controllers.MessageController;
+import com.company.RssReaderBot.controllers.core.BotState;
 import com.company.RssReaderBot.models.ItemsList;
 import com.company.RssReaderBot.models.ItemsPagination;
 import com.company.RssReaderBot.inlinekeyboard.LoadItemsByTitleInlineKeyboard;
@@ -15,15 +17,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoadItemsByTitleCommand implements Command<Message> {
 
-    private String callData;
-
     private final LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard;
 
     private final ItemsList itemsList;
 
     private final ItemsPagination itemsPagination;
 
-    public LoadItemsByTitleCommand(LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard, ItemsList itemsList, ItemsPagination itemsPagination) {
+    public LoadItemsByTitleCommand(LoadItemsByTitleInlineKeyboard loadItemsByTitleInlineKeyboard,
+                                   ItemsList itemsList, ItemsPagination itemsPagination) {
         this.loadItemsByTitleInlineKeyboard = loadItemsByTitleInlineKeyboard;
         this.itemsList = itemsList;
         this.itemsPagination = itemsPagination;
@@ -46,9 +47,8 @@ public class LoadItemsByTitleCommand implements Command<Message> {
             return new EditMessageText(chatId, messageId, getAnswer()).replyMarkup(markupInline);
         } else {
             // messageHandler
-            EnteringItemTitleCommand.setEntered(false);
+            MessageController.getUserStates().put(chatId, BotState.NONE);
             InlineKeyboardMarkup markupInline = loadItemsByTitleInlineKeyboard.createInlineKeyboard();
-            System.out.println("chunked items list: " + loadItemsByTitleInlineKeyboard.itemsPagination.getChunkedItemListModel().size());
             return new SendMessage(chatId, getAnswer()).replyMarkup(markupInline);
         }
     }

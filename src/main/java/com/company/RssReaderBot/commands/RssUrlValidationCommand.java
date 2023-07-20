@@ -2,6 +2,8 @@ package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.config.BotConfig;
 import com.company.RssReaderBot.controllers.CallbackDataConstants;
+import com.company.RssReaderBot.controllers.MessageController;
+import com.company.RssReaderBot.controllers.core.BotState;
 import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.db.entities.UserDB;
 import com.company.RssReaderBot.db.repositories.UserSettingsRepository;
@@ -51,7 +53,7 @@ public class RssUrlValidationCommand implements Command<Message> {
         String validatedRssUrl = rssUrlValidator.validateRssUrl(message.text());
         botConfig.getTelegramBot().execute(new DeleteMessage(chatId, message.messageId()));
         if (rssUrlValidator.isValid()) {
-            SubscribeCommand.setEntered(false);
+            MessageController.getUserStates().put(chatId, BotState.NONE);
 
             UserDB userDB = userService.findUser(chatId);
             if (rssFeedService.hasFeed(userDB, validatedRssUrl)) {
