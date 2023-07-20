@@ -38,9 +38,6 @@ public class SelectItemCommand implements Command<Message> {
     private final UserSettingsRepository userSettingsRepository;
 
     @Getter @Setter
-    private String stateMenu;
-
-    @Getter @Setter
     private UserDB user;
 
     public SelectItemCommand(SelectedItemInlineKeyboard selectedItemInlineKeyboard, ItemsList itemsList,

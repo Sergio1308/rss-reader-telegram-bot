@@ -27,9 +27,6 @@ public class RssFeedsInlineKeyboard implements InlineKeyboardCreator {
     @Getter @Setter
     private int currentFeedIndex = 0;
 
-    @Getter @Setter
-    private String stateMenu;
-
     public RssFeedsInlineKeyboard() {
 
     }
