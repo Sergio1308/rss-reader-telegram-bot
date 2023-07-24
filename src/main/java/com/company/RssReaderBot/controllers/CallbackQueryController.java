@@ -1,8 +1,8 @@
 package com.company.RssReaderBot.controllers;
 
 import com.company.RssReaderBot.commands.*;
-import com.company.RssReaderBot.commands.SettingsMenuCommand;
 import com.company.RssReaderBot.config.BotConfig;
+import com.company.RssReaderBot.controllers.core.BotState;
 import com.company.RssReaderBot.db.entities.FavoriteItem;
 import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.db.entities.UserDB;
@@ -17,6 +17,8 @@ import com.company.RssReaderBot.utils.RssFeedChecker;
 import com.company.RssReaderBot.utils.parser.ParseElements;
 import com.company.RssReaderBot.db.services.RssFeedService;
 import com.company.RssReaderBot.db.services.UserService;
+import com.company.RssReaderBot.utils.parser.RssParsingException;
+import com.company.RssReaderBot.utils.parser.RssParsingMethod;
 import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.request.CallbackQueryRequest;
@@ -26,9 +28,11 @@ import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.*;
 import com.pengrad.telegrambot.response.BaseResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 @BotController
 public class CallbackQueryController implements TelegramMvcController, Controller {
@@ -45,9 +49,10 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
 
     private final PageTurnerCommand pageTurnerCommand;
 
-    private final LoadAllItemsCommand loadAllItemsCommand;
+    private final Command<Message> loadAllItemsCommand;
 
-    private final EnteringItemTitleCommand enteringItemTitleCommand;
+    private final UserInputCommand titleCommand;
+    private final UserInputCommand dateCommand;
 
     private final SelectItemCommand selectItemCommand;
 
@@ -72,9 +77,11 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
     public CallbackQueryController(BotConfig botConfig, SubscribeCommand subscribeCommand,
                                    UnsubscribeCommand unsubscribeCommand, GetItemsCommand getItemsCommand,
                                    SettingsMenuCommand settingsMenuCommand, PageTurnerCommand pageTurnerCommand,
+                                   @Qualifier("titleCommand") UserInputCommand titleCommand,
+                                   @Qualifier("dateCommand") UserInputCommand dateCommand,
                                    RssFeedService rssFeedService, LoadAllItemsCommand loadAllItemsCommand,
-                                   EnteringItemTitleCommand enteringItemTitleCommand,
-                                   SelectItemCommand selectItemCommand, LoadItemsByTitleCommand loadItemsByTitleCommand,
+                                   SelectItemCommand selectItemCommand,
+                                   LoadItemsByTitleCommand loadItemsByTitleCommand,
                                    ParseElements parseElements, UserService userService,
                                    FavoriteItemService favoriteItemService, ItemsPagination itemsPagination,
                                    RssFeedCheckerRegistry feedCheckerRegistry,
@@ -86,9 +93,10 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
         this.getItemsCommand = getItemsCommand;
         this.settingsMenuCommand = settingsMenuCommand;
         this.pageTurnerCommand = pageTurnerCommand;
+        this.titleCommand = titleCommand;
+        this.dateCommand = dateCommand;
         this.rssFeedService = rssFeedService;
         this.loadAllItemsCommand = loadAllItemsCommand;
-        this.enteringItemTitleCommand = enteringItemTitleCommand;
         this.selectItemCommand = selectItemCommand;
         this.loadItemsByTitleCommand = loadItemsByTitleCommand;
         this.parseElements = parseElements;
@@ -155,33 +163,93 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
     public BaseRequest<?, ?> handleGetItemsCallBack(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         itemsPagination.clear();
-        feedsInlineKeyboard.setStateMenu(CallbackDataConstants.GET_ITEMS);
+        MessageController.getUserStates().put(callbackQuery.message().chat().id(), BotState.GET_ELEMENTS);
         return getItemsCommand.execute(callbackQuery.message());
+    }
+
+    /**
+     * This method is responsible for processing the callback query triggered when a user
+     * requests to load items from an RSS feed. It executes the provided parsing method
+     * to parse the RSS feed and obtain the desired items. The parsing method is represented
+     * by the functional interface `BiConsumer<Integer, RssFeed>`, where the first parameter
+     * is the ID of the RSS feed, and the second parameter is the actual `RssFeed` object
+     * containing the feed details.
+     *
+     * @param update        The Telegram Update object representing the incoming update request,
+     *                      typically generated when the user interacts with the bot.
+     * @param command       The command to be executed after loading items from the feed. This
+     *                      command is usually used to display the parsed items to the user.
+     * @param parseMethod   The functional interface representing the method to parse the RSS feed
+     *                      and retrieve the desired items. It must implement the
+     *                      {@link BiConsumer} interface with parameters (Integer, RssFeed).
+     * @return              {@link BaseRequest} representing the command execution request returned by the provided
+     *                      command after loading items from the feed.
+     * @see BiConsumer
+     */
+    private BaseRequest<?, ?> handleLoadItemsCallback(Update update, Command<Message> command,
+                                                     BiConsumer<Integer, RssFeed> parseMethod) {
+        CallbackQuery callbackQuery = update.callbackQuery();
+        RssFeed feed = feedsInlineKeyboard.getFeedList().get(feedsInlineKeyboard.getCurrentFeedIndex());
+        parseMethod.accept(feed.getId(), feed);
+        MessageController.getUserStates().put(callbackQuery.message().chat().id(), BotState.GET_ELEMENTS);
+        return command.execute(callbackQuery.message());
+    }
+
+    /**
+     * This method encapsulates the common try-catch block required for parsing
+     * an RSS feed using the specified RssParsingMethod. It catches any RssParsingException
+     * that might occur during the parsing process and handles it by executing the
+     * appropriate action, such as providing an error message to the user.
+     *
+     * @param update        The Telegram Update object representing the incoming update request,
+     *                      typically generated when the user interacts with the bot.
+     * @param parsingMethod The functional interface representing the method call to parse
+     *                      an RSS feed with a specific feed ID. It must implement the
+     *                      {@link RssParsingMethod} interface.
+     * @param feedId        The ID of the RSS feed to parse.
+     *
+     * @see RssParsingMethod
+     */
+    private void handleParsing(Update update, RssParsingMethod parsingMethod, int feedId) {
+        try {
+            parsingMethod.parse(feedId);
+        } catch (RssParsingException e) {
+            TelegramBot bot = botConfig.getTelegramBot();
+            bot.execute(new SendMessage(update.callbackQuery().message().chat().id(), e.getMessage()));
+            bot.execute(new AnswerCallbackQuery(update.callbackQuery().id()));
+        }
     }
 
     @CallbackQueryRequest(value = CallbackDataConstants.LOAD_ALL_ITEMS)
     public BaseRequest<?, ?> handleLoadAllItemsCallback(Update update) {
-        CallbackQuery callbackQuery = update.callbackQuery();
-        RssFeed feed = feedsInlineKeyboard.getFeedList().get(feedsInlineKeyboard.getCurrentFeedIndex());
-        parseElements.parseAllElements(feed.getId());
-        selectItemCommand.setStateMenu(CallbackDataConstants.GET_ITEMS);
-        return loadAllItemsCommand.execute(callbackQuery.message());
+        return handleLoadItemsCallback(update, loadAllItemsCommand, (feedId, rssFeed) -> handleParsing(
+                update, parseElements::parseAllElements, feedId
+        ));
     }
 
     @CallbackQueryRequest(value = CallbackDataConstants.LOAD_BY_TITLE)
     public BaseRequest<?, ?> handleLoadItemsByTitleCallback(Update update) {
-        CallbackQuery callbackQuery = update.callbackQuery();
-        RssFeed feed = feedsInlineKeyboard.getFeedList().get(feedsInlineKeyboard.getCurrentFeedIndex());
-        parseElements.findFeedAndParseRss(feed.getId());
-        selectItemCommand.setStateMenu(CallbackDataConstants.GET_ITEMS);
-        return enteringItemTitleCommand.execute(callbackQuery.message());
+        return handleLoadItemsCallback(update, titleCommand, (feedId, rssFeed) -> handleParsing(
+                update, parseElements::findFeedAndParseRss, feedId
+        ));
+    }
+
+    @CallbackQueryRequest(value = CallbackDataConstants.LOAD_BY_DATE)
+    public BaseRequest<?, ?> handleLoadItemsByDateCallback(Update update) {
+        return handleLoadItemsCallback(update, dateCommand, (feedId, rssFeed) -> handleParsing(
+                update, parseElements::findFeedAndParseRss, feedId
+        ));
     }
 
     @CallbackQueryRequest(value = CallbackDataConstants.ITEMS_LIST)
     public BaseRequest<?, ?> handleItemsListCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
         long chatId = callbackQuery.message().chat().id();
-        if (selectItemCommand.getStateMenu().equals(CallbackDataConstants.SETTINGS_MENU)) {
+        // todo return to already generated items list, remember previous page
+        // edit reply markup
+        BotState currentState = MessageController
+                .getUserStates().getOrDefault(callbackQuery.message().chat().id(), BotState.NONE);
+        if (currentState.equals(BotState.SETTINGS)) {
             List<FavoriteItem> favoriteItems = favoriteItemService.getAllFavoriteItems(chatId);
             return settingsMenuCommand.displayFavoritesItems(callbackQuery.message(), favoriteItems);
         }
@@ -191,7 +259,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
     @CallbackQueryRequest(value = CallbackDataConstants.SETTINGS_MENU)
     public BaseRequest<?, ?> handleSettingsCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
-        feedsInlineKeyboard.setStateMenu(CallbackDataConstants.SETTINGS_MENU);
+        MessageController.getUserStates().put(callbackQuery.message().chat().id(), BotState.SETTINGS);
         return settingsMenuCommand.execute(callbackQuery.message());
     }
 
@@ -214,7 +282,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
         if (favoriteItems.isEmpty()) {
             return new AnswerCallbackQuery(callbackQuery.id()).text("You don't have any items in your favorites!");
         }
-        selectItemCommand.setStateMenu(CallbackDataConstants.SETTINGS_MENU);
+        MessageController.getUserStates().put(callbackQuery.message().chat().id(), BotState.SETTINGS);
         return settingsMenuCommand.displayFavoritesItems(callbackQuery.message(), favoriteItems);
     }
 
@@ -265,7 +333,9 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
     )
     public BaseRequest<?, ?> handleScrollingFeedForwardOrBackwardCallback(Update update) {
         CallbackQuery callbackQuery = update.callbackQuery();
-        if (feedsInlineKeyboard.getStateMenu().equals(CallbackDataConstants.SETTINGS_MENU)) {
+        BotState currentState = MessageController.getUserStates()
+                .getOrDefault(callbackQuery.message().chat().id(), BotState.NONE);
+        if (currentState.equals(BotState.SETTINGS)) {
             return settingsMenuCommand.updateFeedRowButtons(callbackQuery);
         } else {
             return feedsInlineKeyboard.handleFeedNavigation(callbackQuery, getItemsInlineKeyboard);
@@ -327,6 +397,7 @@ public class CallbackQueryController implements TelegramMvcController, Controlle
             return settingsMenuCommand.displayRssFeedSettings(message, feedList);
         } else if (itemsPagination.getCallbackDataPaginationButtons() != null &&
                 itemsPagination.getCallbackDataPaginationButtons().contains(callData)) {
+            // todo update only message text & items list
             return loadItemsByTitleCommand.execute(chatId, messageId, callData);
         }
         return new AnswerCallbackQuery(callbackQueryId);
