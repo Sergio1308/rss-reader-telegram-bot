@@ -16,7 +16,7 @@ public class CommandConfiguration {
     @Qualifier("titleCommand")
     public UserInputCommand titleCommand() {
         String answer = "Enter a correct title of the item below (part or full name)\uD83D\uDC47:";
-        return new UserInputCommand(BotState.ENTER_TITLE, answer);
+        return new UserInputCommand(BotState.ENTERING_TITLE, answer);
     }
 
     @Bean
@@ -24,7 +24,7 @@ public class CommandConfiguration {
     public UserInputCommand dateCommand() {
         String answer = "Enter a correct date in the format \"dd-MM-yyyy\" " +
                 "\nFor example, 10-05-2023 \uD83D\uDC47";
-        return new UserInputCommand(BotState.ENTER_DATE, answer);
+        return new UserInputCommand(BotState.ENTERING_DATE, answer);
     }
 
     @Bean
@@ -38,8 +38,8 @@ public class CommandConfiguration {
     @Bean
     @Qualifier("getItemsWithSpecifiedUrlCommand")
     public UserInputCommand getItemsWithSpecifiedUrlCommand() {
-        String answer = "Send me a valid URL below\uD83D\uDC47\nIf you want an example of an RSS-feed or help, " +
-                "use /help";
-        return new UserInputCommand(BotState.GET_ELEMENTS, answer);
+        String answer = "Send me the URL of the feed you want to get the items from\uD83D\uDC47\n" +
+                "If you want an example of an RSS-feed or help, use /help";
+        return new UserInputCommand(BotState.ENTERING_SPECIFIC_URL, answer);
     }
 }
