@@ -37,7 +37,11 @@ public class RssFeed {
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean posting = true;
+    private boolean monitoring = true;
+
+    @Column(columnDefinition = "boolean default false")
+    @Getter @Setter
+    private boolean subscription = false;
 
     @Column(columnDefinition = "integer default 15")
     @Getter @Setter
@@ -73,7 +77,7 @@ public class RssFeed {
                 ", title='" + title + '\'' +
                 ", customTitle='" + customTitle + '\'' +
                 ", customHashtags='" + customHashtags + '\'' +
-                ", posting=" + posting +
+                ", monitoring=" + monitoring +
                 ", interval=" + interval +
                 ", lastEnteredTitle='" + lastEnteredTitle + '\'' +
                 '}';
