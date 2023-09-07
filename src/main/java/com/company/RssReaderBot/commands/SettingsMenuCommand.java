@@ -114,14 +114,14 @@ public class SettingsMenuCommand implements Command<Message> {
         RssFeed currentFeed = feedList.get(index);
 
         if (callbackQuery.data().equals(CallbackDataConstants.SETTINGS_FEED_POSTING)) {
-            boolean posting = currentFeed.isPosting();
-            currentFeed.setPosting(!posting);
+            boolean monitoring = currentFeed.isMonitoring();
+            currentFeed.setMonitoring(!monitoring);
             feedList.set(index, currentFeed);
             settingsMenuInlineKeyboard.setFeedList(feedList);
             feedRepository.save(currentFeed);
 
             RssFeedChecker feedChecker = feedCheckerRegistry.getRssFeedChecker(currentFeed.getId());
-            feedChecker.toggleChecking(currentFeed.isPosting());
+            feedChecker.toggleChecking(currentFeed.isMonitoring());
         } else if (callbackQuery.data().equals(CallbackDataConstants.SETTINGS_FEED_INTERVAL)) {
             return new EditMessageReplyMarkup(callbackQuery.message().chat().id(),
                     callbackQuery.message().messageId())

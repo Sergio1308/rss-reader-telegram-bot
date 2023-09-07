@@ -29,7 +29,7 @@ public class UnsubscribeCommand implements Command<Message> {
 
     @Override
     public BaseRequest<?, ?> execute(Message message) {
-        List<RssFeed> feedList = rssFeedService.getAllFeeds(message.chat().id());
+        List<RssFeed> feedList = rssFeedService.getAllSubscribedFeeds(message.chat().id());
         if (feedList.isEmpty()) {
             answer = "You don't have any subscribed feeds yet\uD83D\uDE05\nClick on the button to subscribe.";
         } else {
