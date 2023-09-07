@@ -1,7 +1,6 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.config.BotConfig;
-import com.company.RssReaderBot.controllers.CallbackDataConstants;
 import com.company.RssReaderBot.controllers.MessageController;
 import com.company.RssReaderBot.controllers.core.BotState;
 import com.company.RssReaderBot.db.entities.RssFeed;
@@ -14,7 +13,6 @@ import com.company.RssReaderBot.utils.ElementDisplayFormatter;
 import com.company.RssReaderBot.utils.RssFeedChecker;
 import com.company.RssReaderBot.utils.parser.RssUrlValidator;
 import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.DeleteMessage;
@@ -48,39 +46,46 @@ public class RssUrlValidationCommand implements Command<Message> {
         this.userSettingsRepository = userSettingsRepository;
     }
 
+    public static String invalidUrlAnswer(String validatedRssUrl) {
+        return validatedRssUrl + "\n\n▶Send me a valid URL again\uD83D\uDC47" +
+                "\n▶or press Cancel button above\uD83D\uDC46" +
+                "\n\uD83D\uDCA1Hint: you can use /help for more info";
+    }
+
     public BaseRequest<SendMessage, SendResponse> execute(Message message) {
         Long chatId = message.chat().id();
         String validatedRssUrl = rssUrlValidator.validateRssUrl(message.text());
         botConfig.getTelegramBot().execute(new DeleteMessage(chatId, message.messageId()));
         if (rssUrlValidator.isValid()) {
             MessageController.getUserStates().put(chatId, BotState.NONE);
-
-            UserDB userDB = userService.findUser(chatId);
-            if (rssFeedService.hasFeed(userDB, validatedRssUrl)) {
-                return new SendMessage(chatId,
-                        "Error! You are already subscribed to this feed.");
-            }
-            rssFeedService.addFeed(userDB, validatedRssUrl);
-            RssFeed addedFeed = rssFeedService.getCurrentlyAddedFeed();
-
-            RssFeedChecker feedChecker = new RssFeedChecker(
-                    botConfig, message, userSettingsRepository, addedFeed
-            );
-            feedCheckerRegistry.addRssFeedChecker(addedFeed.getId(), feedChecker);
-            feedChecker.startChecking();
-
-            return new SendMessage(chatId,
-                    "Subscribed successfully!\nYou are now following "
-                            + ElementDisplayFormatter.createHyperlink(addedFeed.getUrl(), addedFeed.getTitle()))
-                    .parseMode(ParseMode.HTML);
+            return subscribeToRssFeed(message, validatedRssUrl);
         } else {
             return new SendMessage(
                     chatId,
-                    validatedRssUrl + "\n▶Send me a valid URL again by replying to this message\uD83D\uDC47" +
-                    "\n▶or use /help for more info"
-            ).replyMarkup(new ForceReply(true)
-                    .inputFieldPlaceholder(CallbackDataConstants.SUB_FEED_SAMPLE)
-                    .selective(true));
+                    invalidUrlAnswer(validatedRssUrl)
+            );
         }
+    }
+
+    public BaseRequest<SendMessage, SendResponse> subscribeToRssFeed(Message message, String validatedRssUrl) {
+        Long chatId = message.chat().id();
+        UserDB userDB = userService.findUser(chatId);
+        if (rssFeedService.hasSubscribedFeed(userDB, validatedRssUrl)) {
+            return new SendMessage(chatId,
+                    "Error! You are already subscribed to this feed.");
+        }
+        rssFeedService.addSubscribedFeed(userDB, validatedRssUrl);
+        RssFeed addedFeed = rssFeedService.getCurrentlyAddedFeed();
+
+        RssFeedChecker feedChecker = new RssFeedChecker(
+                botConfig, message, userSettingsRepository, addedFeed
+        );
+        feedCheckerRegistry.addRssFeedChecker(addedFeed.getId(), feedChecker);
+        feedChecker.startChecking();
+
+        return new SendMessage(chatId,
+                "Subscribed successfully!\nYou are now following "
+                        + ElementDisplayFormatter.createHyperlink(addedFeed.getUrl(), addedFeed.getTitle()))
+                .parseMode(ParseMode.HTML);
     }
 }
