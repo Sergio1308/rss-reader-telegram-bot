@@ -6,11 +6,11 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FeedElementSelectorInlineKeyboard implements InlineKeyboardCreator {
+public class FeedItemSelectionInlineKeyboard implements InlineKeyboardCreator {
 
     private final RssFeedsInlineKeyboard feedsInlineKeyboard;
 
-    public FeedElementSelectorInlineKeyboard(RssFeedsInlineKeyboard feedsInlineKeyboard) {
+    public FeedItemSelectionInlineKeyboard(RssFeedsInlineKeyboard feedsInlineKeyboard) {
         this.feedsInlineKeyboard = feedsInlineKeyboard;
     }
 
