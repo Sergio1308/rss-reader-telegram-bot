@@ -1,7 +1,7 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.db.entities.RssFeed;
-import com.company.RssReaderBot.inlinekeyboard.FeedElementSelectorInlineKeyboard;
+import com.company.RssReaderBot.inlinekeyboard.FeedItemSelectionInlineKeyboard;
 import com.company.RssReaderBot.db.services.RssFeedService;
 import com.company.RssReaderBot.inlinekeyboard.RssFeedsInlineKeyboard;
 import com.pengrad.telegrambot.model.Message;
@@ -17,22 +17,22 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FeedElementSelector implements Command<Message> {
+public class FeedItemSelectionCommand implements Command<Message> {
 
     private final RssFeedService rssFeedService;
 
     private final RssFeedsInlineKeyboard feedsInlineKeyboard;
 
-    private final FeedElementSelectorInlineKeyboard feedElementSelectorInlineKeyboard;
+    private final FeedItemSelectionInlineKeyboard feedItemSelectionInlineKeyboard;
 
     @Getter @Setter
     private List<RssFeed> feedList;
 
-    public FeedElementSelector(RssFeedService rssFeedService, RssFeedsInlineKeyboard feedsInlineKeyboard,
-                               FeedElementSelectorInlineKeyboard feedElementSelectorInlineKeyboard) {
+    public FeedItemSelectionCommand(RssFeedService rssFeedService, RssFeedsInlineKeyboard feedsInlineKeyboard,
+                                    FeedItemSelectionInlineKeyboard feedItemSelectionInlineKeyboard) {
         this.rssFeedService = rssFeedService;
         this.feedsInlineKeyboard = feedsInlineKeyboard;
-        this.feedElementSelectorInlineKeyboard = feedElementSelectorInlineKeyboard;
+        this.feedItemSelectionInlineKeyboard = feedItemSelectionInlineKeyboard;
     }
 
     private String getAnswer() {
@@ -58,7 +58,7 @@ public class FeedElementSelector implements Command<Message> {
                     .parseMode(ParseMode.HTML);
         }
         feedsInlineKeyboard.setFeedList(feedList);
-        InlineKeyboardMarkup markupInline = feedElementSelectorInlineKeyboard.createInlineKeyboard();
+        InlineKeyboardMarkup markupInline = feedItemSelectionInlineKeyboard.createInlineKeyboard();
         return new EditMessageText(chatId, message.messageId(), getAnswer())
                 .replyMarkup(markupInline)
                 .parseMode(ParseMode.HTML);
