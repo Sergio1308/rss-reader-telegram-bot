@@ -6,11 +6,11 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetItemsInlineKeyboard implements InlineKeyboardCreator {
+public class FeedElementSelectorInlineKeyboard implements InlineKeyboardCreator {
 
     private final RssFeedsInlineKeyboard feedsInlineKeyboard;
 
-    public GetItemsInlineKeyboard(RssFeedsInlineKeyboard feedsInlineKeyboard) {
+    public FeedElementSelectorInlineKeyboard(RssFeedsInlineKeyboard feedsInlineKeyboard) {
         this.feedsInlineKeyboard = feedsInlineKeyboard;
     }
 
@@ -19,11 +19,11 @@ public class GetItemsInlineKeyboard implements InlineKeyboardCreator {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         InlineKeyboardButton[] feedsButtons = feedsInlineKeyboard.createFeedListButton();
         markup.addRow(feedsButtons);
-        createGetItemsButtons(markup);
+        createFeedElementSelectionButtons(markup);
         return markup;
     }
 
-    public void createGetItemsButtons(InlineKeyboardMarkup inlineMarkup) {
+    public void createFeedElementSelectionButtons(InlineKeyboardMarkup inlineMarkup) {
         InlineKeyboardButton[] getItemsButtons = new InlineKeyboardButton[] {
                 new InlineKeyboardButton("Get all items")
                         .callbackData(CallbackDataConstants.LOAD_ALL_ITEMS),
