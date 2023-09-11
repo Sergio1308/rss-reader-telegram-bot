@@ -116,7 +116,7 @@ public class SettingsMenuInlineKeyboard implements InlineKeyboardCreator {
         RssFeed selectedFeed = feedList.get(currentFeedIndex);
 
         inlineMarkup
-                .addRow(new InlineKeyboardButton("⚙️Monitoring: " + selectedFeed.isPosting())
+                .addRow(new InlineKeyboardButton("⚙️Monitoring: " + selectedFeed.isMonitoring())
                         .callbackData(CallbackDataConstants.SETTINGS_FEED_POSTING))
                 .addRow(new InlineKeyboardButton("⚙️Monitoring interval: " + selectedFeed.getInterval() + " min")
                         .callbackData(CallbackDataConstants.SETTINGS_FEED_INTERVAL))
