@@ -1,11 +1,10 @@
 package com.company.RssReaderBot.commands;
 
 import com.company.RssReaderBot.db.entities.RssFeed;
-import com.company.RssReaderBot.inlinekeyboard.GetItemsInlineKeyboard;
+import com.company.RssReaderBot.inlinekeyboard.FeedElementSelectorInlineKeyboard;
 import com.company.RssReaderBot.db.services.RssFeedService;
 import com.company.RssReaderBot.inlinekeyboard.RssFeedsInlineKeyboard;
 import com.pengrad.telegrambot.model.Message;
-import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.BaseRequest;
@@ -18,45 +17,48 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class GetItemsCommand implements Command<Message> {
+public class FeedElementSelector implements Command<Message> {
 
     private final RssFeedService rssFeedService;
 
     private final RssFeedsInlineKeyboard feedsInlineKeyboard;
 
-    private final GetItemsInlineKeyboard getItemsInlineKeyboard;
+    private final FeedElementSelectorInlineKeyboard feedElementSelectorInlineKeyboard;
 
     @Getter @Setter
     private List<RssFeed> feedList;
 
-    public GetItemsCommand(RssFeedService rssFeedService, RssFeedsInlineKeyboard feedsInlineKeyboard,
-                           GetItemsInlineKeyboard getItemsInlineKeyboard) {
+    public FeedElementSelector(RssFeedService rssFeedService, RssFeedsInlineKeyboard feedsInlineKeyboard,
+                               FeedElementSelectorInlineKeyboard feedElementSelectorInlineKeyboard) {
         this.rssFeedService = rssFeedService;
         this.feedsInlineKeyboard = feedsInlineKeyboard;
-        this.getItemsInlineKeyboard = getItemsInlineKeyboard;
+        this.feedElementSelectorInlineKeyboard = feedElementSelectorInlineKeyboard;
     }
 
     private String getAnswer() {
         return "I found some subscribed feeds!" +
                 "\n\nSelect one by pressing scroll buttons◀️▶️, " +
                 "then press other option button below to get items: all, by title or by date" +
-                "\n\nSelected feed:";
+                "\n\nHint: You can also get items from any other RSS feed. To do this, use the commands:"+
+                "\n/get_all\n/get_title\n/get_date"+
+                "\nJust type \"/\" to see the description of the commands";
     }
 
     @Override
     public BaseRequest<?, ?> execute(Message message) {
         long chatId = message.chat().id();
-        feedList = rssFeedService.getAllFeeds(chatId);
+        feedList = rssFeedService.getAllSubscribedFeeds(chatId);
         if (feedList.isEmpty()) {
             return new SendMessage(
                     chatId,
-                    "use this command with arguments, using key word specify which way you want to get items: " +
-                            "all|title|date then write url.\nExample: <code>/get all url</code>")
-                    .parseMode(ParseMode.HTML)
-                    .replyMarkup(new ForceReply(true).inputFieldPlaceholder("all|title|date url"));
+                    "You don't have any subscriptions to the RSS feed yet. " +
+                            "You can get the elements of any feed using the following commands:" +
+                            "\n/get_all\n/get_title\n/get_date" +
+                            "\nJust type \"/\" to see the description of the commands")
+                    .parseMode(ParseMode.HTML);
         }
         feedsInlineKeyboard.setFeedList(feedList);
-        InlineKeyboardMarkup markupInline = getItemsInlineKeyboard.createInlineKeyboard();
+        InlineKeyboardMarkup markupInline = feedElementSelectorInlineKeyboard.createInlineKeyboard();
         return new EditMessageText(chatId, message.messageId(), getAnswer())
                 .replyMarkup(markupInline)
                 .parseMode(ParseMode.HTML);
