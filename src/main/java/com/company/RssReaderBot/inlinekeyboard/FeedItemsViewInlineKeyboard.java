@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @Component
-public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
+public class FeedItemsViewInlineKeyboard implements InlineKeyboardCreator {
 
     public final ItemsPagination itemsPagination;
 
@@ -24,9 +24,9 @@ public class LoadItemsByTitleInlineKeyboard implements InlineKeyboardCreator {
     @Getter @Setter
     private String callbackData;
 
-    public LoadItemsByTitleInlineKeyboard(ItemsPagination itemsPagination,
-                                          PaginationInlineKeyboard paginationInlineKeyboard,
-                                          ItemsList itemsList) {
+    public FeedItemsViewInlineKeyboard(ItemsPagination itemsPagination,
+                                       PaginationInlineKeyboard paginationInlineKeyboard,
+                                       ItemsList itemsList) {
         this.itemsPagination = itemsPagination;
         this.paginationInlineKeyboard = paginationInlineKeyboard;
         this.itemsList = itemsList;
