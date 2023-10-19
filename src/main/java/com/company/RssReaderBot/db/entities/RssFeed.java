@@ -7,12 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(
-        name = "rss_feed",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "rss_feed_url_unique", columnNames = "url"),
-        }
-)
+@Table(name = "rss_feed")
 public class RssFeed {
 
     @Id
@@ -42,7 +37,11 @@ public class RssFeed {
 
     @Column(columnDefinition = "boolean default true")
     @Getter @Setter
-    private boolean posting = true;
+    private boolean monitoring = true;
+
+    @Column(columnDefinition = "boolean default false")
+    @Getter @Setter
+    private boolean subscription = false;
 
     @Column(columnDefinition = "integer default 15")
     @Getter @Setter
@@ -53,7 +52,7 @@ public class RssFeed {
 
     @OneToMany(mappedBy = "feed", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Getter
-    private List<FavoritesItem> favoritesItems;
+    private List<FavoriteItem> favoriteItems;
 
     public RssFeed(UserDB user, String url, String title) {
         this.user = user;
@@ -65,8 +64,8 @@ public class RssFeed {
 
     }
 
-    public void addItem(FavoritesItem favoritesItem) {
-        favoritesItems.add(favoritesItem);
+    public void addItem(FavoriteItem favoriteItem) {
+        favoriteItems.add(favoriteItem);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class RssFeed {
                 ", title='" + title + '\'' +
                 ", customTitle='" + customTitle + '\'' +
                 ", customHashtags='" + customHashtags + '\'' +
-                ", posting=" + posting +
+                ", monitoring=" + monitoring +
                 ", interval=" + interval +
                 ", lastEnteredTitle='" + lastEnteredTitle + '\'' +
                 '}';

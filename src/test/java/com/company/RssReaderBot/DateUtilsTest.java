@@ -3,7 +3,6 @@ package com.company.RssReaderBot;
 import com.company.RssReaderBot.utils.DateUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
@@ -12,9 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class DateUtilsTest {
-
-    @Autowired
-    private DateUtils dateUtils;
 
     private GregorianCalendar expectedCalendar;
 
@@ -33,13 +29,13 @@ public class DateUtilsTest {
         String secondDate = "Thu, 27 Apr 2023 13:00:00 -0000";
         String thirdDate = "Thu, 27 Apr 2023 09:00:00 -0400";
 
-        String firstParsedDateString = dateUtils.parseDate(firstDate).toString();
-        String secondParsedDateString = dateUtils.parseDate(secondDate).toString();
-        String thirdStringDateString = dateUtils.parseDate(thirdDate).toString();
+        String firstParsedDateString = DateUtils.parseDate(firstDate).toString();
+        String secondParsedDateString = DateUtils.parseDate(secondDate).toString();
+        String thirdStringDateString = DateUtils.parseDate(thirdDate).toString();
 
         assertEquals(
                 expectedCalendar.getTime().toString(),
-                dateUtils.parseDate(expectedFormattedDate).orElseThrow().toString()
+                DateUtils.parseDate(expectedFormattedDate).orElseThrow().toString()
         );
         assertAll(
                 () -> assertEquals(firstParsedDateString, secondParsedDateString),
@@ -51,16 +47,16 @@ public class DateUtilsTest {
     @Test
     void testParseDateWithInvalidFormat() {
         String pubDate = "Tue, 02 May";
-        assertThrows(IllegalArgumentException.class, () -> dateUtils.parseDate(pubDate));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.parseDate(pubDate));
     }
 
     @Test
     void testFormatDate() {
-        assertEquals(expectedFormattedDate, dateUtils.formatDate(expectedCalendar.getTime()));
+        assertEquals(expectedFormattedDate, DateUtils.formatDate(expectedCalendar.getTime()));
     }
 
     @Test
     void testFormatDateWithNull() {
-        assertEquals(dateUtils.getVALUE_IF_DATE_IS_NULL(), dateUtils.formatDate(null));
+        assertEquals(DateUtils.getVALUE_IF_DATE_IS_NULL(), DateUtils.formatDate(null));
     }
 }

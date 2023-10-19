@@ -1,7 +1,6 @@
 package com.company.RssReaderBot.db.services;
 
-import com.company.RssReaderBot.db.entities.FavoritesItem;
-import com.company.RssReaderBot.db.entities.Item;
+import com.company.RssReaderBot.db.entities.FavoriteItem;
 import com.company.RssReaderBot.db.entities.RssFeed;
 import com.company.RssReaderBot.db.entities.UserDB;
 import com.company.RssReaderBot.db.repositories.RssFeedRepository;
@@ -20,6 +19,9 @@ public class RssFeedService {
 
     private final RssParser parser;
 
+    @Getter
+    private RssFeed currentlyAddedFeed;
+
     @Getter @Setter
     private String feedTitle;
 
@@ -32,17 +34,24 @@ public class RssFeedService {
         parser.parseFeedTitle(url);
         RssFeed feed = new RssFeed(userDB, url, parser.getFeedTitle());
         feedRepository.save(feed);
+        currentlyAddedFeed = feed;
     }
 
-    public void addFavoritesItem(UserDB userDB, ItemModel itemModel) {
-        FavoritesItem favoritesItem = new FavoritesItem(userDB);
-        Item item = new Item(favoritesItem, itemModel);
-        favoritesItem.setItem(item);
+    public void updateFeed(RssFeed feed) {
+        feedRepository.save(feed);
+    }
+
+    public boolean hasFeed(UserDB user, String url) {
+        return feedRepository.existsByUserAndUrl(user, url);
+    }
+
+    public void addFavoriteItem(UserDB userDB, ItemModel itemModel) {
+        FavoriteItem favoriteItem = new FavoriteItem(userDB, itemModel);
         // todo: handle the case if rss feed is not exist in db -> add to db with posting=false + sub=false
         //  if sub=false then posting must be always false
-        feedRepository.findByUserUserid(userDB.getUserid()).ifPresent(feed -> {
-            favoritesItem.setFeed(feed);
-            feed.addItem(favoritesItem);
+        feedRepository.findById(itemModel.getFeedId()).ifPresent(feed -> {
+            favoriteItem.setFeed(feed);
+            feed.addItem(favoriteItem);
             feedRepository.save(feed);
             }
         );
@@ -53,7 +62,7 @@ public class RssFeedService {
     }
 
     public List<RssFeed> getAllFeeds(Long userid) {
-        return feedRepository.findAllByUserUserid(userid);
+        return feedRepository.findRssFeedsByUserUserid(userid);
     }
 
     public Long countUserFeeds(Long userid) {

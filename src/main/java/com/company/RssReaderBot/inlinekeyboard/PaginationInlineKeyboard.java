@@ -33,16 +33,14 @@ public class PaginationInlineKeyboard implements InlineKeyboardCreator {
         // todo: edit reply markup, update only items list
         itemsList.setItemsMap(new HashMap<>());
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-
         itemsPagination.setCurrentPage(buttonIndex + 1);
         displaySelectedItemsList(markupInline, buttonIndex);
-        System.out.println("get start btn index" + itemsPagination.getStartButtonsIndex() +
-                "\t btn in row size" + itemsPagination.getButtonsInRowSize());
+
         InlineKeyboardButton[] pagesButtons = displayPageListButtons(
                 itemsPagination.getStartButtonsIndex(), itemsPagination.getButtonsInRowSize()
         );
         markupInline.addRow(pagesButtons);
-        // check
+
         if (!itemsPagination.isLessThanPaginationButtons(itemsPagination.getButtonsInRowSize())) {
             InlineKeyboardButton[] inlineKeyboardButtons = new InlineKeyboardButton[]{
                     new InlineKeyboardButton("⏮1").callbackData(CallbackDataConstants.FIRST_PAGE),
@@ -54,16 +52,15 @@ public class PaginationInlineKeyboard implements InlineKeyboardCreator {
             };
             markupInline.addRow(inlineKeyboardButtons);
         }
-        markupInline.addRow(new InlineKeyboardButton("Exit").callbackData(CallbackDataConstants.GET_ITEMS));
-        System.out.println(markupInline);
         return markupInline;
+    }
+
+    public InlineKeyboardMarkup createButton(InlineKeyboardMarkup markup, String text, String callbackData) {
+        return markup.addRow(new InlineKeyboardButton(text).callbackData(callbackData));
     }
 
     protected void displaySelectedItemsList(InlineKeyboardMarkup markup, int index) {
         // items list buttons
-        System.out.println("Items list has just displayed. Chunked items list index:" +
-                index + " (current index pagination = " + itemsPagination.getCurrentIndexPagination() + ")");
-        System.out.println(itemsPagination.getChunkedItemListModel().size());
         for (int i = 0; i < itemsPagination.getChunkedItemListModel().get(index).size(); i++) {
             ItemModel itemModel = itemsPagination.getChunkedItemListModel().get(index).get(i);
             String callbackData = Integer.toString(i);
@@ -77,7 +74,6 @@ public class PaginationInlineKeyboard implements InlineKeyboardCreator {
         // pagination, first row (nmb of pages)
         List<InlineKeyboardButton> pagesList = new ArrayList<>();
         itemsPagination.getCallbackDataPaginationButtons().clear();
-        System.out.println("i = " + index + ";\ti < " + buttonsInRowSize + " (buttonsInRowSize)");
         for (int i = index; i < buttonsInRowSize; i++) {
             InlineKeyboardButton page = new InlineKeyboardButton(
                     i == itemsPagination.getCurrentPage() - 1 ? ">" + (i + 1) + "<" : "" + (i + 1)
@@ -90,6 +86,7 @@ public class PaginationInlineKeyboard implements InlineKeyboardCreator {
 
     @Override
     public InlineKeyboardMarkup createInlineKeyboard() {
+        // todo
         return null;
     }
 }
